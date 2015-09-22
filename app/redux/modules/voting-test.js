@@ -1,9 +1,10 @@
 import {List, Map} from 'immutable';
 import {expect} from 'chai';
-import {voting, selectAnswer, likeAnswer, dislikeAnswer, voteForAnswer} from './voting.js';
+import voting from './voting.js';
+import {selectAnswer, likeAnswer, dislikeAnswer, voteForAnswer} from './voting.js';
 
 const initialState = Map({
-  'activeAnswer': null,
+  'activeAnswer': 0,
   'votedAnswer': null,
   'answers': List.of(
     Map({
@@ -21,10 +22,10 @@ const initialState = Map({
 
 describe('voting reducer', () => {
   it('handles SELECT_ANSWER', () => {
-    const nextState = voting(initialState, selectAnswer(123));
+    const nextState = voting(initialState, selectAnswer(1));
     expect(nextState).to.equal(
       Map({
-        'activeAnswer': 123,
+        'activeAnswer': 1,
         'votedAnswer': null,
         'answers': List.of(
           Map({
@@ -43,10 +44,10 @@ describe('voting reducer', () => {
   });
 
   it('handles LIKE_ANSWER', () => {
-    const nextState = voting(initialState, likeAnswer(123));
+    const nextState = voting(initialState, likeAnswer());
     expect(nextState).to.equal(
       Map({
-        'activeAnswer': null,
+        'activeAnswer': 1,
         'votedAnswer': null,
         'answers': List.of(
           Map({
@@ -65,10 +66,10 @@ describe('voting reducer', () => {
   });
 
   it('handles DISLIKE_ANSWER', () => {
-    const nextState = voting(initialState, dislikeAnswer(123));
+    const nextState = voting(initialState, dislikeAnswer());
     expect(nextState).to.equal(
       Map({
-        'activeAnswer': null,
+        'activeAnswer': 0,
         'votedAnswer': null,
         'answers': List.of(
           Map({
@@ -82,10 +83,10 @@ describe('voting reducer', () => {
   });
 
   it('handles VOTE_FOR_ANSWER', () => {
-    const nextState = voting(initialState, voteForAnswer(123));
+    const nextState = voting(initialState, voteForAnswer());
     expect(nextState).to.equal(
       Map({
-        'activeAnswer': null,
+        'activeAnswer': 0,
         'votedAnswer': 123,
         'answers': List.of(
           Map({

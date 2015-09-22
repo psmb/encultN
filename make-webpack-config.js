@@ -69,10 +69,6 @@ module.exports = (options) => {
           loader: 'style!css!' + autoprefixer,
         },
         {
-          test: /\.styl$/,
-          loader: 'style!css!' + autoprefixer + '!stylus',
-        },
-        {
           test: /\.scss$/,
           loader: 'style!css!' + autoprefixer + '!sass',
         },

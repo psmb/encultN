@@ -1,47 +1,38 @@
 import React from 'react';
-import {List, Map} from 'immutable';
-import {Answer} from './components';
-import {Voting} from './containers';
+import {Provider} from 'react-redux';
+import {Router, Route, Link} from 'react-router';
+// import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
+import {VotingContainer} from './containers/Voting/Voting';
+import store from './redux/store';
+import 'styles/main.scss';
 
-const initialState = Map({
-  'activeAnswer': null,
-  'votedAnswer': null,
-  'answers': List.of(
-    Map({
-      'id': 123,
-      'test': 'Hello world',
-      'liked': null,
-    }),
-    Map({
-      'id': 124,
-      'test': 'Hello world 2',
-      'liked': null,
-    }),
-  ),
-});
+class App extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+  }
 
-const answers = List.of(
-  Map({
-    'id': 123,
-    'test': 'Hello world',
-    'liked': null,
-  }),
-  Map({
-    'id': 124,
-    'test': 'Hello world 2',
-    'liked': null,
-  }),
-);
-
-export default class Application extends React.Component {
   render() {
     return (
       <div>
-      	Hello world!
-      	<Voting answers="{answers}" />
+        <h1>App Container</h1>
+        <Link to={`/`}>Home</Link>
+        <Link to={`/q`}>Voting</Link>
+        {this.props.children}
       </div>
     );
   }
 }
 
-React.render(<Application />, document.getElementById('root'));
+
+React.render((
+  <Provider store={store}>
+    {() => 
+      <Router>
+        <Route path="/" component={App}>
+          <Route path="q" component={VotingContainer} />
+          <Route path="q/:id" component={VotingContainer} />
+        </Route>
+      </Router>
+    }
+  </Provider>
+  ), document.getElementById('root'));

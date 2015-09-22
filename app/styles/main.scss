@@ -1,0 +1,73 @@
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/* Material Design Lite */
+
+// Variables and mixins
+//@import "variables";
+@import "Vendor/materialDesignLite/src/color-definitions";
+$color-accent: $palette-red-500;
+@import "Vendor/materialDesignLite/src/variables";
+$target-elements-directly: false;
+html, body {
+  font-family: $performance_font;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+@import "Vendor/materialDesignLite/src/mixins";
+
+// Resets and dependencies
+@import "Vendor/materialDesignLite/src/resets/resets";
+@import "Vendor/materialDesignLite/src/typography/typography";
+
+
+
+// Components
+@import "Vendor/materialDesignLite/src/palette/palette";
+@import "Vendor/materialDesignLite/src/ripple/ripple";
+@import "Vendor/materialDesignLite/src/animation/animation";
+@import "Vendor/materialDesignLite/src/badge/badge";
+@import "Vendor/materialDesignLite/src/button/button";
+@import "Vendor/materialDesignLite/src/card/card";
+@import "Vendor/materialDesignLite/src/checkbox/checkbox";
+@import "Vendor/materialDesignLite/src/data-table/data-table";
+@import "Vendor/materialDesignLite/src/footer/mega_footer";
+@import "Vendor/materialDesignLite/src/footer/mini_footer";
+@import "Vendor/materialDesignLite/src/icon-toggle/icon-toggle";
+@import "Vendor/materialDesignLite/src/menu/menu";
+@import "Vendor/materialDesignLite/src/progress/progress";
+@import "Vendor/materialDesignLite/src/layout/layout";
+@import "Vendor/materialDesignLite/src/radio/radio";
+@import "Vendor/materialDesignLite/src/slider/slider";
+@import "Vendor/materialDesignLite/src/spinner/spinner";
+@import "Vendor/materialDesignLite/src/switch/switch";
+@import "Vendor/materialDesignLite/src/tabs/tabs";
+@import "Vendor/materialDesignLite/src/textfield/textfield";
+@import "Vendor/materialDesignLite/src/tooltip/tooltip";
+@import "Vendor/materialDesignLite/src/shadow/shadow";
+@import "Vendor/materialDesignLite/src/grid/grid";
+
+.mdl-encult .section--center {
+  max-width: 960px;
+  margin: 12px auto;
+  padding: 12px;
+}
