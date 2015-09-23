@@ -18,12 +18,14 @@
 
 // Variables and mixins
 //@import "variables";
+
+$u: 12px;
 @import "Vendor/materialDesignLite/src/color-definitions";
 $color-accent: $palette-red-500;
 @import "Vendor/materialDesignLite/src/variables";
 $target-elements-directly: false;
 html, body {
-  font-family: $performance_font;
+  font-family: $preferred_font;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
@@ -31,6 +33,11 @@ html, body {
 h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
+  font-weight: 400;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 @import "Vendor/materialDesignLite/src/mixins";
@@ -66,8 +73,15 @@ h1, h2, h3, h4, h5, h6, p {
 @import "Vendor/materialDesignLite/src/shadow/shadow";
 @import "Vendor/materialDesignLite/src/grid/grid";
 
-.mdl-encult .section--center {
-  max-width: 960px;
-  margin: 12px auto;
-  padding: 12px;
+body {
+  background-color: unquote("rgb(#{$palette-grey-50})");
+}
+.pageContent {
+  margin: 0 auto;
+  padding: $u;
+}
+
+.Answer {
+  padding: 2*$u;
+  background-color: white;
 }

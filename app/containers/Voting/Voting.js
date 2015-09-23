@@ -27,18 +27,18 @@ class Voting extends Component {
     });
 
     const likingControls = (
-      <div className="mdl-grid">
-        <button className="mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--colored" onClick={() => this.props.likeAnswer()}>За</button>
-        <button className="mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--accent" onClick={() => this.props.dislikeAnswer()}>Против</button>
+      <div className='mdl-grid'>
+        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.likeAnswer()}>За</button>
+        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.dislikeAnswer()}>Против</button>
       </div>
     );
     const votingControls = (
       <div>
-        <button className="button mdl-button mdl-button--raised mdl-button--colored" onClick={() => this.props.voteForAnswer()}>Голосовать!</button>
+        <button className='button mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.voteForAnswer()}>Голосовать!</button>
       </div>
     );
     const answer = (
-      <div className="mdl-grid mdl-typography--body-1-color-contrast mdl-shadow--2dp">
+      <div className='mdl-grid mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
         {state.getIn(['answers', activeAnswer, 'text'])}
       </div>
     );
@@ -54,8 +54,8 @@ class Voting extends Component {
     );
     return (
       <div>
-        <h2 className="mdl-typography--title-color-contrast">{state.get('question').get('title')}</h2>
-        <h3 className="mdl-typography--subhead-color-contrast">{state.get('question').get('subTitle')}</h3>
+        <h2 className='mdl-typography--headline-color-contrast'>{state.get('question').get('title')}</h2>
+        <h3 className='mdl-typography--body-1-color-contrast'>{state.get('question').get('subTitle')}</h3>
         {votedAnswer ? resultsScreen : (noneLiked ? 'Почему вам ничего не нравится?' : votingScreen)}
       </div>
     );
