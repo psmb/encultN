@@ -1,23 +1,28 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import {Route} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 import {ReduxRouter} from 'redux-router';
 import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
-import {QuestionsContainer} from './containers/Questions/Questions';
-import {VotingContainer} from './containers/Voting/Voting';
-import Layout from './containers/Layout';
-import store from './redux/store';
+import Questions from 'components/Questions';
+import Question from 'components/Question';
+import QuestionVoting from 'components/QuestionVoting';
+import QuestionResults from 'components/QuestionResults';
+import Layout from 'components/Layout';
+import store from 'redux/store';
 import 'styles/main.scss';
 
 
 const routes = (
-  <Route path='' component={Layout}>
-    <Route path='/' component={QuestionsContainer} />
-    <Route path='q/:id' component={VotingContainer} />
+  <Route path='/' component={Layout}>
+    <IndexRoute component={Questions} />
+    <Route path='q' component={Question} >
+      <Route path=':id' component={QuestionVoting} />
+      <Route path=':id/results' component={QuestionResults} />
+    </Route>
   </Route>
 );
 
-class Root extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,4 +56,4 @@ class Root extends React.Component {
   }
 }
 
-React.render(<Root />, document.getElementById('root'));
+React.render(<App />, document.getElementById('root'));

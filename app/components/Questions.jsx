@@ -2,7 +2,8 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
-class Questions extends Component {
+@connect(state => ({state: state.questions}))
+export default class Questions extends Component {
   static propTypes = {
     state: PropTypes.object.isRequired,
   }
@@ -19,9 +20,3 @@ class Questions extends Component {
     );
   }
 }
-
-function select(state) {
-  return {state: state.questions};
-}
-
-export const QuestionsContainer = connect(select)(Questions);

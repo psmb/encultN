@@ -1,8 +1,13 @@
 import React, {Component, PropTypes} from 'react';
+import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import * as actionCreators from 'redux/modules/voting';
 
-class Voting extends Component {
+@connect(
+  state => ({state: state.voting, question: state.questions.find(item => item.get('id') === +state.router.params.id)}),
+  actionCreators,
+)
+export default class QuestionVoting extends Component {
   static propTypes = {
     state: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired,
@@ -14,9 +19,6 @@ class Voting extends Component {
 
   render() {
     const state = this.props.state;
-    const question = this.props.question;
-    const activeAnswer = state.get('activeAnswer');
-    const votedAnswer = state.get('votedAnswer');
     const allLiked = state.get('answers').every(item => {return item.get('liked') === true; });
     const noneLiked = state.get('answers').count() === 0;
 
@@ -36,12 +38,12 @@ class Voting extends Component {
     );
     const votingControls = (
       <div>
-        <button className='button mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.voteForAnswer()}>Голосовать!</button>
+        <Link className='button mdl-button mdl-button--raised mdl-button--colored' to={`/q/${this.props.question.get('id')}/results`}>Голосовать!</Link>
       </div>
     );
     const answer = (
       <div className='mdl-grid mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
-        {state.getIn(['answers', activeAnswer, 'text'])}
+        {state.getIn(['answers', state.get('activeAnswer'), 'quizText'])}
       </div>
     );
     const votingScreen = (
@@ -51,24 +53,11 @@ class Voting extends Component {
         {allLiked ? votingControls : likingControls}
       </div>
     );
-    const resultsScreen = (
-      <h1>Вы проголосовали за {activeAnswer + 1}!</h1>
-    );
+
     return (
       <div>
-        <h2 className='mdl-typography--headline-color-contrast'>{question.get('title')}</h2>
-        <h3 className='mdl-typography--body-1-color-contrast'>{question.get('subTitle')}</h3>
-        {votedAnswer ? resultsScreen : (noneLiked ? 'Почему вам ничего не нравится?' : votingScreen)}
+        {noneLiked ? 'Почему вам ничего не нравится?' : votingScreen}
       </div>
     );
   }
 }
-
-function select(state) {
-  return {
-    state: state.voting,
-    question: state.questions.get(state.router.params.id),
-  };
-}
-
-export const VotingContainer = connect(select, actionCreators)(Voting);
