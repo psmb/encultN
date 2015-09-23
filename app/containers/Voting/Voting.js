@@ -5,6 +5,7 @@ import * as actionCreators from 'redux/modules/voting';
 class Voting extends Component {
   static propTypes = {
     state: PropTypes.object.isRequired,
+    question: PropTypes.object.isRequired,
     selectAnswer: PropTypes.func.isRequired,
     likeAnswer: PropTypes.func.isRequired,
     dislikeAnswer: PropTypes.func.isRequired,
@@ -13,6 +14,7 @@ class Voting extends Component {
 
   render() {
     const state = this.props.state;
+    const question = this.props.question;
     const activeAnswer = state.get('activeAnswer');
     const votedAnswer = state.get('votedAnswer');
     const allLiked = state.get('answers').every(item => {return item.get('liked') === true; });
@@ -54,8 +56,8 @@ class Voting extends Component {
     );
     return (
       <div>
-        <h2 className='mdl-typography--headline-color-contrast'>{state.get('question').get('title')}</h2>
-        <h3 className='mdl-typography--body-1-color-contrast'>{state.get('question').get('subTitle')}</h3>
+        <h2 className='mdl-typography--headline-color-contrast'>{question.get('title')}</h2>
+        <h3 className='mdl-typography--body-1-color-contrast'>{question.get('subTitle')}</h3>
         {votedAnswer ? resultsScreen : (noneLiked ? 'Почему вам ничего не нравится?' : votingScreen)}
       </div>
     );
@@ -63,7 +65,10 @@ class Voting extends Component {
 }
 
 function select(state) {
-  return {state: state.voting};
+  return {
+    state: state.voting,
+    question: state.questions.get(state.router.params.id),
+  };
 }
 
 export const VotingContainer = connect(select, actionCreators)(Voting);

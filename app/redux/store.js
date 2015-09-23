@@ -4,7 +4,8 @@ import {devTools, persistState} from 'redux-devtools';
 import createHistory from 'history/lib/createBrowserHistory';
 import {List, Map} from 'immutable';
 import appReducer from './modules/reducer';
-import {setState} from './modules/voting';
+import {setState as setStateQuestions} from './modules/questions';
+import {setState as setStateVoting} from './modules/voting';
 
 const store = compose(
   reduxReactRouter({createHistory}),
@@ -14,14 +15,23 @@ const store = compose(
 
 export default store;
 
-
-const initialState = Map({
-  'activeAnswer': 0,
-  'votedAnswer': null,
-  'question': Map({
+const initialStateQuestions = List.of(
+  Map({
+    'id': 0,
     'title': 'Самоубийство',
     'subTitle': 'Может ли человек добровольно лишить себя жизни?',
   }),
+  Map({
+    'id': 1,
+    'title': 'Самоубийство2',
+    'subTitle': 'Может ли человек добровольно лишить себя жизни?2',
+  }),
+);
+store.dispatch(setStateQuestions(initialStateQuestions));
+
+const initialStateVoting = Map({
+  'activeAnswer': 0,
+  'votedAnswer': null,
   'answers': List.of(
     Map({
       'id': 123,
@@ -35,5 +45,4 @@ const initialState = Map({
     }),
   ),
 });
-
-store.dispatch(setState(initialState));
+store.dispatch(setStateVoting(initialStateVoting));
