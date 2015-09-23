@@ -1,10 +1,13 @@
 import {createStore, compose} from 'redux';
+import {reduxReactRouter} from 'redux-router';
 import {devTools, persistState} from 'redux-devtools';
+import createHistory from 'history/lib/createBrowserHistory';
 import {List, Map} from 'immutable';
 import appReducer from './modules/reducer';
 import {setState} from './modules/voting';
 
 const store = compose(
+  reduxReactRouter({createHistory}),
   devTools(),
   persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
 )(createStore)(appReducer);
