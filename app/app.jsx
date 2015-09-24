@@ -5,8 +5,6 @@ import {ReduxRouter} from 'redux-router';
 import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
 import Questions from 'components/Questions';
 import Question from 'components/Question';
-import QuestionVoting from 'components/QuestionVoting';
-import QuestionResults from 'components/QuestionResults';
 import Layout from 'components/Layout';
 import store from 'redux/store';
 import 'styles/main.scss';
@@ -15,10 +13,7 @@ import 'styles/main.scss';
 const routes = (
   <Route path='/' component={Layout}>
     <IndexRoute component={Questions} />
-    <Route path='q' component={Question} >
-      <Route path=':id' component={QuestionVoting} />
-      <Route path=':id/results' component={QuestionResults} />
-    </Route>
+    <Route path='q/:id' component={Question} />
   </Route>
 );
 

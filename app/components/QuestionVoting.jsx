@@ -27,7 +27,8 @@ export default class QuestionVoting extends Component {
     const answersNav = state.get('answers').map(function renderAnswer(answer) {
       i++;
       const j = i;
-      return <li key={answer.get('id')}><button onClick={() => selectAnswer(j - 1)}>{i}</button></li>;
+      const currentClass = state.get('activeAnswer') === (j - 1) ? ' mdl-button--colored' : '';
+      return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1)}>{i}</button>;
     });
 
     const likingControls = (
@@ -37,8 +38,8 @@ export default class QuestionVoting extends Component {
       </div>
     );
     const votingControls = (
-      <div>
-        <Link className='button mdl-button mdl-button--raised mdl-button--colored' to={`/q/${this.props.question.get('id')}/results`}>Голосовать!</Link>
+      <div className='mdl-grid'>
+        <button className='mdl-cell button mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.voteForAnswer()}>Голосовать!</button>
       </div>
     );
     const answer = (
@@ -48,7 +49,7 @@ export default class QuestionVoting extends Component {
     );
     const votingScreen = (
       <div>
-        <ul>{allLiked ? answersNav : ''}</ul>
+        <div className='AnswersNav'>{allLiked ? answersNav : ''}</div>
         {answer}
         {allLiked ? votingControls : likingControls}
       </div>

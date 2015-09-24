@@ -1,35 +1,67 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {setPreferText} from 'redux/modules/preferences';
+import {answersSelector} from 'redux/selectors';
 
-@connect(state => ({state: state.voting}))
+@connect(state => ({
+  state: state.voting,
+  answers: answersSelector(state),
+  worldviews: state.worldviews,
+  preferText: state.preferences.get('preferText')}),
+  {setPreferText}
+)
 export default class QuestionResults extends Component {
   static propTypes = {
     state: PropTypes.object.isRequired,
+    answers: PropTypes.object.isRequired,
+    worldviews: PropTypes.object.isRequired,
+    preferText: React.PropTypes.bool,
+    setPreferText: PropTypes.func.isRequired,
   }
 
   render() {
     const state = this.props.state;
 
-    const activeAnswerObject = state.getIn(['answers', state.get('activeAnswer')]);
+    const activeAnswerData = this.props.answers.getIn([state.get('activeAnswer')]);
+    const activeAnswerObject = activeAnswerData.set('worldview', this.props.worldviews.find(item => item.get('id') === +activeAnswerData.get('worldviewId')));
+
+    const video = (
+        <iframe width='100%' height='auto' src='https://www.youtube.com/embed/dtQ2TS1CiDY?rel=0&amp;showinfo=0' frameBorder='0' allowFullScreen>{activeAnswerObject.get('fullVideo')}</iframe>
+    );
+    const videoText = (
+      <div className='mdl-typography--body-1-color-contrast AnswerFull-videoText'>{activeAnswerObject.get('quizText')}</div>
+    );
+
     const activeAnswer = (
-      <div className='mdl-grid mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
-        {activeAnswerObject.get('authorName')}
-        {activeAnswerObject.get('authorTitle')}
-        {activeAnswerObject.get('fullVideo')}
-        {activeAnswerObject.get('fullText')}
+      <div className='mdl-shadow--4dp AnswerFull'>
+        <div className='AnswerFull-header'>
+          <div className='mdl-typography--body-2-color-contrast'>Отвечает {activeAnswerObject.get('authorName')}</div>
+          <div className='mdl-typography--body-1-color-contrast'>{activeAnswerObject.get('authorTitle')}</div>
+          <div className='mdl-typography--display-1-color-contrast'>{activeAnswerObject.get('worldview').get('title')}</div>
+        </div>
+
+        {this.props.preferText ? videoText : video}
+
+        <div className='mdl-grid'>
+          <button className={(this.props.preferText ? '' : 'button--selected') + ' mdl-button mdl-button--colored mdl-cell mdl-cell--2-col'} onClick={() => this.props.setPreferText(false)}>Смотреть</button>
+          <button className={(this.props.preferText ? 'button--selected' : '') + ' mdl-button mdl-button--colored mdl-cell mdl-cell--2-col'} onClick={() => this.props.setPreferText(true)}>Читать</button>
+        </div>
+
       </div>
     );
-    const answers = state.get('answers').map(function renderAnswer(answer) {
+    const answers = this.props.answers.map(function renderAnswer(answer) {
       return (
-        <li key={answer.get('id')}>
-          {answer.get('authorName')}
-        </li>
+        <div key={answer.get('id')} className='mdl-shadow--2dp QuestionSmall mdl-shadow--2dp mdl-cell mdl-cell--2-col'>
+          {answer.get('worldview').get('title')}
+        </div>
       );
     });
     return (
       <div>
         {activeAnswer}
-        {answers}
+        <div className='mdl-grid'>
+          {answers}
+        </div>
       </div>
     );
   }

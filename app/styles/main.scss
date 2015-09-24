@@ -19,7 +19,7 @@
 // Variables and mixins
 //@import "variables";
 
-$u: 12px;
+$u: 8px;
 @import "Vendor/materialDesignLite/src/color-definitions";
 $color-accent: $palette-red-500;
 @import "Vendor/materialDesignLite/src/variables";
@@ -81,7 +81,61 @@ body {
   padding: $u;
 }
 
+.mdl-layout__header-row{
+  padding-left: 8px;
+}
+
 .Answer {
+  margin: 2*$u 0 $u 0;
   padding: 2*$u;
   background-color: white;
+}
+
+
+.AnswerFull {
+  margin: 2*$u 0 $u 0;
+}
+.AnswerFull-header {
+  text-align: center;
+  padding: $u;
+}
+.AnswerFull-videoText {
+  padding: $u;
+}
+
+
+.PreferTextSwitch {
+}
+.PreferTextSwitch-button {
+  width: 50%;
+}
+
+.AnswersNav {
+  text-align: center;
+}
+
+
+.QuestionSmall {
+  padding: $u;
+}
+.QuestionHeader {
+  margin-top: $u;
+}
+
+
+
+.textAlign-center {
+  text-align: center;
+}
+
+.button--selected {
+  background-color: unquote("rgba(#{$palette-grey-500}, 0.40)");
+}
+
+.Logo {
+  height: 86%;
+  margin-right: $u;
+  svg {
+    height: 100%;
+  }
 }
