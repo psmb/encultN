@@ -21,7 +21,9 @@
 
 $u: 8px;
 @import "Vendor/materialDesignLite/src/color-definitions";
-$color-accent: $palette-red-500;
+$color-primary: $palette-teal-500;
+$color-primary-dark: $palette-teal-700;
+$color-accent: $palette-red-A200;
 @import "Vendor/materialDesignLite/src/variables";
 $target-elements-directly: false;
 html, body {
