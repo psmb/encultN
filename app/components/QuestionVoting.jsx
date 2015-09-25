@@ -19,16 +19,18 @@ export default class QuestionVoting extends Component {
 
   render() {
     const state = this.props.state;
-    const allLiked = state.get('answers').every(item => {return item.get('liked') === true; });
-    const noneLiked = state.get('answers').count() === 0;
+    const allLiked = state.get('answers').every(item => {return (item.get('liked') === true) || (item.get('liked') === false); });
+    const noneLiked = state.get('answers').every(item => {return item.get('liked') === false; });
 
     let i = 0;
     const selectAnswer = this.props.selectAnswer;
     const answersNav = state.get('answers').map(function renderAnswer(answer) {
       i++;
       const j = i;
-      const currentClass = state.get('activeAnswer') === (j - 1) ? ' mdl-button--colored' : '';
-      return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1)}>{i}</button>;
+      if (answer.get('liked') === true) {
+        const currentClass = state.get('activeAnswer') === (j - 1) ? ' mdl-button--colored' : '';
+        return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1)}>{i}</button>;
+      }
     });
 
     const likingControls = (

@@ -69,9 +69,14 @@ describe('voting reducer', () => {
     const nextState = voting(initialState, dislikeAnswer());
     expect(nextState).to.equal(
       Map({
-        'activeAnswer': 0,
+        'activeAnswer': 1,
         'votedAnswer': null,
         'answers': List.of(
+          Map({
+            'id': 123,
+            'test': 'Hello world',
+            'liked': false,
+          }),
           Map({
             'id': 124,
             'test': 'Hello world 2',

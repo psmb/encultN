@@ -21,9 +21,9 @@ export default function reducer(state = initialState, action = {}) {
       .setIn(['answers', activeAnswer, 'liked'], true)
       .set('activeAnswer', gotoAnswer);
   case DISLIKE_ANSWER:
-    const gotoAnswer1 = (state.get('answers').count() === activeAnswer + 1) ? 0 : activeAnswer;
+    const gotoAnswer1 = (state.get('answers').count() === activeAnswer + 1) ? 0 : activeAnswer + 1;
     return state
-      .deleteIn(['answers', activeAnswer])
+      .setIn(['answers', activeAnswer, 'liked'], false)
       .set('activeAnswer', gotoAnswer1);
   case VOTE_FOR_ANSWER:
     return state.set('votedAnswer', state.getIn(['answers', activeAnswer, 'id']));
