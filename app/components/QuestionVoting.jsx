@@ -4,12 +4,13 @@ import {connect} from 'react-redux';
 import * as actionCreators from 'redux/modules/voting';
 
 @connect(
-  state => ({state: state.voting, question: state.questions.find(item => item.get('id') === +state.router.params.id)}),
+  state => ({
+    question: state.voting.get('questions').find(item => item.get('id') === +state.router.params.id),
+  }),
   actionCreators,
 )
 export default class QuestionVoting extends Component {
   static propTypes = {
-    state: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired,
     selectAnswer: PropTypes.func.isRequired,
     likeAnswer: PropTypes.func.isRequired,
@@ -18,18 +19,18 @@ export default class QuestionVoting extends Component {
   }
 
   render() {
-    const state = this.props.state;
-    const allLiked = state.get('answers').every(item => {return (item.get('liked') === true) || (item.get('liked') === false); });
-    const noneLiked = state.get('answers').every(item => {return item.get('liked') === false; });
+    const question = this.props.question;
+    const allLiked = question.get('answers').every(item => {return (item.get('liked') === true) || (item.get('liked') === false); });
+    const noneLiked = question.get('answers').every(item => {return item.get('liked') === false; });
 
     let i = 0;
     const selectAnswer = this.props.selectAnswer;
-    const answersNav = state.get('answers').map(function renderAnswer(answer) {
+    const answersNav = question.get('answers').map(function renderAnswer(answer) {
       i++;
       const j = i;
       if (answer.get('liked') === true) {
-        const currentClass = state.get('activeAnswer') === (j - 1) ? ' mdl-button--colored' : '';
-        return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1)}>{i}</button>;
+        const currentClass = question.get('activeAnswer') === (j - 1) ? ' mdl-button--colored' : '';
+        return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1, )}>{i}</button>;
       }
     });
 
@@ -46,7 +47,7 @@ export default class QuestionVoting extends Component {
     );
     const answer = (
       <div className='mdl-grid mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
-        {state.getIn(['answers', state.get('activeAnswer'), 'quizText'])}
+        {question.getIn(['answers', question.get('activeAnswer'), 'quizText'])}
       </div>
     );
     const votingScreen = (

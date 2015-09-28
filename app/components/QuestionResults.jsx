@@ -4,7 +4,7 @@ import {setPreferText} from 'redux/modules/preferences';
 import {answersSelector} from 'redux/selectors';
 
 @connect(state => ({
-  state: state.voting,
+  question: state.voting.get('questions').find(item => item.get('id') === +state.router.params.id),
   answers: answersSelector(state),
   worldviews: state.worldviews,
   preferText: state.preferences.get('preferText')}),
@@ -12,7 +12,7 @@ import {answersSelector} from 'redux/selectors';
 )
 export default class QuestionResults extends Component {
   static propTypes = {
-    state: PropTypes.object.isRequired,
+    question: PropTypes.object.isRequired,
     answers: PropTypes.object.isRequired,
     worldviews: PropTypes.object.isRequired,
     preferText: React.PropTypes.bool,
@@ -20,9 +20,7 @@ export default class QuestionResults extends Component {
   }
 
   render() {
-    const state = this.props.state;
-
-    const activeAnswerData = this.props.answers.getIn([state.get('activeAnswer')]);
+    const activeAnswerData = this.props.answers.get(this.props.question.get('activeAnswer'));
     const activeAnswerObject = activeAnswerData.set('worldview', this.props.worldviews.find(item => item.get('id') === +activeAnswerData.get('worldviewId')));
 
     const video = (

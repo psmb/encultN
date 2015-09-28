@@ -2,14 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 
-@connect(state => ({state: state.questions}))
+@connect(state => ({questions: state.voting.get('questions')}))
 export default class Questions extends Component {
   static propTypes = {
-    state: PropTypes.object.isRequired,
+    questions: PropTypes.object.isRequired,
   }
 
   render() {
-    const questions = this.props.state.map(function renderQuestion(question) {
+    const questions = this.props.questions.map(function renderQuestion(question) {
       return (
         <Link key={question.get('id')} className='mdl-cell mdl-shadow--2dp QuestionSmall' to={`/q/${question.get('id')}`}>
           <h2 className='mdl-typography--headline-color-contrast'>{question.get('title')}</h2>
