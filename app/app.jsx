@@ -18,19 +18,6 @@ const routes = (
 );
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      enableDevTools: false,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      enableDevTools: document.cookie.indexOf('enableDevTools=true') !== -1,
-    });
-  }
-
   render() {
     const devTools = (
       <DebugPanel top right bottom>
@@ -45,7 +32,7 @@ class App extends React.Component {
             <ReduxRouter routes={routes} />
           }
         </Provider>
-        {this.state.enableDevTools ? devTools : ''}
+        {devTools}
       </div>
     );
   }
