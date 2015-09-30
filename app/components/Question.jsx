@@ -11,18 +11,37 @@ export default class Question extends Component {
   static propTypes = {
     question: PropTypes.object.isRequired,
     selectQuestion: PropTypes.func.isRequired,
+    selectAnswer: PropTypes.func.isRequired,
+    fetchAnswers: PropTypes.func.isRequired,
   }
 
   componentWillMount() {
     this.props.selectQuestion(this.props.question.get('id'));
+    if (typeof(this.props.question.get('activeAnswer')) === 'undefined') {
+      this.props.selectAnswer(0);
+    }
+
+    if (typeof(this.props.question.get('answers')) === 'undefined') {
+      this.props.fetchAnswers(this.props.question.get('id'));
+    }
   }
 
   render() {
-    return (
+    const loadingScreen = (
+      <div className='loadingScreen'>
+        Loading...
+      </div>
+    );
+    const mainScreen = (
       <div className='QuestionHeader'>
         <h2 className='mdl-typography--headline-color-contrast'>{this.props.question.get('title')}</h2>
         <h3 className='mdl-typography--body-1-color-contrast'>{this.props.question.get('subTitle')}</h3>
         {Number.isInteger(this.props.question.get('votedAnswer')) ? <QuestionResults /> : <QuestionVoting />}
+      </div>
+    );
+    return (
+      <div>
+        {this.props.question.get('answers') ? mainScreen : loadingScreen}
       </div>
     );
   }

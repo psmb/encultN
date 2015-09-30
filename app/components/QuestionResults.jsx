@@ -2,14 +2,17 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {setPreferText} from 'redux/modules/preferences';
 import {answersSelector} from 'redux/selectors';
+import {selectAnswer} from 'redux/modules/voting';
 
 @connect(state => ({
   question: state.voting.get('questions').find(item => item.get('id') === +state.router.params.id),
   answers: answersSelector(state),
   worldviews: state.worldviews,
-  preferText: state.preferences.get('preferText')}),
-  {setPreferText}
-)
+  preferText: state.preferences.get('preferText'),
+}), {
+  setPreferText,
+  selectAnswer,
+})
 export default class QuestionResults extends Component {
   static propTypes = {
     question: PropTypes.object.isRequired,
@@ -17,6 +20,7 @@ export default class QuestionResults extends Component {
     worldviews: PropTypes.object.isRequired,
     preferText: React.PropTypes.bool,
     setPreferText: PropTypes.func.isRequired,
+    selectAnswer: PropTypes.func.isRequired,
   }
 
   render() {
@@ -47,12 +51,20 @@ export default class QuestionResults extends Component {
 
       </div>
     );
+
+    const selectAnswerCallback = this.props.selectAnswer;
+    const activeAnswerId = this.props.question.get('activeAnswer');
+    let i = 0;
     const answers = this.props.answers.map(function renderAnswer(answer) {
-      return (
-        <div key={answer.get('id')} className='mdl-shadow--2dp QuestionSmall mdl-shadow--2dp mdl-cell mdl-cell--2-col'>
-          {answer.get('worldview').get('title')}
-        </div>
-      );
+      i++;
+      const j = i;
+      if (activeAnswerId !== answer.get('id')) {
+        return (
+          <button key={answer.get('id')} className='mdl-shadow--2dp QuestionSmall mdl-shadow--2dp mdl-cell mdl-cell--2-col' onClick={() => selectAnswerCallback(j - 1)}>
+            {answer.get('worldview').get('title')}
+          </button>
+        );
+      }
     });
     return (
       <div>

@@ -1,6 +1,7 @@
-import {createStore, compose} from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
 import {reduxReactRouter} from 'redux-router';
 import {devTools, persistState} from 'redux-devtools';
+import promiseMiddleware from 'redux-promise';
 import createHistory from 'history/lib/createBrowserHistory';
 import {List, Map} from 'immutable';
 import appReducer from './modules/reducer';
@@ -8,6 +9,7 @@ import {setState as setStateWorldviews} from './modules/worldviews';
 import {setState as setStateVoting} from './modules/voting';
 
 const store = compose(
+  applyMiddleware(promiseMiddleware),
   reduxReactRouter({createHistory}),
   devTools(),
   persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)),
@@ -64,7 +66,6 @@ const initialStateVoting = Map({
       'title': 'Самоубийство',
       'subTitle': 'Может ли человек добровольно лишить себя жизни?',
 
-      'activeAnswer': 0,
       'answers': List.of(
         Map({
           id: 0,
@@ -147,6 +148,7 @@ const initialStateVoting = Map({
           votesCount: 123,
         }),
       ),
+
     }),
     Map({
       'id': 2,
