@@ -7,6 +7,8 @@ const port = process.env.PORT || 3000;
 const isDev = process.env.NODE_ENV = 'development';
 const isDebug = process.env.DEBUG;
 
+app.use(express.static('static'));
+
 if (isDev && isDebug && process.env.DEBUG.indexOf('shrimp:front') === 0) {
   const webpack = require('webpack');
   const makeConfig = require('../make-webpack-config.js');
