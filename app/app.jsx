@@ -3,6 +3,7 @@ import {Provider} from 'react-redux';
 import {Route, IndexRoute} from 'react-router';
 import {ReduxRouter} from 'redux-router';
 import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
+import 'babel/polyfill';
 import Questions from 'components/Questions';
 import Question from 'components/Question';
 import Layout from 'components/Layout';
