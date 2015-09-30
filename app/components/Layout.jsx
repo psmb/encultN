@@ -25,7 +25,7 @@ export default class Layout extends React.Component {
               </svg>
             </div>
 
-            <span className='mdl-layout-title'><Link to={`/`}>Инкультурация</Link></span>
+            <span className='mdl-layout-title'><Link to={`/`}>Изм</Link></span>
             <div className='mdl-layout-spacer'></div>
           </div>
         </header>
