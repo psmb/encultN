@@ -5,7 +5,7 @@ import {answersSelector} from 'redux/selectors';
 import {selectAnswer} from 'redux/modules/voting';
 
 @connect(state => ({
-  question: state.voting.get('questions').find(item => item.get('id') === +state.router.params.id),
+  question: state.voting.get('questions').find(item => item.get('id') === state.voting.get('activeQuestion')),
   answers: answersSelector(state),
   worldviews: state.worldviews,
   preferText: state.preferences.get('preferText'),
@@ -25,7 +25,7 @@ export default class QuestionResults extends Component {
 
   render() {
     const activeAnswerData = this.props.answers.get(this.props.question.get('activeAnswer'));
-    const activeAnswerObject = activeAnswerData.set('worldview', this.props.worldviews.find(item => item.get('id') === +activeAnswerData.get('worldviewId')));
+    const activeAnswerObject = activeAnswerData.set('worldview', this.props.worldviews.find(item => item.get('id') === activeAnswerData.get('worldviewId')));
 
     const video = (
         <iframe width='100%' height='auto' src='https://www.youtube.com/embed/dtQ2TS1CiDY?rel=0&amp;showinfo=0' frameBorder='0' allowFullScreen>{activeAnswerObject.get('fullVideo')}</iframe>

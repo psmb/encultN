@@ -24,6 +24,10 @@ $u: 8px;
 $color-primary: $palette-teal-500;
 $color-primary-dark: $palette-teal-700;
 $color-accent: $palette-red-A200;
+
+.color-accent {
+  color: unquote("rgb(#{$color-accent})");
+}
 @import "Vendor/materialDesignLite/src/variables";
 $target-elements-directly: false;
 html, body {
@@ -118,8 +122,18 @@ body {
 
 
 .QuestionSmall {
-  padding: $u;
+  margin: 0;
+  padding: $u $u 2*$u $u;
+  border-bottom: 1px solid unquote("rgba(#{$palette-grey-700}, 0.40)");
 }
+.QuestionSmall-subTitle {
+  line-height: 18px;
+}
+.QuestionSmall-lead {
+  margin-top: $u;
+}
+
+
 .QuestionHeader {
   margin-top: $u;
 }
@@ -131,13 +145,51 @@ body {
 }
 
 .button--selected {
-  background-color: unquote("rgba(#{$palette-grey-500}, 0.40)");
+  background-color: unquote("rgb(#{$palette-grey-500})");
 }
 
-.Logo {
-  height: 86%;
-  margin-right: $u;
-  svg {
-    height: 100%;
+
+
+.Intro {
+  margin: 0;
+  padding: 2*$u;
+  background-color: unquote("rgb(#{$palette-grey-300})");
+  overflow: auto;
+  .button {
+    float: right;
+  }
+}
+
+.Intro-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+.Intro-listNumber {
+  @include typo-headline(ture);
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid unquote("rgb(#{$palette-grey-700})");
+  display: inline-block;
+  height: 33px;
+  width: 33px;
+  padding-left: 9px;
+  box-sizing: border-box;
+  margin: $u $u 0;
+}
+
+
+.Stats {
+  background-color: unquote("rgb(#{$palette-red-A200})");
+  color: white;
+  margin: $u 0;
+  padding: 2*$u;
+  overflow: hidden;
+  .button {
+    float: right;
+    color: unquote("rgb(#{$palette-grey-700})");
+    background-color: unquote("rgb(#{$palette-grey-300})");
+  }
+  .mdl-typography--caption {
+    padding-bottom: $u;
   }
 }

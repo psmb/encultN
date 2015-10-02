@@ -4,7 +4,7 @@ import * as actionCreators from 'redux/modules/voting';
 
 @connect(
   state => ({
-    question: state.voting.get('questions').find(item => item.get('id') === +state.router.params.id),
+    question: state.voting.get('questions').find(item => item.get('id') === state.voting.get('activeQuestion')),
   }),
   actionCreators,
 )

@@ -13,7 +13,6 @@
 				answers: [
 					{
 						id: 1,
-						questionId: 1,
 						worldviewId: 1,
 						authorName: 'Вася',
 						authorTitle: 'Доктор наук',
