@@ -1,12 +1,11 @@
 import express from 'express';
-import request from 'request';
+import proxy from 'express-http-proxy';
 import path from 'path';
 
 import React from 'react';
 import { RoutingContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import createLocation from 'history/lib/createLocation';
-import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
 
 import store from 'redux/store';
 import routes from 'redux/routes';
@@ -94,13 +93,10 @@ function handleRender(req, res) {
   });
 }
 
-function handleApi(req, res) {
-  const apiUrl = 'http://dev.enculturation.dev';
-  const requestUrl = req.url.replace('/api/', '/');
-  const url = apiUrl + requestUrl;
-  request(url).pipe(res);
-}
-
-app.get('/api/*', handleApi);
+app.use('/api', proxy('http://dev.enculturation.dev', {
+  forwardPath: function(req, res) {
+    return req.url.replace('/api/', '/');
+  },
+}));
 app.get('*', handleRender);
 app.listen(port);
