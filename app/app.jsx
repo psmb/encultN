@@ -12,6 +12,18 @@ const history = createBrowserHistory();
 
 class App extends React.Component {
   render() {
+    const devTools = (() => {
+      return (
+        <DebugPanel top right bottom>
+          <DevTools
+            store={store}
+            monitor={LogMonitor}
+            visibleOnLoad={document.cookie.indexOf('enableDevTools=true') !== -1}
+          />
+        </DebugPanel>
+      );
+    }());
+
     return (
       <div>
         <Provider store={store}>
@@ -19,6 +31,7 @@ class App extends React.Component {
             <Router history={history} routes={routes} />
           }
         </Provider>
+        {devTools}
       </div>
     );
   }

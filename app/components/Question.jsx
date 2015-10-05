@@ -21,7 +21,7 @@ export default class Question extends Component {
     }
 
     if (typeof(this.props.question.get('answers')) === 'undefined') {
-      this.props.fetchAnswers(this.props.question.get('id'));
+      this.props.fetchAnswers(this.props.question.get('path'));
     }
   }
 

@@ -43,22 +43,30 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 
+function voteForAnswerPromise(id) {
+  const formData = new FormData({'answerIdentifier': id});
+  return fetch('http://localhost:3000/api/vote-for-answer', {
+    method: 'post',
+    body: formData,
+  }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+}
 function fetchQuestionsPromise() {
   return fetch('http://localhost:3000/api/voprosy.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
-function fetchAnswersPromise(id) {
-  return fetch('http://localhost:3000/api/voprosy/' + id + '.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+function fetchAnswersPromise(path) {
+  return fetch('http://localhost:3000/api/voprosy/' + path + '.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 
 export const selectQuestion = createAction(SELECT_QUESTION, id => id);
 export const selectAnswer = createAction(SELECT_ANSWER, id => id);
 export const likeAnswer = createAction(LIKE_ANSWER);
 export const dislikeAnswer = createAction(DISLIKE_ANSWER);
-export const voteForAnswer = createAction(VOTE_FOR_ANSWER);
-
+export const voteForAnswer = createAction(VOTE_FOR_ANSWER, async id => {
+  return await voteForAnswerPromise(id);
+});
 export const fetchQuestions = createAction(FETCH_QUESTIONS, async () => {
   return await fetchQuestionsPromise();
 });
-export const fetchAnswers = createAction(FETCH_ANSWERS, async id => {
-  return await fetchAnswersPromise(id);
+export const fetchAnswers = createAction(FETCH_ANSWERS, async path => {
+  return await fetchAnswersPromise(path);
 });

@@ -41,7 +41,7 @@ export default class QuestionVoting extends Component {
     );
     const votingControls = (
       <div className='mdl-grid'>
-        <button className='mdl-cell button mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.voteForAnswer()}>Голосовать!</button>
+        <button className='mdl-cell button mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.voteForAnswer(question.getIn(['answers', question.get('activeAnswer'), 'id']))}>Голосовать!</button>
       </div>
     );
     const answer = (
