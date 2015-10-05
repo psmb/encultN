@@ -1,4 +1,6 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import proxy from 'express-http-proxy';
 import path from 'path';
 
@@ -10,15 +12,14 @@ import createLocation from 'history/lib/createLocation';
 import store from 'redux/store';
 import routes from 'redux/routes';
 
-import { fetchQuestions } from 'redux/modules/voting';
+import { fetchQuestions, initVotes } from 'redux/modules/voting';
 import { fetchState as fetchWorldviews } from 'redux/modules/worldviews';
-
 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const isDev = process.env.NODE_ENV = 'development';
+const isDev = process.env.NODE_ENV === 'development';
 const isDebug = process.env.DEBUG;
 
 if (isDev && isDebug && process.env.DEBUG.indexOf('shrimp:front') === 0) {
@@ -76,6 +77,14 @@ function handleRender(req, res) {
         store.dispatch(fetchQuestions()),
       ]).then(
         () => {
+          const votesFromCookies = {};
+          Object.keys(req.cookies).map(key => {
+            if (key.indexOf('vote_in_') === 0) {
+              const questionId = key.slice(8);
+              votesFromCookies[questionId] = req.cookies[key];
+            }
+          });
+          store.dispatch(initVotes(votesFromCookies));
           const html = React.renderToString(
             <div>
               <Provider store={store}>
@@ -93,7 +102,9 @@ function handleRender(req, res) {
   });
 }
 
-app.use('/api', proxy('http://dev.enculturation.dev', {
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use('/api', proxy('http://enculturation.dev', {
   forwardPath: function(req, res) {
     return req.url.replace('/api/', '/');
   },

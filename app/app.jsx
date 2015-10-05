@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router';
-import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
+// import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
 import 'babel/polyfill';
 import store from 'redux/store';
 import routes from 'redux/routes';
@@ -12,17 +12,17 @@ const history = createBrowserHistory();
 
 class App extends React.Component {
   render() {
-    const devTools = (() => {
-      return (
-        <DebugPanel top right bottom>
-          <DevTools
-            store={store}
-            monitor={LogMonitor}
-            visibleOnLoad={document.cookie.indexOf('enableDevTools=true') !== -1}
-          />
-        </DebugPanel>
-      );
-    }());
+    // const devTools = (() => {
+    //   return (
+    //     <DebugPanel top right bottom>
+    //       <DevTools
+    //         store={store}
+    //         monitor={LogMonitor}
+    //         visibleOnLoad={document.cookie.indexOf('enableDevTools=true') !== -1}
+    //       />
+    //     </DebugPanel>
+    //   );
+    // }());
 
     return (
       <div>
@@ -31,7 +31,6 @@ class App extends React.Component {
             <Router history={history} routes={routes} />
           }
         </Provider>
-        {devTools}
       </div>
     );
   }

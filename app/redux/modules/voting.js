@@ -7,6 +7,7 @@ const SELECT_QUESTION = 'voting/SELECT_QUESTION';
 const SELECT_ANSWER = 'voting/SELECT_ANSWER';
 const LIKE_ANSWER = 'voting/LIKE_ANSWER';
 const DISLIKE_ANSWER = 'voting/DISLIKE_ANSWER';
+const INIT_VOTES = 'voting/INIT_VOTES';
 const VOTE_FOR_ANSWER = 'voting/VOTE_FOR_ANSWER';
 const FETCH_QUESTIONS = 'voting/FETCH_QUESTIONS';
 const FETCH_ANSWERS = 'voting/FETCH_ANSWERS';
@@ -31,6 +32,8 @@ export default function reducer(state = initialState, action = {}) {
     return state
       .setIn(['questions', activeQuestion, 'answers', activeAnswer, 'liked'], false)
       .setIn(['questions', activeQuestion, 'activeAnswer'], gotoAnswer1);
+  case INIT_VOTES:
+    return state.mergeDeepIn(['questions'], action.payload);
   case VOTE_FOR_ANSWER:
     return state.setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswer, 'id']));
   case FETCH_QUESTIONS:
@@ -44,11 +47,7 @@ export default function reducer(state = initialState, action = {}) {
 
 
 function voteForAnswerPromise(id) {
-  const formData = new FormData({'answerIdentifier': id});
-  return fetch('http://localhost:3000/api/vote-for-answer', {
-    method: 'post',
-    body: formData,
-  }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+  return fetch('http://localhost:3000/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 function fetchQuestionsPromise() {
   return fetch('http://localhost:3000/api/voprosy.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
@@ -61,6 +60,15 @@ export const selectQuestion = createAction(SELECT_QUESTION, id => id);
 export const selectAnswer = createAction(SELECT_ANSWER, id => id);
 export const likeAnswer = createAction(LIKE_ANSWER);
 export const dislikeAnswer = createAction(DISLIKE_ANSWER);
+export const initVotes = createAction(INIT_VOTES, votes => {
+  const votesMap = {};
+  for (const key in votes) {
+    if (votes.hasOwnProperty(key)) {
+      votesMap[key] = {'votedAnswer': votes[key]};
+    }
+  }
+  return fromJS(votesMap);
+});
 export const voteForAnswer = createAction(VOTE_FOR_ANSWER, async id => {
   return await voteForAnswerPromise(id);
 });

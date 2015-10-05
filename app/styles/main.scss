@@ -26,7 +26,7 @@ $color-primary-dark: $palette-teal-700;
 $color-accent: $palette-red-A200;
 
 .color-accent {
-  color: unquote("rgb(#{$color-accent})");
+  color: unquote("rgb(#{$color-accent})") !important;
 }
 @import "Vendor/materialDesignLite/src/variables";
 $target-elements-directly: false;
@@ -46,6 +46,15 @@ a {
   text-decoration: inherit;
 }
 
+img{
+  border: 0;
+  max-width:100%;
+  height:auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
 @import "Vendor/materialDesignLite/src/mixins";
 
 // Resets and dependencies
@@ -56,26 +65,26 @@ a {
 
 // Components
 @import "Vendor/materialDesignLite/src/palette/palette";
-@import "Vendor/materialDesignLite/src/ripple/ripple";
+// @import "Vendor/materialDesignLite/src/ripple/ripple";
 @import "Vendor/materialDesignLite/src/animation/animation";
-@import "Vendor/materialDesignLite/src/badge/badge";
+// @import "Vendor/materialDesignLite/src/badge/badge";
 @import "Vendor/materialDesignLite/src/button/button";
 @import "Vendor/materialDesignLite/src/card/card";
-@import "Vendor/materialDesignLite/src/checkbox/checkbox";
-@import "Vendor/materialDesignLite/src/data-table/data-table";
+// @import "Vendor/materialDesignLite/src/checkbox/checkbox";
+// @import "Vendor/materialDesignLite/src/data-table/data-table";
 @import "Vendor/materialDesignLite/src/footer/mega_footer";
-@import "Vendor/materialDesignLite/src/footer/mini_footer";
-@import "Vendor/materialDesignLite/src/icon-toggle/icon-toggle";
-@import "Vendor/materialDesignLite/src/menu/menu";
-@import "Vendor/materialDesignLite/src/progress/progress";
+// @import "Vendor/materialDesignLite/src/footer/mini_footer";
+// @import "Vendor/materialDesignLite/src/icon-toggle/icon-toggle";
+// @import "Vendor/materialDesignLite/src/menu/menu";
+// @import "Vendor/materialDesignLite/src/progress/progress";
 @import "Vendor/materialDesignLite/src/layout/layout";
-@import "Vendor/materialDesignLite/src/radio/radio";
-@import "Vendor/materialDesignLite/src/slider/slider";
-@import "Vendor/materialDesignLite/src/spinner/spinner";
-@import "Vendor/materialDesignLite/src/switch/switch";
-@import "Vendor/materialDesignLite/src/tabs/tabs";
-@import "Vendor/materialDesignLite/src/textfield/textfield";
-@import "Vendor/materialDesignLite/src/tooltip/tooltip";
+// @import "Vendor/materialDesignLite/src/radio/radio";
+// @import "Vendor/materialDesignLite/src/slider/slider";
+// @import "Vendor/materialDesignLite/src/spinner/spinner";
+// @import "Vendor/materialDesignLite/src/switch/switch";
+// @import "Vendor/materialDesignLite/src/tabs/tabs";
+// @import "Vendor/materialDesignLite/src/textfield/textfield";
+// @import "Vendor/materialDesignLite/src/tooltip/tooltip";
 @import "Vendor/materialDesignLite/src/shadow/shadow";
 @import "Vendor/materialDesignLite/src/grid/grid";
 
@@ -91,18 +100,34 @@ body {
   padding-left: 8px;
 }
 
+.mdl-button {
+  font-size: 13px;
+}
+.mdl-button:active {
+  background-color: inherit !important;
+}
+
 .Answer {
   margin: 2*$u 0 $u 0;
   padding: 2*$u;
   background-color: white;
 }
 
+.VotedAnswerFull {
+  text-align: center;
+  background-color: unquote("rgb(#{$color-accent})") !important;
+  color: white;
+  margin-top: 2*$u;
+  margin-bottom: $u;
+  margin-left: -$u;
+  margin-right: -$u;
+  padding: $u;
+}
 
 .AnswerFull {
   margin: 2*$u 0 $u 0;
 }
 .AnswerFull-header {
-  text-align: center;
   padding: $u;
 }
 .AnswerFull-videoText {
@@ -120,6 +145,11 @@ body {
   text-align: center;
 }
 
+
+.Hint {
+  margin-top: 2*$u;
+  margin-bottom: $u;
+}
 
 .QuestionSmall {
   margin: 0;
@@ -145,7 +175,7 @@ body {
 }
 
 .button--selected {
-  background-color: unquote("rgb(#{$palette-grey-500})");
+  background-color: unquote("rgb(#{$palette-grey-300})");
 }
 
 
@@ -192,4 +222,9 @@ body {
   .mdl-typography--caption {
     padding-bottom: $u;
   }
+}
+
+
+.mdl-mega-footer {
+  margin-top: 5*$u;
 }

@@ -15,16 +15,14 @@ export default class Layout extends React.Component {
             <div className='mdl-layout-spacer'></div>
           </div>
         </header>
-        <div className='mdl-layout__drawer'>
-          <span className='mdl-layout-title'>Title</span>
-          <nav className='mdl-navigation'>
-            <Link to={`/`}>О проекте</Link>
-            <Link to={`/`}>Статистика</Link>
-          </nav>
-        </div>
         <main className='mdl-layout__content'>
           <div className='pageContent'>{this.props.children}</div>
         </main>
+        <footer className='mdl-mega-footer'>
+          <div className='mdl-mega-footer__bottom-section'>
+            <div className='mdl-logo'>© Мониторинг мировоззрений</div>
+          </div>
+        </footer>
       </div>
     );
   }

@@ -18,17 +18,8 @@ const loadersByExt = loadersByExtension({
  */
 
 module.exports = (options) => {
-  const plugins = [];
-  if (options.optimize) {
-    plugins.push(
-      new webpack.optimize.UglifyJsPlugin({compress: { warnings: false }}),
-      new webpack.optimize.DedupePlugin(),
-    );
-  }
-
   const config = {
     entry: [
-      'webpack-hot-middleware/client',
       './app/app',
     ],
     output: {
@@ -36,10 +27,12 @@ module.exports = (options) => {
       filename: 'bundle.js',
       publicPath: '/static/',
     },
-    plugins: plugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoErrorsPlugin(),
-    ]),
+    plugins: [
+      new webpack.DefinePlugin({
+        OPTIMIZED: !!options.optimize,
+        DEBUG: !options.optimize,
+      }),
+    ],
 
     resolve: {
       root: path.join(__dirname, 'app'),
@@ -75,6 +68,21 @@ module.exports = (options) => {
       ]),
     },
   };
+
+  if (options.optimize) {
+    config.plugins.push(
+      new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.DedupePlugin(),
+    );
+    options.devtool = null;
+    options.sourcemaps = null;
+  } else {
+    config.entry.push('webpack-hot-middleware/client');
+    config.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
+    );
+  }
 
   if (options.sourcemaps) {
     config.devtool = '#inline-source-map';

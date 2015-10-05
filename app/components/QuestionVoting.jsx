@@ -24,24 +24,50 @@ export default class QuestionVoting extends Component {
 
     let i = 0;
     const selectAnswer = this.props.selectAnswer;
-    const answersNav = question.get('answers').map(function renderAnswer(answer) {
+
+    const likingNav = (
+      <p className='mdl-typography--body-1-color-contrast'>
+        {question.get('activeAnswer') + 1} из {question.get('answers').count()}
+      </p>
+    );
+    const votingNav = question.get('answers').map(function renderAnswer(answer) {
       i++;
       const j = i;
       if (answer.get('liked') === true) {
-        const currentClass = question.get('activeAnswer') === (j - 1) ? ' mdl-button--colored' : '';
+        const currentClass = question.get('activeAnswer') === (j - 1) ? ' mdl-button--colored color-accent' : '';
         return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1, )}>{i}</button>;
       }
     });
 
+    const likingHint = (
+      <p className='mdl-typography--caption Hint color-accent'>Выберите с какими ответами вы согласны?</p>
+    );
+    const votingHint = (
+      <p className='mdl-typography--caption Hint color-accent'>Проголосуйте за наиболее близкий вам ответ</p>
+    );
+
+    const likingHead = (
+      <div>
+        {likingHint}
+        {likingNav}
+      </div>
+    );
+    const votingHead = (
+      <div>
+        {votingHint}
+        {votingNav}
+      </div>
+    );
+
     const likingControls = (
       <div className='mdl-grid'>
-        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.likeAnswer()}>За</button>
-        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.dislikeAnswer()}>Против</button>
+        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.likeAnswer()}>За</button>
+        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised' onClick={() => this.props.dislikeAnswer()}>Против</button>
       </div>
     );
     const votingControls = (
       <div className='mdl-grid'>
-        <button className='mdl-cell button mdl-button mdl-button--raised mdl-button--colored' onClick={() => this.props.voteForAnswer(question.getIn(['answers', question.get('activeAnswer'), 'id']))}>Голосовать!</button>
+        <button className='mdl-cell button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(question.getIn(['answers', question.get('activeAnswer'), 'id']))}>Голосовать!</button>
       </div>
     );
     const answer = (
@@ -51,7 +77,7 @@ export default class QuestionVoting extends Component {
     );
     const votingScreen = (
       <div>
-        <div className='AnswersNav'>{allLiked ? answersNav : ''}</div>
+        <div className='AnswersNav'>{allLiked ? votingHead : likingHead}</div>
         {answer}
         {allLiked ? votingControls : likingControls}
       </div>

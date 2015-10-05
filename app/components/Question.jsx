@@ -21,14 +21,14 @@ export default class Question extends Component {
     }
 
     if (typeof(this.props.question.get('answers')) === 'undefined') {
-      this.props.fetchAnswers(this.props.question.get('path'));
+      this.props.fetchAnswers(this.props.question.get('id'));
     }
   }
 
   render() {
     const loadingScreen = (
       <div className='loadingScreen'>
-        Loading...
+        Минуточку...
       </div>
     );
     const mainScreen = (

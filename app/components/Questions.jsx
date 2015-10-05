@@ -21,7 +21,7 @@ export default class Questions extends Component {
         <Link key={question.get('id')} className='mdl-cell QuestionSmall' to={`/q/${question.get('id')}`}>
           <h2 className='mdl-typography--headline-color-contrast QuestionSmall-title'>{question.get('title')}</h2>
           <h3 className='mdl-typography--body-1-color-contrast QuestionSmall-subTitle'>{question.get('subTitle')}</h3>
-          <p className='mdl-typography--caption-color-contrast QuestionSmall-lead'>Лидирует <span className='color-accent'><strong>Католичество</strong></span></p>
+          <p className='mdl-typography--caption-color-contrast QuestionSmall-lead'><span className='color-accent'>123</span> • Лидирует <span className='color-accent'><strong>Католичество</strong></span></p>
         </Link>
       );
     });
@@ -29,9 +29,8 @@ export default class Questions extends Component {
     return (
       <div>
         <Intro isDismissed='0' />
-        <Stats />
         <div className='mdl-grid'>
-          {typeof(this.props.questions) === 'undefined' ? 'Fetching...' : questions}
+          {typeof(this.props.questions) === 'undefined' ? 'Минуточку...' : questions}
         </div>
       </div>
     );

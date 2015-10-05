@@ -1,7 +1,7 @@
 import {List, Map} from 'immutable';
 import {expect} from 'chai';
 import voting from './voting.js';
-import {selectQuestion, selectAnswer, likeAnswer, dislikeAnswer, voteForAnswer} from './voting.js';
+import {selectQuestion, selectAnswer, likeAnswer, dislikeAnswer, voteForAnswer, initVotes} from './voting.js';
 
 const initialState = Map({
   'activeQuestion': 0,
@@ -172,6 +172,40 @@ describe('voting reducer', () => {
             ),
           }),
         ),
+      })
+
+    );
+  });
+
+  it('handles INIT_VOTES', () => {
+    const initialState2 = Map({
+      'questions': Map({
+        '111': Map({
+          'id': 111,
+        }),
+        '112': Map({
+          'id': 112,
+        }),
+      }),
+    });
+    const votes = {
+      '111': 'xxx',
+      '112': 'xxy',
+    };
+    const nextState = voting(initialState2, initVotes(votes));
+    expect(nextState).to.equal(
+
+      Map({
+        'questions': Map({
+          '111': Map({
+            'id': 111,
+            'votedAnswer': 'xxx',
+          }),
+          '112': Map({
+            'id': 112,
+            'votedAnswer': 'xxy',
+          }),
+        }),
       })
 
     );
