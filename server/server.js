@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import proxy from 'express-http-proxy';
 import path from 'path';
@@ -21,6 +22,10 @@ const port = process.env.PORT || 3000;
 
 const isDev = process.env.NODE_ENV === 'development';
 const isDebug = process.env.DEBUG;
+
+app.use(compression());
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 if (isDev && isDebug && process.env.DEBUG.indexOf('shrimp:front') === 0) {
   const webpack = require('webpack');
@@ -103,8 +108,6 @@ function handleRender(req, res) {
 }
 
 process.env.API_ENDPOINT = process.env.API_ENDPOINT || 'http://izm.io:8888';
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use('/api', proxy(process.env.API_ENDPOINT, {
   forwardPath: function(req, res) {
     return req.url.replace('/api/', '/');

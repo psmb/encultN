@@ -71,7 +71,7 @@ module.exports = (options) => {
 
   if (options.optimize) {
     config.plugins.push(
-      // new webpack.optimize.UglifyJsPlugin(),
+      new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.DedupePlugin(),
     );
     options.devtool = null;
