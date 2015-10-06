@@ -39265,8 +39265,9 @@
 	  }
 	}
 
+	var ownAddress = 'http://izm.io';
 	function voteForAnswerPromise(id) {
-	  return (0, _isomorphicFetch2['default'])('http://localhost:3000/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(function (response) {
+	  return (0, _isomorphicFetch2['default'])(ownAddress + '/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(function (response) {
 	    return response.json();
 	  }).then(function (json) {
 	    return (0, _immutable.fromJS)(json);
@@ -39275,7 +39276,7 @@
 	  });
 	}
 	function fetchQuestionsPromise() {
-	  return (0, _isomorphicFetch2['default'])('http://localhost:3000/api/voprosy.json').then(function (response) {
+	  return (0, _isomorphicFetch2['default'])(ownAddress + '/api/voprosy.json').then(function (response) {
 	    return response.json();
 	  }).then(function (json) {
 	    return (0, _immutable.fromJS)(json);
@@ -39284,7 +39285,7 @@
 	  });
 	}
 	function fetchAnswersPromise(path) {
-	  return (0, _isomorphicFetch2['default'])('http://localhost:3000/api/voprosy/' + path + '.json').then(function (response) {
+	  return (0, _isomorphicFetch2['default'])(ownAddress + '/api/voprosy/' + path + '.json').then(function (response) {
 	    return response.json();
 	  }).then(function (json) {
 	    return (0, _immutable.fromJS)(json);

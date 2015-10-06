@@ -45,15 +45,15 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-
+const ownAddress = 'http://izm.io';
 function voteForAnswerPromise(id) {
-  return fetch('http://localhost:3000/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+  return fetch(ownAddress + '/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 function fetchQuestionsPromise() {
-  return fetch('http://localhost:3000/api/voprosy.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+  return fetch(ownAddress + '/api/voprosy.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 function fetchAnswersPromise(path) {
-  return fetch('http://localhost:3000/api/voprosy/' + path + '.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+  return fetch(ownAddress + '/api/voprosy/' + path + '.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 
 export const selectQuestion = createAction(SELECT_QUESTION, id => id);
