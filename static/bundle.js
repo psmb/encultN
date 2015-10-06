@@ -38634,9 +38634,8 @@
 	  }
 	}
 
-	console.log(_sharedSettings.ownAddress);
 	function fetchStatePromise() {
-	  return (0, _isomorphicFetch2['default'])(_sharedSettings.ownAddress + '/mirovozzreniya.json').then(function (response) {
+	  return (0, _isomorphicFetch2['default'])(_sharedSettings.ownAddress + '/api/mirovozzreniya.json').then(function (response) {
 	    return response.json();
 	  }).then(function (json) {
 	    return (0, _immutable.fromJS)(json);

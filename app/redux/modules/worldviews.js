@@ -16,7 +16,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 function fetchStatePromise() {
-  return fetch(ownAddress + '/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+  return fetch(ownAddress + '/api/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 
 export const fetchState = createAction(FETCH_STATE, async () => {
