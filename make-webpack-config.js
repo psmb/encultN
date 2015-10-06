@@ -77,7 +77,7 @@ module.exports = (options) => {
     options.devtool = null;
     options.sourcemaps = null;
   } else {
-    config.entry.push('webpack-hot-middleware/client');
+    config.entry.unshift('webpack-hot-middleware/client');
     config.plugins.push(
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),

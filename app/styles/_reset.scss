@@ -1,0 +1,28 @@
+*, *:before, *:after {
+box-sizing: border-box;
+}
+
+// Must be 100% for off canvas to work
+html, body { height: 100%; }
+body{
+	margin: 0;
+}
+a{
+  color: inherit;
+  text-decoration: inherit;
+  outline: 0;
+}
+ul{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+// Responsive images
+img{
+	border: 0;
+	max-width:100%;
+	height:auto;
+	display: inline-block;
+	vertical-align: middle;
+}

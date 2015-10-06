@@ -30,6 +30,7 @@ $color-accent: $palette-red-A200;
 }
 @import "Vendor/materialDesignLite/src/variables";
 $target-elements-directly: false;
+@import "reset";
 html, body {
   font-family: $preferred_font;
   font-size: 14px;
@@ -41,19 +42,6 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 0;
   font-weight: 400;
 }
-a {
-  color: inherit;
-  text-decoration: inherit;
-}
-
-img{
-  border: 0;
-  max-width:100%;
-  height:auto;
-  display: inline-block;
-  vertical-align: middle;
-}
-
 
 @import "Vendor/materialDesignLite/src/mixins";
 
@@ -86,7 +74,9 @@ img{
 // @import "Vendor/materialDesignLite/src/textfield/textfield";
 // @import "Vendor/materialDesignLite/src/tooltip/tooltip";
 @import "Vendor/materialDesignLite/src/shadow/shadow";
-@import "Vendor/materialDesignLite/src/grid/grid";
+// @import "Vendor/materialDesignLite/src/grid/grid";
+
+@import "Vendor/foundation";
 
 body {
   background-color: unquote("rgb(#{$palette-grey-50})");
@@ -125,15 +115,26 @@ body {
 }
 
 .AnswerFull {
-  margin: 2*$u 0 $u 0;
+  margin: 2*$u 0 4*$u 0;
 }
 .AnswerFull-header {
-  padding: $u;
+  padding: 2*$u $u;
 }
 .AnswerFull-videoText {
   padding: $u;
 }
 
+.AnswerSmall {
+  cursor: pointer;
+}
+.AnswerSmall-body {
+  float: left;
+  width: 66%;
+}
+.AnswerSmall-image {
+  float: left;
+  width: 33%;
+}
 
 .PreferTextSwitch {
 }
@@ -151,7 +152,12 @@ body {
   margin-bottom: $u;
 }
 
+.Questions {
+  margin-top: 4*$u;
+}
+
 .QuestionSmall {
+  display: block;
   margin: 0;
   padding: $u $u 2*$u $u;
   border-bottom: 1px solid unquote("rgba(#{$palette-grey-700}, 0.40)");
@@ -169,7 +175,9 @@ body {
 }
 
 
-
+.hide {
+  display: none;
+}
 .textAlign-center {
   text-align: center;
 }
@@ -224,7 +232,39 @@ body {
   }
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+  height: initial;
+}
+body {
+  margin: 0 0 100px;
+}
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-.mdl-mega-footer {
-  margin-top: 5*$u;
+.fixed-width {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.Header {
+  @include shadow-2dp();
+  height: 64px;
+  background-color: unquote("rgb(#{$color-primary})");
+  padding-top: $u;
+  box-sizing: border-box;
+}
+
+.Footer {
+  background-color: unquote("rgb(#{$palette-grey-800})");
+  color: white;
+}
+.Footer-inner {
+  padding: 2*$u;
 }

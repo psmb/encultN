@@ -53,10 +53,6 @@
     background-color: $button-focus-color;
   }
 
-  &:active {
-    background-color: $button-active-color;
-  }
-
   &.mdl-button--colored {
     color: $button-primary-color-alt;
 
@@ -75,11 +71,6 @@ input.mdl-button[type="submit"] {
     background: $button-primary-color;
     @include shadow-2dp();
 
-    &:active {
-      @include shadow-4dp();
-      background-color: $button-active-color;
-    }
-
     &:focus:not(:active) {
       @include focus-shadow();
       background-color: $button-active-color;
@@ -91,10 +82,6 @@ input.mdl-button[type="submit"] {
 
       &:hover {
         background-color: $button-hover-color-alt;
-      }
-
-      &:active {
-        background-color: $button-active-color-alt;
       }
 
       &:focus:not(:active) {
@@ -144,11 +131,6 @@ input.mdl-button[type="submit"] {
       -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
     }
 
-    &:active {
-      @include shadow-4dp();
-      background-color: $button-active-color;
-    }
-
     &:focus:not(:active) {
       @include focus-shadow();
       background-color: $button-active-color;
@@ -163,10 +145,6 @@ input.mdl-button[type="submit"] {
       }
 
       &:focus:not(:active) {
-        background-color: $button-fab-active-color-alt;
-      }
-
-      &:active {
         background-color: $button-fab-active-color-alt;
       }
 

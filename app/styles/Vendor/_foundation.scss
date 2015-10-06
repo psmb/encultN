@@ -1,0 +1,31 @@
+@import "foundation/functions";
+$rem-base: 16px;
+$row-width: rem-calc(1200);
+$global-padding: 8px;
+$column-gutter: rem-calc(16);
+$include-html-classes: true;
+$default-float: left;
+$flex-video-padding-bottom: 54.55% !default;
+
+// Two range declrations, from old and new doundation
+$breakpoints: (
+  small: rem-calc(0),
+  medium: rem-calc(600),
+  large: rem-calc(1024),
+  xlarge: rem-calc(1440),
+  xxlarge: rem-calc(1920),
+) !default;
+$small-range: (0, 37.4375) !default;
+$medium-range: (37.5em, 63.9375em) !default;
+$large-range: (64em, 89.9375em) !default;
+$xlarge-range: (90em, 119.9375em) !default;
+$xxlarge-range: (120em, 99999999em) !default;
+
+@import "foundation/grid";
+@import "foundation/block-grid";
+@import "foundation/flexvideo";
+//@import "foundation/tables";
+
+@import "foundationForApps/functions";
+@import "foundationForApps/breakpoints";
+@import "foundationForApps/visibility";

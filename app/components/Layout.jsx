@@ -8,20 +8,19 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <div className='mdl-layout mdl-js-layout mdl-layout--fixed-header'>
-        <header className='mdl-layout__header'>
-          <div className='mdl-layout__header-row'>
-            <span className='mdl-layout-title'><Link to={`/`}>Изм</Link></span>
-            <div className='mdl-layout-spacer'></div>
+      <div className=''>
+        <header className='Header'>
+          <div className='fixed-width'>
+            <div className='columns'>
+              <Link to={`/`}><img src='/static/logo.svg' /></Link>
+            </div>
           </div>
         </header>
-        <main className='mdl-layout__content'>
+        <main className=''>
           <div className='pageContent'>{this.props.children}</div>
         </main>
-        <footer className='mdl-mega-footer'>
-          <div className='mdl-mega-footer__bottom-section'>
-            <div className='mdl-logo'>© Мониторинг мировоззрений</div>
-          </div>
+        <footer className='Footer'>
+          <div className='Footer-inner fixed-width'>© Мониторинг мировоззрений</div>
         </footer>
       </div>
     );

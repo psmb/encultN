@@ -60,18 +60,18 @@ export default class QuestionVoting extends Component {
     );
 
     const likingControls = (
-      <div className='mdl-grid'>
-        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.likeAnswer()}>За</button>
-        <button className='mdl-cell mdl-cell--2-col mdl-button mdl-button--raised' onClick={() => this.props.dislikeAnswer()}>Против</button>
+      <div className='row'>
+        <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginRight: '8px'}} className='mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.likeAnswer()}>За</button>
+        <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginLeft: '8px'}} className='mdl-button mdl-button--raised' onClick={() => this.props.dislikeAnswer()}>Против</button>
       </div>
     );
     const votingControls = (
-      <div className='mdl-grid'>
-        <button className='mdl-cell button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(question.getIn(['answers', question.get('activeAnswer'), 'id']))}>Голосовать!</button>
+      <div className=''>
+        <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(question.getIn(['answers', question.get('activeAnswer'), 'id']))}>Голосовать!</button>
       </div>
     );
     const answer = (
-      <div className='mdl-grid mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
+      <div className='mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
         {question.getIn(['answers', question.get('activeAnswer'), 'quizText'])}
       </div>
     );
@@ -84,7 +84,7 @@ export default class QuestionVoting extends Component {
     );
 
     return (
-      <div>
+      <div className='fixed-width'>
         {noneLiked ? 'Почему вам ничего не нравится?' : votingScreen}
       </div>
     );

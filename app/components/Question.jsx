@@ -33,8 +33,10 @@ export default class Question extends Component {
     );
     const mainScreen = (
       <div className='QuestionHeader'>
-        <h2 className='mdl-typography--headline-color-contrast'>{this.props.question.get('title')}</h2>
-        <h3 className='mdl-typography--body-1-color-contrast'>{this.props.question.get('subTitle')}</h3>
+        <div className="fixed-width">
+          <h2 className='mdl-typography--headline-color-contrast'>{this.props.question.get('title')}</h2>
+          <h3 className='mdl-typography--body-1-color-contrast'>{this.props.question.get('subTitle')}</h3>
+        </div>
         {this.props.question.get('votedAnswer') ? <QuestionResults /> : <QuestionVoting />}
       </div>
     );
