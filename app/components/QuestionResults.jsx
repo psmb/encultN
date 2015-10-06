@@ -27,7 +27,7 @@ export default class QuestionResults extends Component {
 
     const video = (
         <div className='flex-video' style={{marginBottom: '0'}}>
-          <iframe className='vimeo' src={'https://player.vimeo.com/video/' + activeAnswerObject.get('fullVideo') + '?color=ff5252&title=0&byline=0&portrait=0'} width='100%' height='auto' frameBorder='0' webkitallowfullscreen mozallowfullscreen allowFullscreen></iframe>
+          <iframe className='vimeo' src={'https://player.vimeo.com/video/' + activeAnswerObject.get('fullVideo') + '?color=ff5252&title=0&byline=0&portrait=0'} width='100%' height='auto' frameBorder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         </div>
     );
     const videoText = (

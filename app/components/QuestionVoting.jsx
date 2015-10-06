@@ -84,8 +84,10 @@ export default class QuestionVoting extends Component {
     );
 
     return (
-      <div className='fixed-width'>
-        {noneLiked ? 'Почему вам ничего не нравится?' : votingScreen}
+      <div className='fixed-width row'>
+        <div className='medium-10 medium-offset-1 large-8 large-offset-2 columns'>
+          {noneLiked ? 'Почему вам ничего не нравится?' : votingScreen}
+        </div>
       </div>
     );
   }
