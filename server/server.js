@@ -102,9 +102,10 @@ function handleRender(req, res) {
   });
 }
 
+process.env.API_ENDPOINT = process.env.API_ENDPOINT || 'http://izm.io:8888';
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use('/api', proxy('http://enculturation.dev', {
+app.use('/api', proxy(process.env.API_ENDPOINT, {
   forwardPath: function(req, res) {
     return req.url.replace('/api/', '/');
   },
