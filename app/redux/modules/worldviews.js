@@ -1,6 +1,7 @@
-import {Map, fromJS} from 'immutable';
-import {createAction} from 'redux-actions';
+import { Map, fromJS } from 'immutable';
+import { createAction } from 'redux-actions';
 import fetch from 'isomorphic-fetch';
+import { ownAddress } from 'shared-settings';
 
 const FETCH_STATE = 'worldviews/FETCH_STATE';
 const initialState = Map();
@@ -14,9 +15,8 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-
 function fetchStatePromise() {
-  return fetch('http://dev.enculturation.dev/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+  return fetch(ownAddress + '/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 
 export const fetchState = createAction(FETCH_STATE, async () => {

@@ -1,6 +1,7 @@
 import {Map, fromJS} from 'immutable';
 import {createAction} from 'redux-actions';
 import fetch from 'isomorphic-fetch';
+import { ownAddress } from 'shared-settings';
 
 
 const SELECT_QUESTION = 'voting/SELECT_QUESTION';
@@ -45,7 +46,6 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-const ownAddress = 'http://izm.io';
 function voteForAnswerPromise(id) {
   return fetch(ownAddress + '/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
