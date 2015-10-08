@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 
-export default class AnswerSmall extends Component {
+export default class AnswerFull extends Component {
   static propTypes = {
     answer: PropTypes.object.isRequired,
-    preferText: PropTypes.bool.isRequired,
+    preferText: PropTypes.bool,
     setPreferText: PropTypes.func.isRequired,
   }
 
@@ -24,6 +24,7 @@ export default class AnswerSmall extends Component {
           <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.get('worldview').get('title')}</div>
           <div className='mdl-typography--body-1-color-contrast'>Отвечает {this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>
+          <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('voteCount')}</div>
         </div>
 
         <div className=''>

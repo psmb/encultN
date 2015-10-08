@@ -11,7 +11,7 @@ export default class QuestionSmall extends Component {
       <Link key={this.props.question.get('id')} className='mdl-cell QuestionSmall' to={`/q/${this.props.question.get('id')}`}>
         <h2 className='mdl-typography--headline-color-contrast QuestionSmall-title'>{this.props.question.get('title')}</h2>
         <h3 className='mdl-typography--body-1-color-contrast QuestionSmall-subTitle'>{this.props.question.get('subTitle')}</h3>
-        <p className='mdl-typography--caption-color-contrast QuestionSmall-lead hide'><span className='color-accent'>123</span> • Лидирует <span className='color-accent'><strong>Католичество</strong></span></p>
+        <p className='mdl-typography--caption-color-contrast QuestionSmall-lead'>Всего голосов: <span className='color-accent'>{this.props.question.get('totalVotes')}</span> • Лидирует <span className='color-accent'><strong>{this.props.question.get('worldviewWithMaxVotes')} ({this.props.question.get('answerWithMaxVotesCount')})</strong></span></p>
       </Link>
     );
   }
