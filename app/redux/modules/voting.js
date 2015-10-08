@@ -23,7 +23,11 @@ export default function reducer(state = initialState, action = {}) {
   let gotoAnswerId;
   if (activeAnswer) {
     activeAnswerIndex = state.getIn(['questions', activeQuestion, 'answers']).findIndex(item => item.get('id') === activeAnswer);
-    gotoAnswerIndex = (state.getIn(['questions', activeQuestion, 'answers']).count() === activeAnswerIndex + 1) ? activeAnswerIndex : activeAnswerIndex + 1;
+    if (state.getIn(['questions', activeQuestion, 'answers']).count() === activeAnswerIndex + 1) {
+      gotoAnswerIndex = state.getIn(['questions', activeQuestion, 'answers']).findIndex(answer => answer.get('liked') === true);
+    } else {
+      gotoAnswerIndex =  activeAnswerIndex + 1;
+    }
     gotoAnswerId = state.getIn(['questions', activeQuestion, 'answers', gotoAnswerIndex]).get('id');
   }
 
@@ -43,7 +47,10 @@ export default function reducer(state = initialState, action = {}) {
   case INIT_VOTES:
     return state.mergeDeepIn(['questions'], action.payload);
   case VOTE_FOR_ANSWER:
-    return state.setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'id']));
+    const currentVoteCount = state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount']);
+    return state
+      .setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'id']))
+      .setIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount'], Number(currentVoteCount) + 1);
   case FETCH_QUESTIONS:
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:

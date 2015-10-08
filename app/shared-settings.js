@@ -1,1 +1,1 @@
-export const ownAddress = 'http://localhost:3000';
+export const ownAddress = 'http://izm.io';
