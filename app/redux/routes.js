@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import { selectQuestion } from 'redux/modules/voting';
-import Questions from 'components/Questions';
+import Questions from 'components/Questions/Questions';
 import Question from 'components/Question';
 import Layout from 'components/Layout';
 import store from 'redux/store';

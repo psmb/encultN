@@ -4,84 +4,81 @@ import voting from './voting.js';
 import {selectQuestion, selectAnswer, likeAnswer, dislikeAnswer, voteForAnswer, initVotes} from './voting.js';
 
 const initialState = Map({
-  'activeQuestion': 0,
-  'questions': List.of(
-    Map({
-      'id': 111,
-      'activeAnswer': 0,
-      'votedAnswer': null,
+  'activeQuestion': '111',
+  'questions': Map({
+    '111': Map({
+      'id': '111',
+      'activeAnswer': '123',
       'answers': List.of(
         Map({
-          'id': 123,
+          'id': '123',
           'test': 'Hello world',
           'liked': null,
         }),
         Map({
-          'id': 124,
+          'id': '124',
           'test': 'Hello world 2',
           'liked': null,
         }),
       ),
     }),
-  ),
+  }),
 });
 
 describe('voting reducer', () => {
   it('handles SELECT_QUESTION', () => {
-    const nextState = voting(initialState, selectQuestion(111));
+    const nextState = voting(initialState, selectQuestion('111'));
     expect(nextState).to.equal(
 
       Map({
-        'activeQuestion': 111,
-        'questions': List.of(
-          Map({
-            'id': 111,
-            'activeAnswer': 0,
-            'votedAnswer': null,
+        'activeQuestion': '111',
+        'questions': Map({
+          '111': Map({
+            'id': '111',
+            'activeAnswer': '123',
             'answers': List.of(
               Map({
-                'id': 123,
+                'id': '123',
                 'test': 'Hello world',
                 'liked': null,
               }),
               Map({
-                'id': 124,
+                'id': '124',
                 'test': 'Hello world 2',
                 'liked': null,
               }),
             ),
           }),
-        ),
+        }),
       })
 
     );
   });
 
   it('handles SELECT_ANSWER', () => {
-    const nextState = voting(initialState, selectAnswer(1));
+    const nextState = voting(initialState, selectAnswer('124'));
     expect(nextState).to.equal(
 
       Map({
-        'activeQuestion': 0,
-        'questions': List.of(
-          Map({
-            'id': 111,
-            'activeAnswer': 1,
-            'votedAnswer': null,
+        'activeQuestion': '111',
+        'questions': Map({
+          '111': Map({
+            'id': '111',
+            'activeAnswer': '124',
             'answers': List.of(
               Map({
-                'id': 123,
+                'id': '123',
                 'test': 'Hello world',
                 'liked': null,
               }),
               Map({
-                'id': 124,
+                'id': '124',
                 'test': 'Hello world 2',
                 'liked': null,
               }),
             ),
           }),
-        ),
+        }),
       })
 
     );
@@ -92,26 +89,25 @@ describe('voting reducer', () => {
     expect(nextState).to.equal(
 
       Map({
-        'activeQuestion': 0,
-        'questions': List.of(
-          Map({
-            'id': 111,
-            'activeAnswer': 1,
-            'votedAnswer': null,
+        'activeQuestion': '111',
+        'questions': Map({
+          '111': Map({
+            'id': '111',
+            'activeAnswer': '124',
             'answers': List.of(
               Map({
-                'id': 123,
+                'id': '123',
                 'test': 'Hello world',
                 'liked': true,
               }),
               Map({
-                'id': 124,
+                'id': '124',
                 'test': 'Hello world 2',
                 'liked': null,
               }),
             ),
           }),
-        ),
+        }),
       })
 
     );
@@ -122,56 +118,55 @@ describe('voting reducer', () => {
     expect(nextState).to.equal(
 
       Map({
-        'activeQuestion': 0,
-        'questions': List.of(
-          Map({
-            'id': 111,
-            'activeAnswer': 1,
-            'votedAnswer': null,
+        'activeQuestion': '111',
+        'questions': Map({
+          '111': Map({
+            'id': '111',
+            'activeAnswer': '124',
             'answers': List.of(
               Map({
-                'id': 123,
+                'id': '123',
                 'test': 'Hello world',
                 'liked': false,
               }),
               Map({
-                'id': 124,
+                'id': '124',
                 'test': 'Hello world 2',
                 'liked': null,
               }),
             ),
           }),
-        ),
+        }),
       })
 
     );
   });
 
   it('handles VOTE_FOR_ANSWER', () => {
-    const nextState = voting(initialState, voteForAnswer());
+    const nextState = voting(initialState, {'type': 'voting/VOTE_FOR_ANSWER'});
     expect(nextState).to.equal(
 
       Map({
-        'activeQuestion': 0,
-        'questions': List.of(
-          Map({
-            'id': 111,
-            'activeAnswer': 0,
-            'votedAnswer': 123,
+        'activeQuestion': '111',
+        'questions': Map({
+          '111': Map({
+            'id': '111',
+            'activeAnswer': '123',
+            'votedAnswer': '123',
             'answers': List.of(
               Map({
-                'id': 123,
+                'id': '123',
                 'test': 'Hello world',
                 'liked': null,
               }),
               Map({
-                'id': 124,
+                'id': '124',
                 'test': 'Hello world 2',
                 'liked': null,
               }),
             ),
           }),
-        ),
+        }),
       })
 
     );
@@ -179,12 +174,13 @@ describe('voting reducer', () => {
 
   it('handles INIT_VOTES', () => {
     const initialState2 = Map({
+      'activeQuestion': '111',
       'questions': Map({
         '111': Map({
-          'id': 111,
+          'id': '111',
         }),
         '112': Map({
-          'id': 112,
+          'id': '112',
         }),
       }),
     });
@@ -196,13 +192,14 @@ describe('voting reducer', () => {
     expect(nextState).to.equal(
 
       Map({
+        'activeQuestion': '111',
         'questions': Map({
           '111': Map({
-            'id': 111,
+            'id': '111',
             'votedAnswer': 'xxx',
           }),
           '112': Map({
-            'id': 112,
+            'id': '112',
             'votedAnswer': 'xxy',
           }),
         }),

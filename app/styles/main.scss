@@ -81,10 +81,6 @@ h1, h2, h3, h4, h5, h6, p {
 body {
   background-color: unquote("rgb(#{$palette-grey-50})");
 }
-.pageContent {
-  margin: 0 auto;
-  padding: $u;
-}
 
 .mdl-layout__header-row{
   padding-left: 8px;
@@ -109,8 +105,6 @@ body {
   color: white;
   margin-top: 2*$u;
   margin-bottom: $u;
-  margin-left: -$u;
-  margin-right: -$u;
   padding: $u;
 }
 

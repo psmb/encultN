@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import QuestionVoting from 'components/QuestionVoting';
-import QuestionResults from 'components/QuestionResults';
+import QuestionVoting from 'components/QuestionVoting/QuestionVoting';
+import QuestionResults from 'components/QuestionResults/QuestionResults';
 import * as actionCreators from 'redux/modules/voting';
 
 @connect(state => ({
@@ -16,10 +16,6 @@ export default class Question extends Component {
   }
 
   componentWillMount() {
-    if (typeof(this.props.question.get('activeAnswer')) === 'undefined') {
-      this.props.selectAnswer(0);
-    }
-
     if (typeof(this.props.question.get('answers')) === 'undefined') {
       this.props.fetchAnswers(this.props.question.get('id'));
     }
@@ -31,6 +27,7 @@ export default class Question extends Component {
         Минуточку...
       </div>
     );
+
     const mainScreen = (
       <div className='QuestionHeader'>
         <div className='fixed-width'>
@@ -40,6 +37,7 @@ export default class Question extends Component {
         {this.props.question.get('votedAnswer') ? <QuestionResults /> : <QuestionVoting />}
       </div>
     );
+
     return (
       <div>
         {this.props.question.get('answers') ? mainScreen : loadingScreen}

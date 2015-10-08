@@ -1,7 +1,7 @@
 import {Map, fromJS} from 'immutable';
 import {createAction} from 'redux-actions';
 import fetch from 'isomorphic-fetch';
-import { ownAddress } from 'shared-settings';
+import { ownAddress } from '../../shared-settings'; // relative path for the sake of tests
 
 
 const SELECT_QUESTION = 'voting/SELECT_QUESTION';
@@ -18,29 +18,39 @@ const initialState = Map();
 export default function reducer(state = initialState, action = {}) {
   const activeQuestion = state.get('activeQuestion');
   const activeAnswer = state.getIn(['questions', activeQuestion, 'activeAnswer']);
+  let activeAnswerIndex;
+  let gotoAnswerIndex;
+  let gotoAnswerId;
+  if (activeAnswer) {
+    activeAnswerIndex = state.getIn(['questions', activeQuestion, 'answers']).findIndex(item => item.get('id') === activeAnswer);
+    gotoAnswerIndex = (state.getIn(['questions', activeQuestion, 'answers']).count() === activeAnswerIndex + 1) ? activeAnswerIndex : activeAnswerIndex + 1;
+    gotoAnswerId = state.getIn(['questions', activeQuestion, 'answers', gotoAnswerIndex]).get('id');
+  }
+
   switch (action.type) {
   case SELECT_QUESTION:
     return state.set('activeQuestion', action.payload);
   case SELECT_ANSWER:
     return state.setIn(['questions', activeQuestion, 'activeAnswer'], action.payload);
   case LIKE_ANSWER:
-    const gotoAnswer = (state.getIn(['questions', activeQuestion, 'answers']).count() === activeAnswer + 1) ? 0 : activeAnswer + 1;
     return state
-      .setIn(['questions', activeQuestion, 'answers', activeAnswer, 'liked'], true)
-      .setIn(['questions', activeQuestion, 'activeAnswer'], gotoAnswer);
+      .setIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'liked'], true)
+      .setIn(['questions', activeQuestion, 'activeAnswer'], gotoAnswerId);
   case DISLIKE_ANSWER:
-    const gotoAnswer1 = (state.getIn(['questions', activeQuestion, 'answers']).count() === activeAnswer + 1) ? 0 : activeAnswer + 1;
     return state
-      .setIn(['questions', activeQuestion, 'answers', activeAnswer, 'liked'], false)
-      .setIn(['questions', activeQuestion, 'activeAnswer'], gotoAnswer1);
+      .setIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'liked'], false)
+      .setIn(['questions', activeQuestion, 'activeAnswer'], gotoAnswerId);
   case INIT_VOTES:
     return state.mergeDeepIn(['questions'], action.payload);
   case VOTE_FOR_ANSWER:
-    return state.setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswer, 'id']));
+    return state.setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'id']));
   case FETCH_QUESTIONS:
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:
-    return state.setIn(['questions', activeQuestion, 'answers'], action.payload);
+    const firstAnswerId = action.payload.getIn([0, 'id']);
+    return state
+      .setIn(['questions', activeQuestion, 'answers'], action.payload)
+      .setIn(['questions', activeQuestion, 'activeAnswer'], firstAnswerId);
   default:
     return state;
   }

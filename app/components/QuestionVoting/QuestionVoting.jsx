@@ -18,26 +18,23 @@ export default class QuestionVoting extends Component {
   }
 
   render() {
-    const question = this.props.question;
-    const allLiked = question.get('answers').every(item => {return (item.get('liked') === true) || (item.get('liked') === false); });
-    const noneLiked = question.get('answers').every(item => {return item.get('liked') === false; });
-
-    let i = 0;
-    const selectAnswer = this.props.selectAnswer;
+    const allLiked = this.props.question.get('answers').every(item => {return (item.get('liked') === true) || (item.get('liked') === false); });
+    const noneLiked = this.props.question.get('answers').every(item => {return item.get('liked') === false; });
+    const activeAnswer = this.props.question.get('activeAnswer');
+    const activeAnswerObject = this.props.question.get('answers').find(item => item.get('id') === activeAnswer);
+    const activeAnswerIndex = this.props.question.get('answers').findIndex(item => item.get('id') === activeAnswer);
 
     const likingNav = (
       <p className='mdl-typography--body-1-color-contrast'>
-        {question.get('activeAnswer') + 1} из {question.get('answers').count()}
+        {activeAnswerIndex + 1} из {this.props.question.get('answers').count()}
       </p>
     );
-    const votingNav = question.get('answers').map(function renderAnswer(answer) {
-      i++;
-      const j = i;
+    const votingNav = this.props.question.get('answers').map(function renderAnswer(answer, i) {
       if (answer.get('liked') === true) {
-        const currentClass = question.get('activeAnswer') === (j - 1) ? ' mdl-button--colored color-accent' : '';
-        return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => selectAnswer(j - 1, )}>{i}</button>;
+        const currentClass = activeAnswer === answer.get('id') ? ' mdl-button--colored color-accent' : '';
+        return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
       }
-    });
+    }, this);
 
     const likingHint = (
       <p className='mdl-typography--caption Hint color-accent'>Выберите с какими ответами вы согласны?</p>
@@ -67,12 +64,12 @@ export default class QuestionVoting extends Component {
     );
     const votingControls = (
       <div className=''>
-        <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(question.getIn(['answers', question.get('activeAnswer'), 'id']))}>Голосовать!</button>
+        <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(activeAnswer)}>Голосовать!</button>
       </div>
     );
     const answer = (
       <div className='mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
-        {question.getIn(['answers', question.get('activeAnswer'), 'quizText'])}
+        {activeAnswerObject.get('quizText')}
       </div>
     );
     const votingScreen = (

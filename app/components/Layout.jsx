@@ -17,7 +17,7 @@ export default class Layout extends React.Component {
           </div>
         </header>
         <main className=''>
-          <div className='pageContent'>{this.props.children}</div>
+          {this.props.children}
         </main>
         <footer className='Footer'>
           <div className='Footer-inner fixed-width'>© Мониторинг мировоззрений</div>
