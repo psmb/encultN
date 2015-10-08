@@ -4,10 +4,14 @@ import Intro from './Intro';
 import QuestionSmall from './QuestionSmall';
 import Stats from './Stats';
 
-@connect(state => ({questions: state.voting.get('questions')}))
+@connect(state => ({
+  questions: state.voting.get('questions'),
+  worldviews: state.worldviews,
+}))
 export default class Questions extends Component {
   static propTypes = {
     questions: PropTypes.object,
+    worldviews: PropTypes.object,
   }
 
   render() {
@@ -22,6 +26,7 @@ export default class Questions extends Component {
         <div className='fixed-width row'>
           <Intro isDismissed='0' />
         </div>
+        <Stats worldviews={this.props.worldviews} />
         <div className='fixed-width row'>
           <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns'>
             {typeof(this.props.questions) === 'undefined' ? 'Минуточку...' : questions}

@@ -3,17 +3,21 @@ import {Link} from 'react-router';
 
 export default class Stats extends Component {
   static propTypes = {
+    worldviews: PropTypes.object.isRequired,
   }
 
   render() {
+    const worldviews = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(0, 3).map(worldview => {
+      return (
+        <p className='mdl-typography--subhead'>{worldview.get('title')}: <span className='mdl-typography--subhead'>{worldview.get('voteCount')}</span></p>
+      );
+    }) : '';
     return (
       <div className='Stats mdl-shadow--4dp' >
         <div className='fixed-width'>
           <p className='mdl-typography--caption'>Лидеры голосования</p>
-          <p className='mdl-typography--subhead'>Православие: <span className='mdl-typography--subhead'>123</span></p>
-          <p className='mdl-typography--subhead'>Католичество: <span className='mdl-typography--subhead'>65</span></p>
-          <p className='mdl-typography--subhead'>Протестантизм: <span className='mdl-typography--subhead'>18</span></p>
-          <Link className='button mdl-button mdl-button--raised' to={`/stats/`}>Статистика</Link>
+          {worldviews}
+          <Link className='hide button mdl-button mdl-button--raised' to={`/stats/`}>Статистика</Link>
         </div>
       </div>
     );
