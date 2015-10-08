@@ -13,11 +13,13 @@ const initialState = Map({
         Map({
           'id': '123',
           'test': 'Hello world',
+          'voteCount': 0,
           'liked': null,
         }),
         Map({
           'id': '124',
           'test': 'Hello world 2',
+          'voteCount': 0,
           'liked': null,
         }),
       ),
@@ -40,11 +42,13 @@ describe('voting reducer', () => {
               Map({
                 'id': '123',
                 'test': 'Hello world',
+                'voteCount': 0,
                 'liked': null,
               }),
               Map({
                 'id': '124',
                 'test': 'Hello world 2',
+                'voteCount': 0,
                 'liked': null,
               }),
             ),
@@ -69,11 +73,13 @@ describe('voting reducer', () => {
               Map({
                 'id': '123',
                 'test': 'Hello world',
+                'voteCount': 0,
                 'liked': null,
               }),
               Map({
                 'id': '124',
                 'test': 'Hello world 2',
+                'voteCount': 0,
                 'liked': null,
               }),
             ),
@@ -98,12 +104,80 @@ describe('voting reducer', () => {
               Map({
                 'id': '123',
                 'test': 'Hello world',
+                'voteCount': 0,
                 'liked': true,
               }),
               Map({
                 'id': '124',
                 'test': 'Hello world 2',
+                'voteCount': 0,
                 'liked': null,
+              }),
+            ),
+          }),
+        }),
+      })
+
+    );
+  });
+
+  it('after last like/dislike rewind to first liked answer', () => {
+    const initialState3 = Map({
+      'activeQuestion': '111',
+      'questions': Map({
+        '111': Map({
+          'id': '111',
+          'activeAnswer': '125',
+          'answers': List.of(
+            Map({
+              'id': '123',
+              'test': 'Hello world',
+              'voteCount': 0,
+              'liked': false,
+            }),
+            Map({
+              'id': '124',
+              'test': 'Hello world 2',
+              'voteCount': 0,
+              'liked': true,
+            }),
+            Map({
+              'id': '125',
+              'test': 'Hello world 3',
+              'voteCount': 0,
+              'liked': null,
+            }),
+          ),
+        }),
+      }),
+    });
+    const nextState = voting(initialState3, likeAnswer());
+    expect(nextState).to.equal(
+
+      Map({
+        'activeQuestion': '111',
+        'questions': Map({
+          '111': Map({
+            'id': '111',
+            'activeAnswer': '124',
+            'answers': List.of(
+              Map({
+                'id': '123',
+                'test': 'Hello world',
+                'voteCount': 0,
+                'liked': false,
+              }),
+              Map({
+                'id': '124',
+                'test': 'Hello world 2',
+                'voteCount': 0,
+                'liked': true,
+              }),
+              Map({
+                'id': '125',
+                'test': 'Hello world 3',
+                'voteCount': 0,
+                'liked': true,
               }),
             ),
           }),
@@ -127,11 +201,13 @@ describe('voting reducer', () => {
               Map({
                 'id': '123',
                 'test': 'Hello world',
+                'voteCount': 0,
                 'liked': false,
               }),
               Map({
                 'id': '124',
                 'test': 'Hello world 2',
+                'voteCount': 0,
                 'liked': null,
               }),
             ),
@@ -157,11 +233,13 @@ describe('voting reducer', () => {
               Map({
                 'id': '123',
                 'test': 'Hello world',
+                'voteCount': 1,
                 'liked': null,
               }),
               Map({
                 'id': '124',
                 'test': 'Hello world 2',
+                'voteCount': 0,
                 'liked': null,
               }),
             ),
