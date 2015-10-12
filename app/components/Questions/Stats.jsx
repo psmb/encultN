@@ -12,13 +12,39 @@ export default class Stats extends Component {
         <p className='mdl-typography--subhead'>{worldview.get('title')}: <span className='mdl-typography--subhead'>{worldview.get('voteCount')}</span></p>
       );
     }) : '';
-    return (
-      <div className='Stats mdl-shadow--4dp' >
-        <div className='fixed-width'>
-          <p className='mdl-typography--caption'>Лидеры голосования</p>
-          {worldviews}
-          <Link className='hide button mdl-button mdl-button--raised' to={`/stats/`}>Статистика</Link>
+
+    const winner = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(0, 1).map(worldview => {
+      return (
+        <p className='mdl-typography--display-1 textAlign-center'>{worldview.get('title')}: {worldview.get('voteCount')} <i className='icon-check'></i></p>
+      );
+    }) : '';
+    const others = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(1, 4).map(worldview => {
+      return (
+        <p className='Stats-others mdl-typography--title'>{worldview.get('title')}: {worldview.get('voteCount')} <i className='icon-check'></i></p>
+      );
+    }) : '';
+
+    const statsSmall = (
+      <div className='Stats Stats--small show-for-small-only' >
+        <p className='Stats-title mdl-typography--caption'>Лидеры голосования</p>
+        {worldviews}
+        <Link className='Stats-link mdl-typography--caption' to={`/stats/`}>Вся статистика <i className='icon-right-circle'></i></Link>
+      </div>
+    );
+    const statsLarge = (
+      <div className='Stats Stats--large hide-for-small' >
+        <p className='Stats-title mdl-typography--caption textAlign-center'>Лидеры голосования</p>
+        {winner}
+        <div className='textAlign-center'>
+          {others}
         </div>
+        <Link className='Stats-link mdl-typography--caption' to={`/stats/`}>Вся статистика <i className='icon-right-circle'></i></Link>
+      </div>
+    );
+    return (
+      <div>
+        {statsSmall}
+        {statsLarge}
       </div>
     );
   }

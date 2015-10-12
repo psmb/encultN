@@ -13,8 +13,7 @@ import createLocation from 'history/lib/createLocation';
 import store from 'redux/store';
 import routes from 'redux/routes';
 
-import { fetchQuestions, initVotes } from 'redux/modules/voting';
-import { fetchState as fetchWorldviews } from 'redux/modules/worldviews';
+import { fetchQuestions, initVotes, fetchWorldviews } from 'redux/modules/voting';
 
 
 const app = express();

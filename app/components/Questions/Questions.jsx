@@ -3,15 +3,19 @@ import {connect} from 'react-redux';
 import Intro from './Intro';
 import QuestionSmall from './QuestionSmall';
 import Stats from './Stats';
+import {dismissIntro} from 'redux/modules/preferences';
 
 @connect(state => ({
   questions: state.voting.get('questions'),
-  worldviews: state.worldviews,
-}))
+  worldviews: state.voting.get('worldviews'),
+  preferences: state.preferences,
+}), {dismissIntro})
 export default class Questions extends Component {
   static propTypes = {
     questions: PropTypes.object,
     worldviews: PropTypes.object,
+    preferences: PropTypes.object,
+    dismissIntro: PropTypes.func,
   }
 
   render() {
@@ -24,9 +28,9 @@ export default class Questions extends Component {
     return (
       <div>
         <div className='fixed-width'>
-          <Intro isDismissed='0' />
+          <Intro isDismissed={this.props.preferences.get('introDismissed')} dismissIntro={this.props.dismissIntro} />
+          <Stats worldviews={this.props.worldviews} />
         </div>
-        <Stats worldviews={this.props.worldviews} />
         <div className='row'>
           <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
             {typeof(this.props.questions) === 'undefined' ? 'Минуточку...' : questions}

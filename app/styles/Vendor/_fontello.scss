@@ -1,16 +1,18 @@
 @font-face {
   font-family: 'izm';
-  src: url('/static/izm.woff?50175376');
+  src: url('/static/izm.woff?50175374');
   font-weight: normal;
   font-style: normal;
 }
+
+
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'izm';
-    src: url('../font/izm.svg?82765590#izm') format('svg');
+    src: url('../font/izm.svg?35119719#izm') format('svg');
   }
 }
 */
@@ -56,3 +58,5 @@
 .icon-right-open:before { content: '\e803'; } /* '' */
 .icon-thumbs-up:before { content: '\e804'; } /* '' */
 .icon-thumbs-down:before { content: '\e805'; } /* '' */
+.icon-cancel:before { content: '\e806'; } /* '' */
+.icon-right-circle:before { content: '\e807'; } /* '' */

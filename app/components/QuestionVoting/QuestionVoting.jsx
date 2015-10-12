@@ -32,7 +32,7 @@ export default class QuestionVoting extends Component {
     const votingNav = this.props.question.get('answers').map(function renderAnswer(answer, i) {
       if (answer.get('liked') === true) {
         const currentClass = activeAnswer === answer.get('id') ? ' mdl-button--colored color-accent' : '';
-        return <button key={answer.get('id')} className={'mdl-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
+        return <button key={answer.get('id')} className={'mdl-button VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
       }
     }, this);
 
@@ -52,7 +52,11 @@ export default class QuestionVoting extends Component {
     const votingHead = (
       <div>
         {votingHint}
-        {votingNav}
+        <div className='VotingNav'>
+          <button className={'VotingNav-button mdl-button'} ><i className='icon-left-open'></i></button>
+          {votingNav}
+          <button className={'VotingNav-button mdl-button'} ><i className='icon-right-open'></i></button>
+        </div>
       </div>
     );
 

@@ -155,6 +155,12 @@ body {
   padding: $u;
 }
 
+.AnswerFull-videoText {
+  @media #{$medium-up} {
+    padding: 2*$u;
+  }
+}
+
 .AnswerSmall {
   cursor: pointer;
 }
@@ -224,6 +230,9 @@ body {
 .textAlign-center {
   text-align: center;
 }
+.float-left{
+  float: left;
+}
 
 .button--selected {
   background-color: unquote("rgb(#{$palette-grey-300})");
@@ -232,13 +241,24 @@ body {
 
 
 .Intro {
+  position: relative;
   margin: 0;
   padding: 2*$u;
   background-color: unquote("rgb(#{$palette-grey-100})");
   overflow: auto;
   .button {
-    float: right;
+    margin-top: 2*$u;
   }
+}
+
+
+.Intro-dismiss {
+  position: absolute;
+  top: $u/2;
+  right: $u/2;
+  font-size: 16px;
+  padding: 1px;
+  color: unquote("rgb(#{$palette-grey-700})");
 }
 
 .Intro-list {
@@ -249,15 +269,42 @@ body {
   @include typo-headline(ture);
   background-color: white;
   border-radius: 50%;
-  border: 1px solid unquote("rgb(#{$palette-grey-700})");
+  border: 1px solid unquote("rgb(#{$palette-grey-500})");
   display: inline-block;
   height: 33px;
   width: 33px;
   padding-left: 9px;
   box-sizing: border-box;
   margin: $u $u 0;
+  color: black;
 }
 
+.Intro-link {
+  display: inline-block;
+  margin-top: $u;
+  padding: $u 0;
+  color: unquote("rgb(#{$color-primary})");
+}
+.Intro--small .Intro-link {
+  float: right;
+}
+.Intro--large {
+  .mdl-typography--body-1-color-contrast {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  li {
+    .Intro-listNumber {
+      display: block;
+      margin: 2*$u auto $u auto;
+      height: 52px;
+      width: 52px;
+      padding-left: 0px;
+      padding-top: 4px;
+    }
+    text-align: center;
+  }
+}
 
 .Stats {
   background-color: unquote("rgb(#{$palette-red-A200})");
@@ -270,9 +317,20 @@ body {
     color: unquote("rgb(#{$palette-grey-700})");
     background-color: unquote("rgb(#{$palette-grey-300})");
   }
-  .mdl-typography--caption {
-    padding-bottom: $u;
-  }
+}
+
+.Stats-title {
+  padding-bottom: $u;
+}
+
+.Stats-link {
+  float: right;
+}
+
+.Stats-others {
+  display: inline-block;
+  margin-right: 2*$u;
+  margin-top: $u;
 }
 
 html {
@@ -303,6 +361,12 @@ footer {
   background-color: unquote("rgb(#{$color-primary})");
   padding-top: $u;
   box-sizing: border-box;
+  margin-bottom: $u;
+}
+
+.Header-logo img {
+  height: 40px;
+  margin-top: 3px;
 }
 
 .Footer {
@@ -315,4 +379,9 @@ footer {
 
 .LikingNav {
   opacity: 0.54;
+}
+
+.VotingNav-button {
+  color: unquote("rgb(#{$palette-grey-700})");
+  font-size: 16px;
 }

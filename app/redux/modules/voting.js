@@ -12,6 +12,7 @@ const INIT_VOTES = 'voting/INIT_VOTES';
 const VOTE_FOR_ANSWER = 'voting/VOTE_FOR_ANSWER';
 const FETCH_QUESTIONS = 'voting/FETCH_QUESTIONS';
 const FETCH_ANSWERS = 'voting/FETCH_ANSWERS';
+const FETCH_WORLDVIEWS = 'voting/FETCH_WORLDVIEWS';
 
 const initialState = Map();
 
@@ -47,11 +48,17 @@ export default function reducer(state = initialState, action = {}) {
   case INIT_VOTES:
     return state.mergeDeepIn(['questions'], action.payload);
   case VOTE_FOR_ANSWER:
+    const currentWorldviewId = state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'worldviewId']);
     const currentVoteCount = state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount']);
+    const currentQuestionCount = state.getIn(['questions', activeQuestion, 'voteCount']);
+    const currentWorldviewCount = state.getIn(['worldviews', currentWorldviewId, 'voteCount']);
     return state
       .setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'id']))
       .setIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount'], Number(currentVoteCount) + 1)
-      .setIn(['questions', activeQuestion, 'voteCount'], Number(currentVoteCount) + 1);
+      .setIn(['questions', activeQuestion, 'voteCount'], Number(currentQuestionCount) + 1)
+      .setIn(['worldviews', currentWorldviewId, 'voteCount'], Number(currentWorldviewCount) + 1);
+  case FETCH_WORLDVIEWS:
+    return state.set('worldviews', action.payload);
   case FETCH_QUESTIONS:
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:
@@ -72,6 +79,9 @@ function fetchQuestionsPromise() {
 }
 function fetchAnswersPromise(path) {
   return fetch(ownAddress + '/api/voprosy/' + path + '.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
+}
+function fetchWorldviewsPromise() {
+  return fetch(ownAddress + '/api/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 
 export const selectQuestion = createAction(SELECT_QUESTION, id => id);
@@ -95,4 +105,7 @@ export const fetchQuestions = createAction(FETCH_QUESTIONS, async () => {
 });
 export const fetchAnswers = createAction(FETCH_ANSWERS, async path => {
   return await fetchAnswersPromise(path);
+});
+export const fetchWorldviews = createAction(FETCH_WORLDVIEWS, async () => {
+  return await fetchWorldviewsPromise();
 });

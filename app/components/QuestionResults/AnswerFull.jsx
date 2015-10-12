@@ -19,14 +19,16 @@ export default class AnswerFull extends Component {
 
     return (
       <div className='mdl-shadow--4dp AnswerFull'>
-        {this.props.preferText ? videoText : video}
+        {this.props.preferText ? '' : video}
         <div className='AnswerFull-header'>
           <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.get('worldview').get('title')}</div>
           <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>
           <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-accent'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>
         </div>
-
+        <div className='AnswerFull-videoText'>
+          {this.props.preferText ? videoText : ''}
+        </div>
         <div className=''>
           <button style={{width: '50%'}} className={(this.props.preferText ? '' : 'button--selected') + ' mdl-button'} onClick={() => this.props.setPreferText(false)}>Смотреть</button>
           <button style={{width: '50%'}} className={(this.props.preferText ? 'button--selected' : '') + ' mdl-button'} onClick={() => this.props.setPreferText(true)}>Читать</button>

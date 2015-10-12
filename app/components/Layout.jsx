@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
         <header className='Header'>
           <div className='fixed-width'>
             <div className='columns'>
-              <Link to={`/`}><img src='/static/logo.svg' /></Link>
+              <Link className='Header-logo' to={`/`}><img src='/static/logo.svg' /></Link>
             </div>
           </div>
         </header>

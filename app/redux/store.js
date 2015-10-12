@@ -1,4 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
+import cookie from 'redux-effects-cookie';
 import { devTools, persistState} from 'redux-devtools';
 import promiseMiddleware from 'redux-promise';
 import appReducer from './modules/reducer';
@@ -10,11 +11,10 @@ if (typeof(window) !== 'undefined') {
   const fromServer = window.__INITIAL_STATE__;
   initialState.voting = fromJS(fromServer.voting);
   initialState.preferences = fromJS(fromServer.preferences);
-  initialState.worldviews = fromJS(fromServer.worldviews);
   persistStateUrl = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
 }
 const store = compose(
-  applyMiddleware(promiseMiddleware),
+  applyMiddleware(promiseMiddleware, cookie()),
   devTools(),
   persistState(persistStateUrl),
 )(createStore)(appReducer, initialState);
