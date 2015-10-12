@@ -9,7 +9,7 @@ export default class Stats extends Component {
   render() {
     const worldviews = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(0, 3).map(worldview => {
       return (
-        <p className='mdl-typography--subhead'>{worldview.get('title')}: <span className='mdl-typography--subhead'>{worldview.get('voteCount')}</span></p>
+        <p className='mdl-typography--subhead'>{worldview.get('title')}: <span className='mdl-typography--subhead'>{worldview.get('voteCount')} <i className='icon-check'></i></span></p>
       );
     }) : '';
 
