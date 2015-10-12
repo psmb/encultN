@@ -20,7 +20,7 @@ export default class Layout extends React.Component {
           {this.props.children}
         </main>
         <footer className='Footer'>
-          <div className='Footer-inner fixed-width'>© Мониторинг мировоззрений</div>
+          <div className='Footer-inner fixed-width'>© Мониторинг мировоззрений<br/>Дизайн и разработка: <a href='http://sfi.ru'>информационная служба СФИ</a></div>
         </footer>
       </div>
     );
