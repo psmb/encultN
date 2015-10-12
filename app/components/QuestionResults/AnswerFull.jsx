@@ -22,9 +22,9 @@ export default class AnswerFull extends Component {
         {this.props.preferText ? videoText : video}
         <div className='AnswerFull-header'>
           <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.get('worldview').get('title')}</div>
-          <div className='mdl-typography--body-1-color-contrast'>Отвечает {this.props.answer.get('authorName')}</div>
+          <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>
-          <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('voteCount')}</div>
+          <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-accent'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>
         </div>
 
         <div className=''>

@@ -25,7 +25,7 @@ export default class QuestionVoting extends Component {
     const activeAnswerIndex = this.props.question.get('answers').findIndex(item => item.get('id') === activeAnswer);
 
     const likingNav = (
-      <p className='mdl-typography--body-1-color-contrast'>
+      <p className='LikingNav mdl-typography--body-1-color-contrast'>
         {activeAnswerIndex + 1} из {this.props.question.get('answers').count()}
       </p>
     );
@@ -58,13 +58,17 @@ export default class QuestionVoting extends Component {
 
     const likingControls = (
       <div className='row'>
-        <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginRight: '8px'}} className='mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.likeAnswer()}>За</button>
-        <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginLeft: '8px'}} className='mdl-button mdl-button--raised' onClick={() => this.props.dislikeAnswer()}>Против</button>
+        <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
+          <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginRight: '8px'}} className='mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.likeAnswer()}>За <i className='icon-thumbs-up'></i></button>
+          <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginLeft: '8px'}} className='mdl-button mdl-button--raised' onClick={() => this.props.dislikeAnswer()}>Против <i className='icon-thumbs-down'></i></button>
+        </div>
       </div>
     );
     const votingControls = (
-      <div className=''>
-        <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(activeAnswer)}>Голосовать!</button>
+      <div className='row'>
+        <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
+          <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(activeAnswer)}>Голосовать! <i className='icon-check'></i></button>
+        </div>
       </div>
     );
     const answer = (
@@ -82,7 +86,7 @@ export default class QuestionVoting extends Component {
 
     return (
       <div className='fixed-width row'>
-        <div className='medium-10 medium-offset-1 large-8 large-offset-2 columns'>
+        <div className='medium-10 medium-offset-1 columns'>
           {noneLiked ? 'Почему вам ничего не нравится?' : votingScreen}
         </div>
       </div>

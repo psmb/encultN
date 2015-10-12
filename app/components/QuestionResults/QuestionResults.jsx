@@ -38,14 +38,14 @@ export default class QuestionResults extends Component {
     return (
       <div>
         <VotedAnswer answer={votedAnswerObject} />
-        <div className='fixed-width row'>
-          <div className='medium-10 medium-offset-1 large-8 large-offset-2 columns'>
+        <div className='row'>
+          <div className='medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
             <AnswerFull answer={activeAnswerObject} preferText={this.props.preferText} setPreferText={this.props.setPreferText} />
           </div>
         </div>
-        <div className='fixed-width row'>
-          <div className='large-10 large-offset-1 columns'>
-            <ul className='large-block-grid-2'>
+        <div className='row'>
+          <div className='large-10 large-offset-1 columns fixed-width '>
+            <ul className='medium-block-grid-3 large-block-grid-3'>
               {answers}
             </ul>
           </div>

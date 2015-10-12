@@ -1,0 +1,58 @@
+$intervals: (
+    none: 0,
+    half: 0.5,
+	single: 1,
+	sesquialteral: 1.5,
+	double: 2,
+	triple: 3
+);
+
+@each $intervalName, $intervalValue in $intervals {
+    .margin-#{$intervalName}{
+        margin: $intervalValue*$u !important;
+    }
+    .marginVertical-#{$intervalName}{
+        margin-top: $intervalValue*$u !important;
+        margin-bottom: $intervalValue*$u !important;
+    }
+    .marginHorizontal-#{$intervalName}{
+        margin-left: $intervalValue*$u !important;
+        margin-right: $intervalValue*$u !important;
+    }
+    .marginTop-#{$intervalName}{
+        margin-top: $intervalValue*$u !important;
+    }
+    .marginRight-#{$intervalName}{
+        margin-right: $intervalValue*$u !important;
+    }
+    .marginBottom-#{$intervalName}{
+        margin-bottom: $intervalValue*$u !important;
+    }
+    .marginLeft-#{$intervalName}{
+        margin-left: $intervalValue*$u !important;
+    }
+
+    .padding-#{$intervalName}{
+        padding: $intervalValue*$u !important;
+    }
+    .paddingVertical-#{$intervalName}{
+        padding-top: $intervalValue*$u !important;
+        padding-bottom: $intervalValue*$u !important;
+    }
+    .paddingHorizontal-#{$intervalName}{
+        padding-left: $intervalValue*$u !important;
+        padding-right: $intervalValue*$u !important;
+    }
+    .paddingTop-#{$intervalName}{
+        padding-top: $intervalValue*$u !important;
+    }
+    .paddingRight-#{$intervalName}{
+        padding-right: $intervalValue*$u !important;
+    }
+    .paddingBottom-#{$intervalName}{
+        padding-bottom: $intervalValue*$u !important;
+    }
+    .paddingLeft-#{$intervalName}{
+        padding-left: $intervalValue*$u !important;
+    }
+}

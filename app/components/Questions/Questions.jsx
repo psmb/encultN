@@ -23,12 +23,12 @@ export default class Questions extends Component {
 
     return (
       <div>
-        <div className='fixed-width row'>
+        <div className='fixed-width'>
           <Intro isDismissed='0' />
         </div>
         <Stats worldviews={this.props.worldviews} />
-        <div className='fixed-width row'>
-          <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns'>
+        <div className='row'>
+          <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
             {typeof(this.props.questions) === 'undefined' ? 'Минуточку...' : questions}
           </div>
         </div>

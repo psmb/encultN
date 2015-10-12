@@ -8,7 +8,7 @@ export default class VotedAnswer extends Component {
   render() {
     return (
       <div className='VotedAnswerFull'>
-        <div className='mdl-typography--body-1'>Вы выбрали</div>
+        <div className='mdl-typography--body-1'>Ваш выбор</div>
         <div className='mdl-typography--display-1'>{this.props.answer.getIn(['worldview', 'title'])}</div>
       </div>
     );

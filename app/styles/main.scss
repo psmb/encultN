@@ -20,6 +20,12 @@
 //@import "variables";
 
 $u: 8px;
+
+@import "Quarks/spacing";
+@import "Vendor/fontello";
+@import "Vendor/foundation";
+
+
 @import "Vendor/materialDesignLite/src/color-definitions";
 $color-primary: $palette-teal-500;
 $color-primary-dark: $palette-teal-700;
@@ -76,11 +82,35 @@ h1, h2, h3, h4, h5, h6, p {
 @import "Vendor/materialDesignLite/src/shadow/shadow";
 // @import "Vendor/materialDesignLite/src/grid/grid";
 
-@import "Vendor/foundation";
 
 body {
   background-color: unquote("rgb(#{$palette-grey-50})");
 }
+
+
+
+// Respoonsive typography
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .mdl-layout__header-row{
   padding-left: 8px;
@@ -96,6 +126,10 @@ body {
 .Answer {
   margin: 2*$u 0 $u 0;
   padding: 2*$u;
+  @media #{$medium-up} {
+    padding: 4*$u;
+  }
+
   background-color: white;
 }
 
@@ -112,7 +146,10 @@ body {
   margin: 2*$u 0 4*$u 0;
 }
 .AnswerFull-header {
-  padding: 2*$u $u;
+  padding: 2*$u;
+  @media #{$medium-up} {
+    padding: 2*$u 4*$u;
+  }
 }
 .AnswerFull-videoText {
   padding: $u;
@@ -122,12 +159,18 @@ body {
   cursor: pointer;
 }
 .AnswerSmall-body {
-  float: left;
-  width: 66%;
+  margin-top: $u;
+  @include breakpoint(small only) {
+    float: left;
+    padding-right: $u;
+    width: 66%;
+  }
 }
 .AnswerSmall-image {
-  float: left;
-  width: 33%;
+  @include breakpoint(small only) {
+    float: right;
+    width: 33%;
+  }
 }
 
 .PreferTextSwitch {
@@ -165,7 +208,13 @@ body {
 
 
 .QuestionHeader {
-  margin-top: $u;
+  margin-top: 2*$u;
+  @media #{$medium-up} {
+    margin-top: 4*$u;
+  }
+  @media #{$large-up} {
+    margin-top: 6*$u;
+  }
 }
 
 
@@ -185,7 +234,7 @@ body {
 .Intro {
   margin: 0;
   padding: 2*$u;
-  background-color: unquote("rgb(#{$palette-grey-300})");
+  background-color: unquote("rgb(#{$palette-grey-100})");
   overflow: auto;
   .button {
     float: right;
@@ -244,6 +293,7 @@ footer {
 
 .fixed-width {
   max-width: 960px;
+  padding: 0 $u;
   margin: 0 auto;
 }
 
@@ -261,4 +311,8 @@ footer {
 }
 .Footer-inner {
   padding: 2*$u;
+}
+
+.LikingNav {
+  opacity: 0.54;
 }
