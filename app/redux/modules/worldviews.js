@@ -1,7 +1,7 @@
 import { Map, fromJS } from 'immutable';
 import { createAction } from 'redux-actions';
 import fetch from 'isomorphic-fetch';
-import { ownAddress } from 'shared-settings';
+import { ownAddress } from '../../shared-settings';
 
 const FETCH_STATE = 'worldviews/FETCH_STATE';
 const initialState = Map();
