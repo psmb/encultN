@@ -50,7 +50,8 @@ export default function reducer(state = initialState, action = {}) {
     const currentVoteCount = state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount']);
     return state
       .setIn(['questions', activeQuestion, 'votedAnswer'], state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'id']))
-      .setIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount'], Number(currentVoteCount) + 1);
+      .setIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'voteCount'], Number(currentVoteCount) + 1)
+      .setIn(['questions', activeQuestion, 'voteCount'], Number(currentVoteCount) + 1);
   case FETCH_QUESTIONS:
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:

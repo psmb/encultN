@@ -229,6 +229,7 @@ describe('voting reducer', () => {
             'id': '111',
             'activeAnswer': '123',
             'votedAnswer': '123',
+            'voteCount': 1,
             'answers': List.of(
               Map({
                 'id': '123',
