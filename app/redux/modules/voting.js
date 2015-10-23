@@ -84,7 +84,9 @@ function fetchWorldviewsPromise() {
   return fetch(ownAddress + '/api/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
 }
 
-export const selectQuestion = createAction(SELECT_QUESTION, id => id);
+export const selectQuestion = createAction(SELECT_QUESTION, id => id, id => {
+  return {analytics: {type: 'reachGoal', payload: {target: 'SELECT_QUESTION', params: id} }};
+});
 export const selectAnswer = createAction(SELECT_ANSWER, id => id);
 export const likeAnswer = createAction(LIKE_ANSWER);
 export const dislikeAnswer = createAction(DISLIKE_ANSWER);
@@ -99,6 +101,8 @@ export const initVotes = createAction(INIT_VOTES, votes => {
 });
 export const voteForAnswer = createAction(VOTE_FOR_ANSWER, async id => {
   return await voteForAnswerPromise(id);
+}, id => {
+  return {analytics: {type: 'reachGoal', payload: {target: 'VOTE_FOR_ANSWER', params: id} }};
 });
 export const fetchQuestions = createAction(FETCH_QUESTIONS, async () => {
   return await fetchQuestionsPromise();

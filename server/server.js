@@ -77,6 +77,14 @@ function renderFullPage(html, initialState) {
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
         </script>
         <script src="/static/bundle.js"></script>
+        <script>
+          ym.init([33181593], {
+            defer: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true,
+          });
+        </script>
       </body>
     </html>
     `;
