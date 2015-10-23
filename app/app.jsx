@@ -1,7 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router';
-import {Initializer as YM} from 'react-yandex-metrika';
 // import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
 import 'babel/polyfill';
 import store from 'redux/store';
@@ -32,7 +31,6 @@ class App extends React.Component {
             <Router history={history} routes={routes} />
           }
         </Provider>
-        <YM />
       </div>
     );
   }
