@@ -65,6 +65,10 @@ module.exports = (options) => {
           test: /\.scss$/,
           loader: 'style!css!' + autoprefixer + '!sass',
         },
+        {
+          test: require.resolve('react'),
+          loader: 'imports?shim=es5-shim/es5-shim&sham=es5-shim/es5-sham',
+        },
       ]),
     },
   };
