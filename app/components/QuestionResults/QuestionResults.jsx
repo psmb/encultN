@@ -34,7 +34,7 @@ export default class QuestionResults extends Component {
           <AnswerSmall answer={answer} selectAnswer={this.props.selectAnswer} />
         );
       }
-    });
+    }).toArray();
     return (
       <div className='fixed-width'>
         <VotedAnswer answer={votedAnswerObject} />

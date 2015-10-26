@@ -17,7 +17,7 @@ export default class Stats extends Component {
           <td>{worldview.get('voteCount')}</td>
         </tr>
       );
-    }) : '';
+    }).toArray() : '';
 
     return (
       <div className='FullStats marginTop-double'>

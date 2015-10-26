@@ -23,7 +23,7 @@ export default class Questions extends Component {
       return (
         <QuestionSmall question={question} />
       );
-    });
+    }).toArray();
 
     return (
       <div>

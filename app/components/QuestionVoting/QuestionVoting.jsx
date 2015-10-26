@@ -34,7 +34,7 @@ export default class QuestionVoting extends Component {
         const currentClass = activeAnswer === answer.get('id') ? ' mdl-button--colored color-accent' : '';
         return <button key={answer.get('id')} className={'mdl-button VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
       }
-    }, this);
+    }, this).toArray();
 
     const likingHint = (
       <p className='mdl-typography--caption Hint color-accent'>Выберите с какими ответами вы согласны?</p>

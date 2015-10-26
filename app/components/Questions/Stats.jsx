@@ -9,21 +9,20 @@ export default class Stats extends Component {
   render() {
     const worldviews = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(0, 3).map(worldview => {
       return (
-        <p className='mdl-typography--subhead'>{worldview.get('title')}: <span className='mdl-typography--subhead'>{worldview.get('voteCount')} <i className='icon-check'></i></span></p>
+        <p key={worldview.get('id')} className='mdl-typography--subhead'>{worldview.get('title')}: <span className='mdl-typography--subhead'>{worldview.get('voteCount')} <i className='icon-check'></i></span></p>
       );
-    }) : '';
+    }).toArray() : '';
 
     const winner = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(0, 1).map(worldview => {
       return (
-        <p className='mdl-typography--display-1 textAlign-center'>{worldview.get('title')}: {worldview.get('voteCount')} <i className='icon-check'></i></p>
+        <p key={worldview.get('id')} className='mdl-typography--display-1 textAlign-center'>{worldview.get('title')}: {worldview.get('voteCount')} <i className='icon-check'></i></p>
       );
-    }) : '';
+    }).toArray() : '';
     const others = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).slice(1, 4).map(worldview => {
       return (
-        <p className='Stats-others mdl-typography--title'>{worldview.get('title')}: {worldview.get('voteCount')} <i className='icon-check'></i></p>
+        <p key={worldview.get('id')} className='Stats-others mdl-typography--title'>{worldview.get('title')}: {worldview.get('voteCount')} <i className='icon-check'></i></p>
       );
-    }) : '';
-
+    }).toArray() : '';
     const statsSmall = (
       <div className='Stats Stats--small show-for-small-only' >
         <p className='Stats-title mdl-typography--caption'>Лидеры голосования</p>
