@@ -7,9 +7,10 @@ import About from 'components/About/About';
 import Stats from 'components/Stats/Stats';
 import Root from 'components/Root';
 import store from 'redux/store';
+import {setLang} from 'i18n/index';
 
 const routes = (
-  <Route path='/:lang' component={Root}>
+  <Route path='/:lang' component={Root} onEnter={(nextState) => setLang(nextState.params.lang)}>
     <IndexRoute component={Questions} />
     <Route path='q/:id' component={Question} onEnter={(nextState) => store.dispatch(selectQuestion(nextState.params.id))} />
     <Route path='about' component={About} />

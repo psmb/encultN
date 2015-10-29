@@ -6,15 +6,14 @@ import proxy from 'express-http-proxy';
 import path from 'path';
 
 import React from 'react';
-import { RoutingContext, match } from 'react-router';
-import { Provider } from 'react-redux';
+import {RoutingContext, match} from 'react-router';
+import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 
 import store from 'redux/store';
 import routes from 'redux/routes';
 
-import { fetchQuestions, initVotes, fetchWorldviews } from 'redux/modules/voting';
-
+import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
 
 const app = express();
 const port = process.env.PORT || 3000;

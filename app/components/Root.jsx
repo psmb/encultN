@@ -1,15 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
-import puttext, {setLang} from 'i18n/index';
+import puttext from 'i18n/index';
 
 export default class Root extends React.Component {
   static propTypes = {
     children: React.PropTypes.node,
     params: React.PropTypes.object,
-  }
-
-  componentWillMount() {
-    setLang(this.props.params.lang);
   }
 
   render() {
