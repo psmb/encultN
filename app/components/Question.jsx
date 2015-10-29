@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import QuestionVoting from 'components/QuestionVoting/QuestionVoting';
 import QuestionResults from 'components/QuestionResults/QuestionResults';
 import * as actionCreators from 'redux/modules/voting';
+import puttext from 'i18n/index';
 
 @connect(state => ({
   question: state.voting.get('questions').find(item => item.get('id') === state.voting.get('activeQuestion')),
@@ -13,6 +14,7 @@ export default class Question extends Component {
     selectQuestion: PropTypes.func.isRequired,
     selectAnswer: PropTypes.func.isRequired,
     fetchAnswers: PropTypes.func.isRequired,
+    params: PropTypes.object.isRequired,
   }
 
   componentWillMount() {
@@ -22,9 +24,10 @@ export default class Question extends Component {
   }
 
   render() {
+    const __ = puttext();
     const loadingScreen = (
       <div className='loadingScreen'>
-        Минуточку...
+        {__('Минуточку...')}
       </div>
     );
 
@@ -34,7 +37,7 @@ export default class Question extends Component {
           <h2 className='mdl-typography--headline-color-contrast'>{this.props.question.get('title')}</h2>
           <h3 className='mdl-typography--body-1-color-contrast'>{this.props.question.get('subTitle')}</h3>
         </div>
-        {this.props.question.get('votedAnswer') ? <QuestionResults /> : <QuestionVoting />}
+        {this.props.question.get('votedAnswer') ? <QuestionResults lang={this.props.params.lang} /> : <QuestionVoting lang={this.props.params.lang} />}
       </div>
     );
 

@@ -4,6 +4,7 @@ import Intro from './Intro';
 import QuestionSmall from './QuestionSmall';
 import Stats from './Stats';
 import {dismissIntro} from 'redux/modules/preferences';
+import puttext from 'i18n/index';
 
 @connect(state => ({
   questions: state.voting.get('questions'),
@@ -19,9 +20,10 @@ export default class Questions extends Component {
   }
 
   render() {
-    const questions = this.props.questions.map(function renderQuestion(question) {
+    const __ = puttext();
+    const questions = this.props.questions.map((question) => {
       return (
-        <QuestionSmall question={question} />
+        <QuestionSmall key={question.get('id')} question={question} />
       );
     }).toArray();
 
@@ -33,7 +35,7 @@ export default class Questions extends Component {
         </div>
         <div className='row'>
           <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
-            {typeof(this.props.questions) === 'undefined' ? 'Минуточку...' : questions}
+            {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}
           </div>
         </div>
       </div>

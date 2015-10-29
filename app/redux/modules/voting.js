@@ -1,8 +1,6 @@
 import {Map, fromJS} from 'immutable';
 import {createAction} from 'redux-actions';
-import fetch from 'isomorphic-fetch';
-import { ownAddress } from '../../shared-settings'; // relative path for the sake of tests
-
+import * as api from '../api';
 
 const SELECT_QUESTION = 'voting/SELECT_QUESTION';
 const SELECT_ANSWER = 'voting/SELECT_ANSWER';
@@ -71,18 +69,6 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-function voteForAnswerPromise(id) {
-  return fetch(ownAddress + '/api/vote-for-answer?answerIdentifier=' + id, { method: 'put', credentials: 'include' }).then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
-}
-function fetchQuestionsPromise() {
-  return fetch(ownAddress + '/api/voprosy.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
-}
-function fetchAnswersPromise(path) {
-  return fetch(ownAddress + '/api/voprosy/' + path + '.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
-}
-function fetchWorldviewsPromise() {
-  return fetch(ownAddress + '/api/mirovozzreniya.json').then(response => response.json()).then(json => fromJS(json)).catch(error => console.error('MIDDLEWARE ERROR:', error));
-}
 
 export const selectQuestion = createAction(SELECT_QUESTION, id => id, id => {
   return {analytics: {type: 'reachGoal', payload: {target: 'SELECT_QUESTION', params: id} }};
@@ -100,16 +86,16 @@ export const initVotes = createAction(INIT_VOTES, votes => {
   return fromJS(votesMap);
 });
 export const voteForAnswer = createAction(VOTE_FOR_ANSWER, async id => {
-  return await voteForAnswerPromise(id);
+  return await api.voteForAnswerPromise(id);
 }, id => {
   return {analytics: {type: 'reachGoal', payload: {target: 'VOTE_FOR_ANSWER', params: id} }};
 });
 export const fetchQuestions = createAction(FETCH_QUESTIONS, async () => {
-  return await fetchQuestionsPromise();
+  return await api.fetchQuestionsPromise();
 });
 export const fetchAnswers = createAction(FETCH_ANSWERS, async path => {
-  return await fetchAnswersPromise(path);
+  return await api.fetchAnswersPromise(path);
 });
 export const fetchWorldviews = createAction(FETCH_WORLDVIEWS, async () => {
-  return await fetchWorldviewsPromise();
+  return await api.fetchWorldviewsPromise();
 });

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import puttext from 'i18n/index';
 
 export default class AnswerFull extends Component {
   static propTypes = {
@@ -8,6 +9,7 @@ export default class AnswerFull extends Component {
   }
 
   render() {
+    const __ = puttext();
     const video = (
       <div className='flex-video' style={{marginBottom: '0'}}>
         <iframe className='vimeo' src={'https://player.vimeo.com/video/' + this.props.answer.get('fullVideo') + '?color=ff5252&title=0&byline=0&portrait=0'} width='100%' height='auto' frameBorder='0' webkitallowfullscreen mozallowfullscreen allowFullScreen></iframe>
@@ -30,8 +32,8 @@ export default class AnswerFull extends Component {
           {this.props.preferText ? videoText : ''}
         </div>
         <div className=''>
-          <button style={{width: '50%'}} className={(this.props.preferText ? '' : 'button--selected') + ' mdl-button'} onClick={() => this.props.setPreferText(false)}>Смотреть</button>
-          <button style={{width: '50%'}} className={(this.props.preferText ? 'button--selected' : '') + ' mdl-button'} onClick={() => this.props.setPreferText(true)}>Читать</button>
+          <button style={{width: '50%'}} className={(this.props.preferText ? '' : 'button--selected') + ' mdl-button'} onClick={() => this.props.setPreferText(false)}>{__('Смотреть')}</button>
+          <button style={{width: '50%'}} className={(this.props.preferText ? 'button--selected' : '') + ' mdl-button'} onClick={() => this.props.setPreferText(true)}>{__('Читать')}</button>
         </div>
 
       </div>

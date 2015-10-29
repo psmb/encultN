@@ -11,6 +11,7 @@ import 'styles/main.scss';
 const history = createBrowserHistory();
 
 class App extends React.Component {
+
   render() {
     // const devTools = (() => {
     //   return (
