@@ -24,8 +24,8 @@ export default class AnswerFull extends Component {
       <div className='mdl-shadow--4dp AnswerFull'>
         {this.props.preferText ? '' : video}
         <div className='AnswerFull-header'>
-          <Link to={`/worldviews/${this.props.answer.get('worldview').get('id')}`}>
-            <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.get('worldview').get('title')}</div>
+          <Link to={`/worldviews/${this.props.answer.getIn(['worldview', 'id'])}`}>
+            <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.getIn(['worldview', 'title'])}</div>
           </Link>
           <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>

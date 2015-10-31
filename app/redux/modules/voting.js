@@ -11,6 +11,7 @@ const VOTE_FOR_ANSWER = 'voting/VOTE_FOR_ANSWER';
 const FETCH_QUESTIONS = 'voting/FETCH_QUESTIONS';
 const FETCH_ANSWERS = 'voting/FETCH_ANSWERS';
 const FETCH_WORLDVIEWS = 'voting/FETCH_WORLDVIEWS';
+const FETCH_WORLDVIEW = 'voting/FETCH_WORLDVIEW';
 
 const initialState = Map();
 
@@ -57,6 +58,8 @@ export default function reducer(state = initialState, action = {}) {
       .setIn(['worldviews', currentWorldviewId, 'voteCount'], Number(currentWorldviewCount) + 1);
   case FETCH_WORLDVIEWS:
     return state.set('worldviews', action.payload);
+  case FETCH_WORLDVIEW:
+    return state.setIn(['worldviews', action.payload.get('id')], action.payload);
   case FETCH_QUESTIONS:
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:
@@ -98,4 +101,7 @@ export const fetchAnswers = createAction(FETCH_ANSWERS, async path => {
 });
 export const fetchWorldviews = createAction(FETCH_WORLDVIEWS, async () => {
   return await api.fetchWorldviewsPromise();
+});
+export const fetchWorldview = createAction(FETCH_WORLDVIEW, async path => {
+  return await api.fetchWorldviewPromise(path);
 });
