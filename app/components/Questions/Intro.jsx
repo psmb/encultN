@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
-import {getLang} from 'i18n/index';
+import Link from 'i18n/Link';
 
 export default class Intro extends Component {
   static propTypes = {
@@ -19,7 +18,7 @@ export default class Intro extends Component {
           <li><span className='Intro-listNumber'>3</span> Проголосуйте за самый близкий</li>
           <li><span className='Intro-listNumber'>4</span> Узнайте, кому он принадлежит</li>
         </ul>
-        <Link className='Intro-link mdl-typography--caption' to={`/${getLang()}/about/`}>О проекте <i className='icon-right-circle'></i></Link>
+        <Link className='Intro-link mdl-typography--caption' to={`/about/`}>О проекте <i className='icon-right-circle'></i></Link>
       </div>
     );
 
@@ -30,7 +29,7 @@ export default class Intro extends Component {
         <div className='row'>
           <div className='medium-3 columns'>
             <p className='mdl-typography--body-1-color-contrast'>На важнейшие жизненные вопросы отвечают представители различных мировоззрений. Узнайте, какое из них вам ближе.</p>
-            <Link className='Intro-link mdl-typography--caption' to={`/${getLang()}/about/`}>О проекте <i className='icon-right-circle'></i></Link>
+            <Link className='Intro-link mdl-typography--caption' to={`/about/`}>О проекте <i className='icon-right-circle'></i></Link>
           </div>
           <div className='medium-9 columns'>
             <p className='mdl-typography--body-1-color-contrast'><strong>Что необходимо для участия:</strong></p>

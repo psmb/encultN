@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import {Link} from 'react-router';
-import puttext, {getLang} from 'i18n/index';
+import Link from 'i18n/Link';
+import puttext from 'i18n/index';
 
 export default class Stats extends Component {
   static propTypes = {
@@ -29,7 +29,7 @@ export default class Stats extends Component {
       <div className='Stats Stats--small show-for-small-only' >
         <p className='Stats-title mdl-typography--caption'>{__('Лидеры голосования')}</p>
         {worldviews}
-        <Link className='Stats-link mdl-typography--caption' to={`/${getLang()}/stats/`}>{__('Вся статистика')} <i className='icon-right-circle'></i></Link>
+        <Link className='Stats-link mdl-typography--caption' to={`/stats/`}>{__('Вся статистика')} <i className='icon-right-circle'></i></Link>
       </div>
     );
     const statsLarge = (
@@ -39,7 +39,7 @@ export default class Stats extends Component {
         <div className='textAlign-center'>
           {others}
         </div>
-        <Link className='Stats-link mdl-typography--caption' to={`/${getLang()}/stats/`}>{__('Вся статистика')} <i className='icon-right-circle'></i></Link>
+        <Link className='Stats-link mdl-typography--caption' to={`/stats/`}>{__('Вся статистика')} <i className='icon-right-circle'></i></Link>
       </div>
     );
     return (

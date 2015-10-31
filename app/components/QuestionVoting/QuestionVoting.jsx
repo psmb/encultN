@@ -78,9 +78,7 @@ export default class QuestionVoting extends Component {
       </div>
     );
     const answer = (
-      <div className='mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer'>
-        {activeAnswerObject.get('quizText')}
-      </div>
+      <div className='mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer' dangerouslySetInnerHTML={{__html: activeAnswerObject.get('quizText')}} />
     );
     const votingScreen = (
       <div>

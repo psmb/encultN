@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import puttext from 'i18n/index';
+import Link from 'i18n/Link';
 
 export default class AnswerFull extends Component {
   static propTypes = {
@@ -16,14 +17,16 @@ export default class AnswerFull extends Component {
       </div>
     );
     const videoText = (
-      <div className='mdl-typography--body-1-color-contrast AnswerFull-videoText'>{this.props.answer.get('quizText')}</div>
+      <div className='mdl-typography--body-1-color-contrast AnswerFull-videoText' dangerouslySetInnerHTML={{__html: this.props.answer.get('quizText')}} />
     );
 
     return (
       <div className='mdl-shadow--4dp AnswerFull'>
         {this.props.preferText ? '' : video}
         <div className='AnswerFull-header'>
-          <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.get('worldview').get('title')}</div>
+          <Link to={`/worldviews/${this.props.answer.get('worldview').get('id')}`}>
+            <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.get('worldview').get('title')}</div>
+          </Link>
           <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>
           <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-accent'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>

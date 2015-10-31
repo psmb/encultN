@@ -31,7 +31,7 @@ export default class QuestionResults extends Component {
     const answers = this.props.answers.map(answer => {
       if (this.props.question.get('activeAnswer') !== answer.get('id')) {
         return (
-          <AnswerSmall answer={answer} selectAnswer={this.props.selectAnswer} />
+          <AnswerSmall key={answer.get('id')} answer={answer} selectAnswer={this.props.selectAnswer} />
         );
       }
     }).toArray();

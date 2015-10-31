@@ -111,43 +111,48 @@ function renderFullPage(html, initialState) {
 }
 
 function handleRender(req, res) {
-  const location = createLocation(req.url);
-  match({ routes, location }, (error, redirectLocation, renderProps) => {
-    if (redirectLocation) {
-      res.redirect(301, redirectLocation.pathname + redirectLocation.search);
-    } else if (error) {
-      res.status(500).send(error.message);
-    } else if (renderProps === null) {
-      res.status(404).send('Not found');
-    } else {
-      Promise.all([
-        store.dispatch(fetchWorldviews()),
-        store.dispatch(fetchQuestions()),
-      ]).then(
-        () => {
-          const votesFromCookies = {};
-          Object.keys(req.cookies).map(key => {
-            if (key.indexOf('vote_in_') === 0) {
-              const questionId = key.slice(8);
-              votesFromCookies[questionId] = req.cookies[key];
-            }
-          });
-          store.dispatch(initVotes(votesFromCookies));
-          const html = React.renderToString(
-            <div>
-              <Provider store={store}>
-                {() =>
-                  <RoutingContext {...renderProps}/>
-                }
-              </Provider>
-            </div>
-          );
-          const initialState = store.getState();
-          res.send(renderFullPage(html, initialState));
-        }
-      );
-    }
-  });
+  if (req.url === '/') {
+    const preferedLocale = req.acceptsLanguages('ru', 'en') || 'ru';
+    res.redirect(`/${preferedLocale}`);
+  } else {
+    const location = createLocation(req.url);
+    match({ routes, location }, (error, redirectLocation, renderProps) => {
+      if (redirectLocation) {
+        res.redirect(301, redirectLocation.pathname + redirectLocation.search);
+      } else if (error) {
+        res.status(500).send(error.message);
+      } else if (renderProps === null) {
+        res.status(404).send('Not found');
+      } else {
+        Promise.all([
+          store.dispatch(fetchWorldviews()),
+          store.dispatch(fetchQuestions()),
+        ]).then(
+          () => {
+            const votesFromCookies = {};
+            Object.keys(req.cookies).map(key => {
+              if (key.indexOf('vote_in_') === 0) {
+                const questionId = key.slice(8);
+                votesFromCookies[questionId] = req.cookies[key];
+              }
+            });
+            store.dispatch(initVotes(votesFromCookies));
+            const html = React.renderToString(
+              <div>
+                <Provider store={store}>
+                  {() =>
+                    <RoutingContext {...renderProps}/>
+                  }
+                </Provider>
+              </div>
+            );
+            const initialState = store.getState();
+            res.send(renderFullPage(html, initialState));
+          }
+        );
+      }
+    });
+  }
 }
 
 process.env.API_ENDPOINT = process.env.API_ENDPOINT || 'http://izm.io:8888';
