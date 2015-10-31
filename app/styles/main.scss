@@ -237,11 +237,20 @@ body {
 .float-left{
   float: left;
 }
+.float-right{
+  float: right;
+}
 
 .button--selected {
   background-color: unquote("rgb(#{$palette-grey-300})");
 }
 
+
+
+.Menu > * {
+  padding: $u;
+  color: white;
+}
 
 
 .Intro {
