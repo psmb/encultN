@@ -88,10 +88,10 @@ export const initVotes = createAction(INIT_VOTES, votes => {
   }
   return fromJS(votesMap);
 });
-export const voteForAnswer = createAction(VOTE_FOR_ANSWER, async id => {
-  return await api.voteForAnswerPromise(id);
-}, id => {
-  return {analytics: {type: 'reachGoal', payload: {target: 'VOTE_FOR_ANSWER', params: id} }};
+export const voteForAnswer = createAction(VOTE_FOR_ANSWER, async (id, lang) => {
+  return await api.voteForAnswerPromise(id, lang);
+}, (id, lang) => {
+  return {analytics: {type: 'reachGoal', payload: {target: 'VOTE_FOR_ANSWER', params: {id, lang} } }};
 });
 export const fetchQuestions = createAction(FETCH_QUESTIONS, async () => {
   return await api.fetchQuestionsPromise();
