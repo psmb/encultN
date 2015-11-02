@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from 'redux/modules/voting';
-import puttext, {getLang} from 'i18n/index';
+import puttext from 'i18n/index';
 
 @connect(
   state => ({
@@ -73,7 +73,7 @@ export default class QuestionVoting extends Component {
     const votingControls = (
       <div className='row'>
         <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
-          <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(activeAnswer, getLang())}>{__('Голосовать!')} <i className='icon-check'></i></button>
+          <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(activeAnswer)}>{__('Голосовать!')} <i className='icon-check'></i></button>
         </div>
       </div>
     );
