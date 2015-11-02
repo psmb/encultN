@@ -92,7 +92,7 @@ module.exports = (options) => {
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.DedupePlugin(),
-      new ExtractTextPlugin('build/styles.css'),
+      new ExtractTextPlugin('styles.css'),
     );
     options.devtool = null;
     options.sourcemaps = null;
