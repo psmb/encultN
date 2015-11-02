@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
+import favicon from 'serve-favicon';
 import proxy from 'express-http-proxy';
 import path from 'path';
 
@@ -19,13 +20,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const isDev = process.env.NODE_ENV === 'development';
-const isDebug = process.env.DEBUG;
 
 app.use(compression());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-if (isDev && isDebug && process.env.DEBUG.indexOf('shrimp:front') === 0) {
+if (isDev) {
   const webpack = require('webpack');
   const makeConfig = require('../make-webpack-config.js');
 
@@ -43,6 +43,7 @@ if (isDev && isDebug && process.env.DEBUG.indexOf('shrimp:front') === 0) {
   app.use(require('webpack-hot-middleware')(compiler));
 }
 app.use('/static', express.static(path.join(__dirname, '../static')));
+app.use(favicon(__dirname + '/../static/favicons/favicon.ico'));
 
 function renderFullPage(html, initialState) {
   return `
@@ -69,13 +70,15 @@ function renderFullPage(html, initialState) {
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png">
         <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
         <meta name="theme-color" content="#009688">
+
+         <link href="/static/build/styles.css?${Date.now()}" rel="stylesheet" />
       </head>
       <body>
         <div id="root">${html}</div>
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
         </script>
-        <script src="/static/bundle.js"></script>
+        <script src="/static/build/bundle.js?${Date.now()}"></script>
         <!-- Yandex.Metrika counter -->
         <script type="text/javascript">
             (function (d, w, c) {

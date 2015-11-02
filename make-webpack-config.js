@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import loadersByExtension from './utils/loadersByExtension.js';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 const autoprefixer = 'autoprefixer?browsers=last 2 version';
 
 const loadersByExt = loadersByExtension({
@@ -10,6 +11,37 @@ const loadersByExt = loadersByExtension({
   'svg': 'url?limit=10000',
 });
 
+const loadersCommon = [
+  {
+    test: /\.jsx?$/,
+    loaders: ['babel'],
+    include: path.join(__dirname, 'app'),
+  },
+  {
+    test: require.resolve('react'),
+    loader: 'imports?shim=es5-shim/es5-shim&sham=es5-shim/es5-sham',
+  },
+];
+const loadersDev = [
+  {
+    test: /\.css$/,
+    loader: 'style!css!' + autoprefixer,
+  },
+  {
+    test: /\.scss$/,
+    loader: 'style!css!' + autoprefixer + '!sass',
+  },
+];
+const loadersProd = [
+  {
+    test: /\.css$/,
+    loader: ExtractTextPlugin.extract('style', 'css!' + autoprefixer),
+  },
+  {
+    test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('style', 'css!' + autoprefixer + '!sass'),
+  },
+];
 
 /** options
  * @option optimize {bool}    // optimize js if true
@@ -24,7 +56,7 @@ module.exports = (options) => {
     ],
     output: {
       path: path.join(__dirname, 'static'),
-      filename: 'bundle.js',
+      filename: 'build/bundle.js',
       publicPath: '/static/',
     },
     plugins: [
@@ -51,36 +83,21 @@ module.exports = (options) => {
     },
 
     module: {
-      loaders: loadersByExt.concat([
-        {
-          test: /\.jsx?$/,
-          loaders: ['babel'],
-          include: path.join(__dirname, 'app'),
-        },
-        {
-          test: /\.css$/,
-          loader: 'style!css!' + autoprefixer,
-        },
-        {
-          test: /\.scss$/,
-          loader: 'style!css!' + autoprefixer + '!sass',
-        },
-        {
-          test: require.resolve('react'),
-          loader: 'imports?shim=es5-shim/es5-shim&sham=es5-shim/es5-sham',
-        },
-      ]),
+      loaders: loadersByExt.concat(loadersCommon),
     },
   };
 
   if (options.optimize) {
+    config.module.loaders = config.module.loaders.concat(loadersProd);
     config.plugins.push(
       new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.DedupePlugin(),
+      new ExtractTextPlugin('build/styles.css'),
     );
     options.devtool = null;
     options.sourcemaps = null;
   } else {
+    config.module.loaders = config.module.loaders.concat(loadersDev);
     config.entry.unshift('webpack-hot-middleware/client');
     config.plugins.push(
       new webpack.HotModuleReplacementPlugin(),
