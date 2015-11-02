@@ -55,9 +55,9 @@ module.exports = (options) => {
       './app/app',
     ],
     output: {
-      path: path.join(__dirname, 'static'),
-      filename: 'build/bundle.js',
-      publicPath: '/static/',
+      path: path.join(__dirname, 'static/build'),
+      filename: 'bundle.js',
+      publicPath: '/static/build/',
     },
     plugins: [
       new webpack.DefinePlugin({

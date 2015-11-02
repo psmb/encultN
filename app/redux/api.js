@@ -6,12 +6,12 @@ import {ownAddress} from '../shared-settings'; // relative path for the sake of 
 function fetchFromApi(url) {
   const fullUrl = ownAddress + '/api/' + url;
   return fetch(fullUrl, { method: 'put', credentials: 'include' })
-  .then(response => response.json())
-  .then(json => fromJS(json))
-  .catch(error => {
-    console.error('MIDDLEWARE ERROR:', fullUrl, error);
-    return null;
-  });
+    .then(response => response.json())
+    .then(json => fromJS(json))
+    .catch(error => {
+      console.error('MIDDLEWARE ERROR:', fullUrl, error);
+      return null;
+    });
 }
 
 export function voteForAnswerPromise(id) {
