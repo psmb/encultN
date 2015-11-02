@@ -21,11 +21,11 @@ export default class Questions extends Component {
 
   render() {
     const __ = puttext();
-    const questions = this.props.questions.map((question) => {
+    const questions = this.props.questions ? this.props.questions.map((question) => {
       return (
         <QuestionSmall key={question.get('id')} question={question} />
       );
-    }).toArray();
+    }).toArray() : null;
 
     return (
       <div>

@@ -1,7 +1,7 @@
 import {List, Map} from 'immutable';
 import {expect} from 'chai';
 import voting from './voting.js';
-import {selectQuestion, selectAnswer, likeAnswer, dislikeAnswer, voteForAnswer, initVotes} from './voting.js';
+import {selectQuestion, selectAnswer, likeAnswer, dislikeAnswer, initVotes} from './voting.js';
 
 const initialState = Map({
   'activeQuestion': '111',
