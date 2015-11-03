@@ -18,6 +18,7 @@ import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
 
 const app = express();
 const port = process.env.PORT || 3000;
+const apiEndpoint = process.env.API_ENDPOINT || 'http://izm.io:8888';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -117,7 +118,7 @@ function handleRender(req, res) {
   if (req.url === '/') {
     const preferedLocale = req.acceptsLanguages('ru', 'en') || 'ru';
     res.redirect(`/${preferedLocale}`);
-  } else {
+  } else if (req.url.substring(0, 3) === '/en' || req.url.substring(0, 3) === '/ru') {
     const location = createLocation(req.url);
     match({ routes, location }, (error, redirectLocation, renderProps) => {
       if (redirectLocation) {
@@ -155,14 +156,14 @@ function handleRender(req, res) {
         );
       }
     });
+  } else {
+    res.status(404).send('Not found');
   }
 }
 
-process.env.API_ENDPOINT = process.env.API_ENDPOINT || 'http://izm.io:8888';
-app.use('/api', proxy(process.env.API_ENDPOINT, {
-  forwardPath: function(req) {
-    return req.url;
-  },
+
+app.use('/api', proxy(apiEndpoint, {
+  forwardPath: (req) => req.url,
 }));
 app.get('*', handleRender);
 app.listen(port);

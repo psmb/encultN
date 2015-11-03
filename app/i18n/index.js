@@ -7,7 +7,11 @@ const messages = {en, ru};
 let currentLang;
 
 export function setLang(lang) {
-  currentLang = lang;
+  if (lang in messages) {
+    currentLang = lang;
+  } else {
+    currentLang = 'ru';
+  }
 }
 export function getLang() {
   return currentLang;

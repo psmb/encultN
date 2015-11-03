@@ -4,13 +4,17 @@ import {getLang} from 'i18n/index';
 import {ownAddress} from '../shared-settings'; // relative path for the sake of tests
 
 function fetchFromApi(url) {
+  if (getLang() === undefined) {
+    console.log('Language not defined while making API call');
+    throw new Error('Lang not defined!');
+  }
   const fullUrl = ownAddress + '/api/' + url;
   return fetch(fullUrl, { method: 'put', credentials: 'include' })
     .then(response => response.json())
     .then(json => fromJS(json))
     .catch(error => {
       console.error('MIDDLEWARE ERROR:', fullUrl, error);
-      return null;
+      throw error;
     });
 }
 

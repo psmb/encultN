@@ -31,6 +31,10 @@ export default function reducer(state = initialState, action = {}) {
     gotoAnswerId = state.getIn(['questions', activeQuestion, 'answers', gotoAnswerIndex]).get('id');
   }
 
+  if (action.error === true) {
+    return state;
+  }
+
   switch (action.type) {
   case SELECT_QUESTION:
     return state.set('activeQuestion', action.payload);
