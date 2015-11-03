@@ -219,7 +219,35 @@ describe('voting reducer', () => {
   });
 
   it('handles VOTE_FOR_ANSWER', () => {
-    const nextState = voting(initialState, {'type': 'voting/VOTE_FOR_ANSWER'});
+    const initialState4 = Map({
+      'activeQuestion': '111',
+      'questions': Map({
+        '111': Map({
+          'id': '111',
+          'activeAnswer': '123',
+          'answers': List.of(
+            Map({
+              'id': '123',
+              'test': 'Hello world',
+              'voteCount': 0,
+              'liked': null,
+              'worldviewId': 'buddizm',
+            }),
+            Map({
+              'id': '124',
+              'test': 'Hello world 2',
+              'voteCount': 0,
+              'liked': null,
+              'worldviewId': 'buddizm',
+            }),
+          ),
+        }),
+      }),
+      'worldviews': Map({
+        'buddizm': Map({}),
+      }),
+    });
+    const nextState = voting(initialState4, {'type': 'voting/VOTE_FOR_ANSWER'});
     expect(nextState).to.equal(
 
       Map({
@@ -236,15 +264,20 @@ describe('voting reducer', () => {
                 'test': 'Hello world',
                 'voteCount': 1,
                 'liked': null,
+                'worldviewId': 'buddizm',
               }),
               Map({
                 'id': '124',
                 'test': 'Hello world 2',
                 'voteCount': 0,
                 'liked': null,
+                'worldviewId': 'buddizm',
               }),
             ),
           }),
+        }),
+        'worldviews': Map({
+          'buddizm': Map({'voteCount': 1}),
         }),
       })
 

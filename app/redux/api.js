@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import {fromJS} from 'immutable';
-import {getLang} from 'i18n/index';
+import {getLang} from '../i18n/index';
 import {ownAddress} from '../shared-settings'; // relative path for the sake of tests
 
 function fetchFromApi(url) {
