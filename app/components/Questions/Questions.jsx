@@ -4,7 +4,9 @@ import Intro from './Intro';
 import QuestionSmall from './QuestionSmall';
 import Stats from './Stats';
 import puttext from 'i18n/index';
-import './Questions.scss';
+if (process.env.BROWSER) {
+  require('./Questions.scss');
+}
 
 @connect(state => ({
   questions: state.voting.get('questions'),
@@ -27,13 +29,11 @@ export default class Questions extends Component {
     }).toArray() : null;
 
     return (
-      <div>
-        <div className='fixed-width'>
-          <Intro isDismissed={this.props.preferences.get('introDismissed')} />
-          <Stats worldviews={this.props.worldviews} />
-        </div>
+      <div className='fixed-width'>
+        <Intro isDismissed={this.props.preferences.get('introDismissed')} />
+        <Stats worldviews={this.props.worldviews} />
         <div className='row'>
-          <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
+          <div className='Questions medium-10 medium-offset-1 large-8 large-offset-2 columns'>
             {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}
           </div>
         </div>

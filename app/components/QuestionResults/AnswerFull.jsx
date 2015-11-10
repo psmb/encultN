@@ -1,7 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import puttext from 'i18n/index';
 import Link from 'i18n/Link';
-import './AnswerFull.scss';
+if (process.env.BROWSER) {
+  require('./AnswerFull.scss');
+}
 
 export default class AnswerFull extends Component {
   static propTypes = {

@@ -6,7 +6,9 @@ import 'babel/polyfill';
 import store from 'redux/store';
 import routes from 'redux/routes';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import 'styles/main.scss';
+if (process.env.BROWSER) {
+  require('styles/main.scss');
+}
 
 const history = createBrowserHistory();
 

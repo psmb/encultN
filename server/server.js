@@ -16,6 +16,7 @@ import routes from 'redux/routes';
 
 import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
 
+delete process.env.BROWSER;
 const app = express();
 const port = process.env.PORT || 3000;
 const apiEndpoint = process.env.API_ENDPOINT || 'http://izm.io:8888';
@@ -71,8 +72,7 @@ function renderFullPage(html, initialState) {
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png">
         <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
         <meta name="theme-color" content="#009688">
-
-         <link href="/static/build/styles.css?${Date.now()}" rel="stylesheet" />
+        ${isDev ? '' : '<link href="/static/build/styles.css?' + Date.now() + '" rel="stylesheet" />'}
       </head>
       <body>
         <div id="root">${html}</div>

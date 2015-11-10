@@ -64,6 +64,11 @@ module.exports = (options) => {
         OPTIMIZED: !!options.optimize,
         DEBUG: !options.optimize,
       }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          BROWSER: JSON.stringify(true),
+        },
+      }),
     ],
 
     resolve: {

@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import './AnswerSmall.scss';
+if (process.env.BROWSER) {
+  require('./AnswerSmall.scss');
+}
 
 export default class AnswerSmall extends Component {
   static propTypes = {

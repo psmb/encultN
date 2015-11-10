@@ -1,7 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import Link from 'i18n/Link';
-import './Intro.scss';
 import puttext from 'i18n/index';
+if (process.env.BROWSER) {
+  require('./Intro.scss');
+}
 
 export default class Intro extends Component {
   static propTypes = {
