@@ -13,7 +13,7 @@ export default class QuestionSmall extends Component {
   render() {
     const __ = puttext();
     return (
-      <Link key={this.props.question.get('id')} className='QuestionSmall' to={`/q/${this.props.question.get('id')}`}>
+      <Link key={this.props.question.get('id')} className={this.props.question.get('votedAnswer') ? 'QuestionSmall QuestionSmall--voted' : 'QuestionSmall'} to={`/q/${this.props.question.get('id')}`}>
         <div className='QuestionSmall-questionMark hide-for-small-only mdl-shadow--4dp'>?</div>
         <div className='QuestionSmall-wrap'>
           <div className='QuestionSmall-content'>
