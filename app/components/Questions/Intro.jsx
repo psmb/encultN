@@ -14,7 +14,7 @@ export default class Intro extends Component {
     const __ = puttext();
     return (
       <div className='row'>
-        <div className='medium-8 large-6 columns'>
+        <div className='medium-8 columns'>
           <div className='Intro'>
             <p className='mdl-typography--body-1-color-contrast'>
               {__('На важнейшие жизненные вопросы отвечают представители различных мировоззрений. Вы выбираете ответ вслепую, не зная, к какому именно мировоззрению или движению относится его автор. Только сделав выбор, вы узнаёте, что вы выбрали.')}
