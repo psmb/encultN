@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import puttext from 'i18n/index';
 import Link from 'i18n/Link';
+import './AnswerFull.scss';
 
 export default class AnswerFull extends Component {
   static propTypes = {
@@ -25,11 +26,11 @@ export default class AnswerFull extends Component {
         {this.props.preferText ? '' : video}
         <div className='AnswerFull-header'>
           <Link to={`/worldviews/${this.props.answer.getIn(['worldview', 'id'])}`}>
-            <div className='mdl-typography--headline-color-contrast color-accent'>{this.props.answer.getIn(['worldview', 'title'])}</div>
+            <div className='mdl-typography--headline-color-contrast color-primary'>{this.props.answer.getIn(['worldview', 'title'])}</div>
           </Link>
           <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>
-          <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-accent'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>
+          <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-primary'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>
         </div>
         <div className='AnswerFull-videoText'>
           {this.props.preferText ? videoText : ''}

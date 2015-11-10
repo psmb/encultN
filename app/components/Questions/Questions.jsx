@@ -3,20 +3,19 @@ import {connect} from 'react-redux';
 import Intro from './Intro';
 import QuestionSmall from './QuestionSmall';
 import Stats from './Stats';
-import {dismissIntro} from 'redux/modules/preferences';
 import puttext from 'i18n/index';
+import './Questions.scss';
 
 @connect(state => ({
   questions: state.voting.get('questions'),
   worldviews: state.voting.get('worldviews'),
   preferences: state.preferences,
-}), {dismissIntro})
+}))
 export default class Questions extends Component {
   static propTypes = {
     questions: PropTypes.object,
     worldviews: PropTypes.object,
     preferences: PropTypes.object,
-    dismissIntro: PropTypes.func,
   }
 
   render() {
@@ -30,7 +29,7 @@ export default class Questions extends Component {
     return (
       <div>
         <div className='fixed-width'>
-          <Intro isDismissed={this.props.preferences.get('introDismissed')} dismissIntro={this.props.dismissIntro} />
+          <Intro isDismissed={this.props.preferences.get('introDismissed')} />
           <Stats worldviews={this.props.worldviews} />
         </div>
         <div className='row'>

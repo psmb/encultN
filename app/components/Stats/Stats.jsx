@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import puttext from 'i18n/index';
+import './Stats.scss';
 
 @connect(state => ({
   worldviews: state.voting.get('worldviews'),

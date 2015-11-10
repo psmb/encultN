@@ -1,0 +1,14 @@
+@import "app/styles/shared";
+
+.QuestionSmall {
+  display: block;
+  margin: 0;
+  padding: $u $u 2*$u $u;
+  border-bottom: 1px solid $gray-line;
+}
+.QuestionSmall-subTitle {
+  line-height: 18px;
+}
+.QuestionSmall-lead {
+  margin-top: $u;
+}

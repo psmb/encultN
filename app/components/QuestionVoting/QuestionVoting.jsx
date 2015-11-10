@@ -33,16 +33,16 @@ export default class QuestionVoting extends Component {
     );
     const votingNav = this.props.question.get('answers').map(function renderAnswer(answer, i) {
       if (answer.get('liked') === true) {
-        const currentClass = activeAnswer === answer.get('id') ? ' mdl-button--colored color-accent' : '';
+        const currentClass = activeAnswer === answer.get('id') ? ' mdl-button--colored color-primary' : '';
         return <button key={answer.get('id')} className={'mdl-button VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
       }
     }, this).toArray();
 
     const likingHint = (
-      <p className='mdl-typography--caption Hint color-accent'>{__('Выберите с какими ответами вы согласны')}</p>
+      <p className='mdl-typography--caption Hint color-primary'>{__('Выберите с какими ответами вы согласны')}</p>
     );
     const votingHint = (
-      <p className='mdl-typography--caption Hint color-accent'>{__('Проголосуйте за наиболее близкий вам ответ')}</p>
+      <p className='mdl-typography--caption Hint color-primary'>{__('Проголосуйте за наиболее близкий вам ответ')}</p>
     );
 
     const likingHead = (

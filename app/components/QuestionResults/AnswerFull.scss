@@ -1,0 +1,20 @@
+@import "app/styles/shared";
+
+.AnswerFull {
+  margin: 2*$u 0 4*$u 0;
+}
+.AnswerFull-header {
+  padding: 2*$u;
+  @media #{$medium-up} {
+    padding: 2*$u 4*$u;
+  }
+}
+.AnswerFull-videoText {
+  padding: $u;
+}
+
+.AnswerFull-videoText {
+  @media #{$medium-up} {
+    padding: 2*$u;
+  }
+}

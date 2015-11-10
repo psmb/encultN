@@ -13,12 +13,12 @@ export default class Root extends React.Component {
 
   render() {
     const __ = puttext();
-    const linkEn = <LinkR to={this.props.location.pathname.replace('/ru', '/en')}>In English</LinkR>;
-    const linkRu = <LinkR to={this.props.location.pathname.replace('/en', '/ru')}>In Russian</LinkR>;
+    const linkEn = <LinkR to={this.props.location.pathname.replace('/ru', '/en')}>English</LinkR>;
+    const linkRu = <LinkR to={this.props.location.pathname.replace('/en', '/ru')}>Russian</LinkR>;
     return (
       <div className=''>
-        <header className='Header'>
-          <div className='fixed-width'>
+        <div className='fixed-width'>
+          <header className='Header'>
             <div className='columns'>
               <Link className='Header-logo' to={``}><img src='/static/logo.svg' /></Link>
               <div className='float-right Menu'>
@@ -28,15 +28,15 @@ export default class Root extends React.Component {
                 {getLang() === 'ru' ? linkEn : linkRu}
               </div>
             </div>
-          </div>
-        </header>
+          </header>
+        </div>
         <main className=''>
           {this.props.children}
         </main>
         <footer className='Footer'>
           <div className='Footer-inner fixed-width'>
             © {__('Мониторинг мировоззрений')}<br/>
-            {__('Дизайн и разработка:')} <a href='http://sfi.ru'>{__('веб служба СФИ')}</a>
+            {__('Дизайн и разработка:')} <a href='http://sfi.ru'>{__('веб служба Свято-Филаретовского православного-христианского института')}</a>
           </div>
         </footer>
       </div>

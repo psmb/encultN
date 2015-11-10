@@ -1,0 +1,19 @@
+@import "app/styles/shared";
+
+.AnswerSmall {
+  cursor: pointer;
+}
+.AnswerSmall-body {
+  margin-top: $u;
+  @include breakpoint(small only) {
+    float: left;
+    padding-right: $u;
+    width: 66%;
+  }
+}
+.AnswerSmall-image {
+  @include breakpoint(small only) {
+    float: right;
+    width: 33%;
+  }
+}

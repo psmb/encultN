@@ -34,7 +34,7 @@ export default class Stats extends Component {
     );
     const statsLarge = (
       <div className='Stats Stats--large hide-for-small' >
-        <p className='Stats-title mdl-typography--caption textAlign-center'>{__('Лидеры голосования')}</p>
+        <p className='Stats-title mdl-typography--caption textAlign-center'>{__('Результаты голосования')}</p>
         {winner}
         <div className='textAlign-center'>
           {others}

@@ -1,0 +1,23 @@
+@import "app/styles/shared";
+
+.Stats {
+  background-color: $color-primary;
+  color: white;
+  margin: $u 0;
+  padding: 2*$u;
+  overflow: hidden;
+}
+
+.Stats-title {
+  padding-bottom: $u;
+}
+
+.Stats-link {
+  float: right;
+}
+
+.Stats-others {
+  display: inline-block;
+  margin-right: 2*$u;
+  margin-top: $u;
+}

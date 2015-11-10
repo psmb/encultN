@@ -25,7 +25,7 @@ export default class Worldview extends Component {
     const worldview = this.props.worldviews ? (
       <div>
         <h1 className='mdl-typography--display-1-color-contrast Worldview-title'>{worldviewData.get('title')}</h1>
-        <p className='mdl-typography--caption-color-contrast'><span className='color-accent'>{worldviewData.get('voteCount')} <i className='icon-check'></i></span></p>
+        <p className='mdl-typography--caption-color-contrast'><span className='color-primary'>{worldviewData.get('voteCount')} <i className='icon-check'></i></span></p>
         <p className='mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: worldviewData.get('description')}} />
       </div>
     ) : __('Минуточку...');

@@ -1,0 +1,14 @@
+@import "app/styles/shared";
+
+.Intro {
+  margin: 0;
+  padding: 2*$u;
+  overflow: auto;
+}
+
+.Intro-link {
+  display: inline-block;
+  margin-top: $u;
+  padding: $u 0;
+  color: $color-primary;
+}

@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import './AnswerSmall.scss';
 
 export default class AnswerSmall extends Component {
   static propTypes = {
@@ -16,7 +17,7 @@ export default class AnswerSmall extends Component {
           <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.getIn(['worldview', 'title'])}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorName')},</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>
-          <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-accent'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>
+          <div className='mdl-typography--caption-color-contrast marginTop-half'><span className='color-primary'>{this.props.answer.get('voteCount')} <i className='icon-check'></i></span></div>
         </div>
       </li>
     );
