@@ -20,7 +20,7 @@ export default class Intro extends Component {
               {__('На важнейшие жизненные вопросы отвечают представители различных мировоззрений. Вы выбираете ответ вслепую, не зная, к какому именно мировоззрению или движению относится его автор. Только сделав выбор, вы узнаёте, что вы выбрали.')}
             </p>
             <Link className='Intro-link mdl-typography--caption' to={`/about/`}>
-              {__('Зачем всё это нужно?')} <i className='icon-right-circle'></i>
+              {__('Зачем это нужно?')} <i className='icon-right-circle'></i>
             </Link>
           </div>
         </div>
