@@ -77,6 +77,11 @@ body {
 .Hint {
   margin-top: 2*$u;
   margin-bottom: $u;
+  @media #{$medium-up} {
+    margin-top: 6*$u;
+    margin-bottom: 3*$u;
+    font-size: rem-calc(20);
+  }
 }
 
 
@@ -97,16 +102,6 @@ body {
   background-color: $gray-bg;
 }
 
-
-.Menu {
-  margin-top: 60px;
-}
-.Menu > * {
-  padding: $u;
-  text-transform: uppercase;
-}
-
-
 html {
   position: relative;
   min-height: 100%;
@@ -125,6 +120,7 @@ footer {
 
 
 .Header {
+  position: relative;
   overflow: hidden;
   padding: $u 0;
   margin-bottom: $u;
@@ -132,9 +128,37 @@ footer {
 }
 
 .Header-logo img {
-  height: 80px;
+  height: 40px;
+  @media #{$medium-up} {
+    height: 60px;
+  }
+  @media #{$large-up} {
+    height: 80px;
+  }
   margin-top: 3px;
 }
+
+.Menu {
+  position: absolute;
+  bottom: $u/2;
+  right: 0;
+}
+.Menu > * {
+  padding: $u;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+
+.Stats-link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 
 .Footer {
   background-color: $gray-bg--dark;

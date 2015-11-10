@@ -3,12 +3,58 @@
 .QuestionSmall {
   display: block;
   margin: 0;
-  padding: $u $u 2*$u $u;
-  border-bottom: 1px solid $gray-line;
+  padding: $u $u 0 $u;
+  @media #{$large-up} {
+    padding: 2*$u $u 0 $u;
+  }
+  clear: both;
+  overflow: auto;
+  transition: color 0.2s;
+  &:hover {
+    color: $color-primary;
+  }
 }
 .QuestionSmall-subTitle {
   line-height: 18px;
 }
 .QuestionSmall-lead {
   margin-top: $u;
+  @media #{$large-up} {
+    font-size: 16px !important;
+  }
+}
+
+.QuestionSmall-questionMark {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-top: 20px;
+  border-radius: 50%;
+  font-size: 46px;
+  color: white;
+  background-color: $color-primary;
+}
+
+.QuestionSmall-wrap {
+  @media #{$medium-up} {
+    margin: 0 60px + 6*$u;
+  }
+  padding-bottom: 2*$u;
+  border-bottom: 1px solid $gray-line;
+  overflow: auto;
+}
+
+@media #{$large-up} {
+  .QuestionSmall-content {
+    width: calc(60% - 8px);
+    float: left;
+  }
+  .QuestionSmall-votes {
+    width: 40%;
+    margin-top: 36px;
+    margin-left: 8px;
+    float: left;
+  }
 }

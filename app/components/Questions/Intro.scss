@@ -11,4 +11,7 @@
   margin-top: $u;
   padding: $u 0;
   color: $color-primary;
+  &:hover {
+  	text-decoration: underline;
+  }
 }

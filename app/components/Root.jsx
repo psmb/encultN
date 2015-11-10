@@ -21,7 +21,7 @@ export default class Root extends React.Component {
           <header className='Header'>
             <div className='columns'>
               <Link className='Header-logo' to={``}><img src='/static/logo.svg' /></Link>
-              <div className='float-right Menu'>
+              <div className='hide-for-small-only float-right Menu'>
                 <Link to={`/about`}>{__('О проекте')}</Link>
                 <Link to={`/stats`}>{__('Статистика')}</Link>
                 <Link to={`/analytics`}>{__('Аналитика')}</Link>

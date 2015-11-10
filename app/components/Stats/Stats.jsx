@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import puttext from 'i18n/index';
+import Link from 'i18n/Link';
 if (process.env.BROWSER) {
   require('./Stats.scss');
 }
@@ -18,7 +19,11 @@ export default class Stats extends Component {
     const worldviews = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).map(worldview => {
       return (
         <tr>
-          <td>{worldview.get('title')}</td>
+          <td>
+            <Link to={`/worldviews/${worldview.get('id')}`}>
+              {worldview.get('title')}
+            </Link>
+          </td>
           <td>{worldview.get('voteCount')}</td>
         </tr>
       );

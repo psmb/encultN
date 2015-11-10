@@ -26,7 +26,7 @@ export default class Question extends Component {
   render() {
     const __ = puttext();
     const loadingScreen = (
-      <div className='loadingScreen'>
+      <div className='fixed-width loadingScreen'>
         {__('Минуточку...')}
       </div>
     );
