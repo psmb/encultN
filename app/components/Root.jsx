@@ -20,7 +20,7 @@ export default class Root extends React.Component {
         <div className='fixed-width'>
           <header className='Header'>
             <div className='columns'>
-              <Link className='Header-logo' to={``}><img src='/static/logo.svg' /></Link>
+              <Link className='Header-logo' to={``}><img src={'/static/logo-' + getLang() + '.svg'} /></Link>
               <div className='hide-for-small-only float-right Menu'>
                 <Link to={`/about`}>{__('О проекте')}</Link>
                 <Link to={`/stats`}>{__('Статистика')}</Link>
