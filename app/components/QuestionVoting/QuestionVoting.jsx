@@ -33,16 +33,28 @@ export default class QuestionVoting extends Component {
     );
     const votingNav = this.props.question.get('answers').map(function renderAnswer(answer, i) {
       if (answer.get('liked') === true) {
-        const currentClass = activeAnswer === answer.get('id') ? ' mdl-button--colored color-primary' : '';
-        return <button key={answer.get('id')} className={'mdl-button VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
+        const currentClass = activeAnswer === answer.get('id') ? ' Button--positive' : '';
+        return <button key={answer.get('id')} className={'Button VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
       }
     }, this).toArray();
 
     const likingHint = (
-      <p className='mdl-typography--caption Hint color-primary'>{__('Выберите с какими ответами вы согласны')}</p>
+      <div>
+        <div className='Circle'>
+          <div className='Circle-number'>1</div>
+          <div className='Circle-step'>шаг</div>
+        </div>
+        <p className='mdl-typography--caption Hint color-primary'>{__('Выберите с какими ответами вы согласны')}:</p>
+      </div>
     );
     const votingHint = (
-      <p className='mdl-typography--caption Hint color-primary'>{__('Проголосуйте за наиболее близкий вам ответ')}</p>
+      <div>
+        <div className='Circle'>
+          <div className='Circle-number'>2</div>
+          <div className='Circle-step'>шаг</div>
+        </div>
+        <p className='mdl-typography--caption Hint color-primary'>{__('Проголосуйте за наиболее близкий вам ответ')}:</p>
+      </div>
     );
 
     const likingHead = (
@@ -65,15 +77,15 @@ export default class QuestionVoting extends Component {
     const likingControls = (
       <div className='row'>
         <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
-          <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginRight: '8px'}} className='mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.likeAnswer()}>{__('За')} <i className='icon-thumbs-up'></i></button>
-          <button style={{width: 'calc(50% - 8px)', marginTop: '16px', marginLeft: '8px'}} className='mdl-button mdl-button--raised' onClick={() => this.props.dislikeAnswer()}>{__('Против')} <i className='icon-thumbs-down'></i></button>
+          <button style={{width: 'calc(50% - 8px)', marginTop: '24px', marginRight: '8px'}} className='Button Button--positive' onClick={() => this.props.likeAnswer()}>{__('За')} <i className='icon-thumbs-up'></i></button>
+          <button style={{width: 'calc(50% - 8px)', marginTop: '24px', marginLeft: '8px'}} className='Button' onClick={() => this.props.dislikeAnswer()}>{__('Против')} <i className='icon-thumbs-down'></i></button>
         </div>
       </div>
     );
     const votingControls = (
       <div className='row'>
         <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
-          <button style={{width: '100%', marginTop: '16px'}} className='button mdl-button mdl-button--raised mdl-button--accent' onClick={() => this.props.voteForAnswer(activeAnswer)}>{__('Голосовать!')} <i className='icon-check'></i></button>
+          <button style={{width: '100%', marginTop: '24px'}} className='Button Button--positive' onClick={() => this.props.voteForAnswer(activeAnswer)}>{__('Голосовать!')} <i className='icon-check'></i></button>
         </div>
       </div>
     );
