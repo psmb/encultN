@@ -1,6 +1,7 @@
 @import "app/styles/shared";
 
 .QuestionSmall {
+  position: relative;
   display: block;
   margin: 0;
   padding: $u $u 0 $u;
@@ -19,8 +20,8 @@
   .color-primary {
     color: $gray--light !important;
   }
-  .QuestionSmall-questionMark {
-    background-color: $gray-bg;
+  .QuestionSmall-questionMark i {
+    color: $gray-bg;
   }
 }
 .QuestionSmall--voted:hover {
@@ -28,8 +29,8 @@
   .color-primary {
     color: $color-primary !important;
   }
-  .QuestionSmall-questionMark {
-    background-color: $color-primary;
+  .QuestionSmall-questionMark i {
+    color: $color-primary;
   }
 }
 .QuestionSmall-subTitle {
@@ -37,29 +38,18 @@
 }
 .QuestionSmall-lead {
   margin-top: $u;
-  @media #{$large-up} {
-    font-size: 16px !important;
-  }
 }
 
-.QuestionSmall-questionMark {
+.QuestionSmall-questionMark i {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  font-weight: bold;
-  padding-left: 20px;
-  padding-top: 20px;
-  border-radius: 50%;
+  top: 25%;
+  right: 2*$u;
   font-size: 46px;
-  color: white;
-  background-color: $color-primary;
+  color: $color-primary;
   transition: background-color 0.2s;
 }
 
 .QuestionSmall-wrap {
-  @media #{$medium-up} {
-    margin: 0 60px + 6*$u;
-  }
   padding-bottom: 2*$u;
   border-bottom: 1px solid $gray-line;
   overflow: auto;

@@ -32,11 +32,13 @@ export default class Questions extends Component {
       <div className='fixed-width'>
         <Intro isDismissed={this.props.preferences.get('introDismissed')} />
         <Stats worldviews={this.props.worldviews} />
-        <div className='Questions'>
-          <div className='Hint color-primary textAlign-center'>
-            {__('Выберите важный для вас вопрос:')}
+        <div className='Questions row'>
+          <div className='medium-10 medium-offset-1 columns'>
+            <div className='Hint color-primary textAlign-center'>
+              {__('Выберите важный для вас вопрос:')}
+            </div>
+            {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}
           </div>
-          {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}
         </div>
       </div>
     );

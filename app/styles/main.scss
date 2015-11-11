@@ -82,6 +82,11 @@ body {
     margin-bottom: 3*$u;
     font-size: rem-calc(20);
   }
+  @media #{$large-up} {
+    margin-top: 6*$u;
+    margin-bottom: 3*$u;
+    font-size: rem-calc(24);
+  }
 }
 
 
