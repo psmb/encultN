@@ -13,7 +13,13 @@
   overflow: auto;
   transition: color 0.2s;
   &:hover {
+    background-color: white;
+    transition: color 0.2s, background-color 0.2s;
     color: $color-primary;
+    .QuestionSmall-icon:before {
+      color: lighten($color-primary, 5%);
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !important;
+    }
   }
 }
 .QuestionSmall--voted {
@@ -21,7 +27,7 @@
   .color-primary {
     color: $gray--light !important;
   }
-  .QuestionSmall-icon i {
+  .QuestionSmall-icon {
     color: $gray-bg;
   }
   &:hover {
@@ -29,7 +35,7 @@
     .color-primary {
       color: $color-primary !important;
     }
-    .QuestionSmall-icon i {
+    .QuestionSmall-icon {
       color: $color-primary;
     }
   }
@@ -43,7 +49,7 @@
   margin-top: $u;
 }
 
-.QuestionSmall-icon i {
+.QuestionSmall-icon {
   position: absolute;
   top: 25%;
   @media #{$large-up} {
@@ -51,6 +57,11 @@
   }
   right: 2*$u;
   font-size: 46px;
-  color: $color-primary;
-  transition: background-color 0.2s;
+  &:before {
+    color: $color-primary;
+    transition: background-color 0.2s;
+    border-radius: 50%;
+    transition: box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
 }

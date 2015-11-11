@@ -22,8 +22,8 @@ export default class QuestionSmall extends Component {
             • {this.props.question.get('worldviewWithMaxVotes')}: <span className='color-primary'>{this.props.question.get('answerWithMaxVotesCount')}<i className='icon-check'></i></span>
           </p>
         </div>
-        <div className='QuestionSmall-icon hide-for-small-only mdl-shadow--4dp'>
-          <i className='icon-right-circle'></i>
+        <div className='hide-for-small-only'>
+          <i className='icon-right-circle QuestionSmall-icon'></i>
         </div>
       </Link>
     );
