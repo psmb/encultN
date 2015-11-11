@@ -67,10 +67,12 @@ export default function reducer(state = initialState, action = {}) {
   case FETCH_QUESTIONS:
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:
-    const firstAnswerId = action.payload.getIn([0, 'id']);
+    const votedAnswerId = state.getIn(['questions', activeQuestion, 'votedAnswer']);
+    const firstAnswerId = actiion.payload.getIn([0, 'id']);
+    const activeAnswerId = votedAnswerId ? votedAnswerId : firstAnswerId;
     return state
       .setIn(['questions', activeQuestion, 'answers'], action.payload)
-      .setIn(['questions', activeQuestion, 'activeAnswer'], firstAnswerId);
+      .setIn(['questions', activeQuestion, 'activeAnswer'], activeAnswerId);
   default:
     return state;
   }
