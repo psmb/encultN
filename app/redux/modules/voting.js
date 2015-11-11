@@ -68,7 +68,7 @@ export default function reducer(state = initialState, action = {}) {
     return state.set('questions', action.payload);
   case FETCH_ANSWERS:
     const votedAnswerId = state.getIn(['questions', activeQuestion, 'votedAnswer']);
-    const firstAnswerId = actiion.payload.getIn([0, 'id']);
+    const firstAnswerId = action.payload.getIn([0, 'id']);
     const activeAnswerId = votedAnswerId ? votedAnswerId : firstAnswerId;
     return state
       .setIn(['questions', activeQuestion, 'answers'], action.payload)
