@@ -34,7 +34,7 @@ export default class Questions extends Component {
         <Stats worldviews={this.props.worldviews} />
         <div className='Questions row'>
           <div className='medium-10 medium-offset-1 columns'>
-            <div className='Hint color-primary textAlign-center'>
+            <div className='Hint Hint--main color-primary textAlign-center'>
               {__('Выберите важный для вас вопрос:')}
             </div>
             {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}

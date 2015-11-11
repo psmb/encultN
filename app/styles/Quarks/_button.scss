@@ -1,0 +1,30 @@
+.Button {
+  @include shadow-2dp();
+  border: 0;
+
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: $gray-bg;
+  padding: $u;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 2;
+  vertical-align: middle;
+  transition: background-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    @include shadow-4dp();
+    background-color: darken($gray-bg, 5%);
+  }
+}
+
+.Button--positive {
+  background-color: $color-primary;
+  color: white;
+  &:hover {
+    background-color: lighten($color-primary, 5%);
+  }
+}
