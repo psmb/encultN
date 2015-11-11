@@ -4,10 +4,11 @@
   position: relative;
   display: block;
   margin: 0;
-  padding: $u $u 0 $u;
+  padding: $u $u 2*$u $u;
   @media #{$large-up} {
-    padding: 2*$u $u 0 $u;
+    padding: 2*$u $u 3*$u $u;
   }
+  border-bottom: 1px solid $gray-line;
   clear: both;
   overflow: auto;
   transition: color 0.2s;
@@ -20,50 +21,36 @@
   .color-primary {
     color: $gray--light !important;
   }
-  .QuestionSmall-questionMark i {
+  .QuestionSmall-icon i {
     color: $gray-bg;
   }
-}
-.QuestionSmall--voted:hover {
-  color: $color-primary;
-  .color-primary {
-    color: $color-primary !important;
-  }
-  .QuestionSmall-questionMark i {
+  &:hover {
     color: $color-primary;
+    .color-primary {
+      color: $color-primary !important;
+    }
+    .QuestionSmall-icon i {
+      color: $color-primary;
+    }
   }
 }
+
 .QuestionSmall-subTitle {
   line-height: 18px;
 }
+
 .QuestionSmall-lead {
   margin-top: $u;
 }
 
-.QuestionSmall-questionMark i {
+.QuestionSmall-icon i {
   position: absolute;
   top: 25%;
+  @media #{$large-up} {
+    top: 32%;
+  }
   right: 2*$u;
   font-size: 46px;
   color: $color-primary;
   transition: background-color 0.2s;
-}
-
-.QuestionSmall-wrap {
-  padding-bottom: 2*$u;
-  border-bottom: 1px solid $gray-line;
-  overflow: auto;
-}
-
-@media #{$large-up} {
-  .QuestionSmall-content {
-    width: calc(60% - 8px);
-    float: left;
-  }
-  .QuestionSmall-votes {
-    width: 40%;
-    margin-top: 36px;
-    margin-left: 8px;
-    float: left;
-  }
 }
