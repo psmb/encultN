@@ -4,9 +4,9 @@ body {
 }
 
 .slide {
-  transition: left 0.2s ease-in;
+  transition: left 0.2s cubic-bezier(.44,.61,.23,.95), opacity 0.2s cubic-bezier(.8,.1,.9,.22);
   position: relative;
-  margin-top: 0;
+  margin-top: 0 !important;
 }
 .slide-wrap {
   position: relative;
@@ -14,11 +14,11 @@ body {
 
 .slide-enter {
   left: -1500px;
-  transition-delay: 0.2s;
+  opacity: 0.001;
 }
-
 .slide-enter.slide-enter-active {
   left: 0;
+  opacity: 1;
 }
 
 .slide-leave {
@@ -26,8 +26,10 @@ body {
   top: 0;
   position: absolute;
   width: 100%;
+  opacity: 1;
+  transition: left 0.2s ease-out, opacity 0.2s cubic-bezier(.1,.8,.22,.9);
 }
-
 .slide-leave.slide-leave-active {
   left: 1500px;
+  opacity: 0;
 }

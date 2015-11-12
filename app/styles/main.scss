@@ -43,14 +43,32 @@ body {
 .Answer {
   font-size: rem-calc(20);
   line-height: rem-calc(32);
-  margin: 2*$u 0 $u 0;
+  margin: 0 0 $u 0;
   padding: 2*$u;
   @media #{$medium-up} {
     padding: 4*$u;
   }
-
   background-color: white;
 }
+
+.LikingNav, .VotingNav {
+  margin-top: 2*$u;
+  margin-bottom: 3*$u;
+}
+
+.VotingNav-button {
+  font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
 
 .VotedAnswerFull {
   text-align: center;
@@ -69,7 +87,6 @@ body {
 
 .AnswersNav {
   text-align: center;
-  margin-bottom: 2*$u;
 }
 
 
@@ -159,8 +176,4 @@ footer {
 
 .LikingNav {
   opacity: 0.54;
-}
-
-.VotingNav-button {
-  font-size: 16px;
 }
