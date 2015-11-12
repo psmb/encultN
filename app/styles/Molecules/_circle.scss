@@ -1,0 +1,18 @@
+.Circle {
+  @include shadow-4dp();
+  width: 68px;
+  height: 68px;
+  color: white;
+  background-color: $color-primary;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.Circle-number {
+  padding-top: 17px;
+  font-size: rem-calc(40);
+  font-weight: bold;
+}
+.Circle-step {
+  padding-top: 4px;
+  font-size: rem-calc(14);
+}

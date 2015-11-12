@@ -1,0 +1,22 @@
+.Hint {
+  margin-top: 2*$u;
+  margin-bottom: $u;
+  @media #{$medium-up} {
+    font-size: rem-calc(20);
+  }
+  @media #{$large-up} {
+    font-size: rem-calc(24);
+  }
+}
+.Hint--main {
+  margin-top: 2*$u;
+  margin-bottom: $u;
+  @media #{$medium-up} {
+    margin-top: 6*$u;
+    margin-bottom: 3*$u;
+  }
+  @media #{$large-up} {
+    margin-top: 6*$u;
+    margin-bottom: 3*$u;
+  }
+}
