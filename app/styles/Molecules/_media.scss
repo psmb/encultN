@@ -1,6 +1,6 @@
 @import "app/styles/shared";
 
-.QuestionSmall {
+.Media {
   position: relative;
   display: block;
   margin: 0;
@@ -16,18 +16,24 @@
     background-color: white;
     transition: color 0.2s, background-color 0.2s;
     color: $color-primary;
-    .QuestionSmall-icon:before {
+    .Media-author {
+      color: $color-primary;
+    }
+    .Media-icon:before {
       color: lighten($color-primary, 5%);
       box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !important;
     }
   }
 }
-.QuestionSmall--voted {
+.Media-wrap {
+  padding-right: 100px;
+}
+.Media--voted {
   color: $gray--light;
   .color-primary {
     color: $gray--light !important;
   }
-  .QuestionSmall-icon:before {
+  .Media-icon:before {
     color: $gray-bg;
   }
   &:hover {
@@ -35,21 +41,30 @@
     .color-primary {
       color: $color-primary !important;
     }
-    .QuestionSmall-icon:before {
+    .Media-icon:before {
       color: $color-primary;
     }
   }
 }
 
-.QuestionSmall-subTitle {
+.Media-title {
+  line-height: 1.1;
+}
+
+.Media-subTitle {
   line-height: 18px;
 }
 
-.QuestionSmall-lead {
+.Media-lead {
   margin-top: $u;
 }
 
-.QuestionSmall-icon {
+.Media-author {
+  transition: color 0.2s;
+  color: $gray--light;
+}
+
+.Media-icon {
   position: absolute;
   top: 25%;
   @media #{$large-up} {

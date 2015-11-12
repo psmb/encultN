@@ -20,9 +20,17 @@ export default class Blogs extends Component {
     }).toArray() : __('Минуточку...');
 
     return (
-      <div>
+      <div className='fixed-width'>
         <div className='row'>
-          <div className='Blogs medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
+          <div className='medium-8 columns'>
+            <h1 className='marginVertical-triple mdl-typography--display-1-color-contrast'>Аналитика</h1>
+            <p className='marginVertical-triple mdl-typography--body-1-color-contrast'>
+              {__('Здесь ваш мировоззренческий выбор обсуждают представители общественности и различных направлений науки. Благодаря им вы можете узнать, почему вы сделали тот или иной выбор, что это значит и чем это может для вас обернуться.')}
+            </p>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='Blogs medium-10 medium-offset-1 columns'>
             {blogs}
           </div>
         </div>

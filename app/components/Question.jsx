@@ -17,12 +17,6 @@ export default class Question extends Component {
     params: PropTypes.object.isRequired,
   }
 
-  componentWillMount() {
-    if (typeof(this.props.question.get('answers')) === 'undefined') {
-      this.props.fetchAnswers(this.props.question.get('id'));
-    }
-  }
-
   render() {
     const __ = puttext();
     const loadingScreen = (

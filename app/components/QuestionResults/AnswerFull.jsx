@@ -16,7 +16,7 @@ export default class AnswerFull extends Component {
     const __ = puttext();
     const video = (
       <div className='flex-video' style={{marginBottom: '0'}}>
-        <iframe className='vimeo' src={'https://player.vimeo.com/video/' + this.props.answer.get('fullVideo') + '?color=ff5252&title=0&byline=0&portrait=0'} width='100%' height='auto' frameBorder='0' webkitallowfullscreen mozallowfullscreen allowFullScreen></iframe>
+        <iframe className='vimeo' src={'https://player.vimeo.com/video/' + this.props.answer.get('fullVideo') + '?autoplay=1&color=ff5252&title=0&byline=0&portrait=0'} width='100%' height='auto' frameBorder='0' webkitallowfullscreen mozallowfullscreen allowFullScreen></iframe>
       </div>
     );
     const videoText = (

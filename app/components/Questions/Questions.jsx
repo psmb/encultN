@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Intro from './Intro';
-import QuestionSmall from './QuestionSmall';
+import QuestionsList from './QuestionsList';
 import Stats from './Stats';
 import puttext from 'i18n/index';
 if (process.env.BROWSER) {
@@ -22,22 +22,17 @@ export default class Questions extends Component {
 
   render() {
     const __ = puttext();
-    const questions = this.props.questions ? this.props.questions.map((question) => {
-      return (
-        <QuestionSmall key={question.get('id')} question={question} />
-      );
-    }).toArray() : null;
 
     return (
       <div className='fixed-width'>
         <Intro isDismissed={this.props.preferences.get('introDismissed')} />
         <Stats worldviews={this.props.worldviews} />
-        <div className='Questions row'>
+        <div className='row'>
           <div className='medium-10 medium-offset-1 columns'>
             <div className='Hint Hint--main color-primary textAlign-center'>
               {__('Выберите важный для вас вопрос:')}
             </div>
-            {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}
+            <QuestionsList questions={this.props.questions}/>
           </div>
         </div>
       </div>

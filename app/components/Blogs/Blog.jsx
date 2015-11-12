@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import puttext from 'i18n/index';
+import moment from 'moment';
+import BlogSmall from './BlogSmall';
+import puttext, {getLang} from 'i18n/index';
 
 @connect(state => ({
   blogs: state.blogs,
@@ -12,22 +14,37 @@ export default class Blog extends Component {
   }
 
   render() {
+    moment.locale(getLang());
     const __ = puttext();
     const blogData = this.props.blogs ? this.props.blogs.get(this.props.params.id) : null;
     const blog = blogData ? (
       <div>
-        <h1 className='mdl-typography--display-1-color-contrast Blog-title'>{blogData.get('title')}</h1>
-        <p className='mdl-typography--headline-color-contrast'>{blogData.get('authorName')}</p>
-        <p className='mdl-typography--body-2-color-contrast'>{blogData.get('date')}</p>
-        <p className='mdl-typography--body-2-color-contrast' dangerouslySetInnerHTML={{__html: blogData.get('teaser')}} />
-        <p className='mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: blogData.get('bodytext')}} />
+        <p className='Blog-authorName marginTop-triple mdl-typography--display-1-color-contrast'>{blogData.get('authorName')}</p>
+        <p className='Blog-authorTitle marginBottom-triple mdl-typography--title-color-contrast'>{blogData.get('authorTitle')}</p>
+        <div className='row'>
+          <div className='medium-10 medium-offset-1 columns'>
+            <h1 className='Blog-title marginVertical-double mdl-typography--headline-color-contrast Blog-title'>{blogData.get('title')}</h1>
+            <p className='Blog-date marginBottom-triple mdl-typography--caption-color-contrast'>{moment(blogData.get('date')).format('LL')}</p>
+            <p className='Blog-teaser marginVertical-triple mdl-typography--body-2-color-contrast' dangerouslySetInnerHTML={{__html: blogData.get('teaser')}} />
+            <div className='Blog-bodytext mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: blogData.get('bodytext')}} />
+          </div>
+        </div>
       </div>
     ) : __('Минуточку...');
+
+    const blogs = this.props.blogs ? this.props.blogs.map((item) => {
+      if (item.get('id') !== this.props.params.id) {
+        return (
+          <BlogSmall key={item.get('id')} blog={item} />
+        );
+      }
+    }).toArray() : '';
     return (
-      <div>
+      <div className='fixed-width'>
+        {blog}
         <div className='row'>
-          <div className='Blogs medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
-            {blog}
+          <div className='medium-10 medium-offset-1 columns'>
+            {blogs}
           </div>
         </div>
       </div>
