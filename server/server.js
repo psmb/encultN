@@ -7,6 +7,7 @@ import proxy from 'express-http-proxy';
 import path from 'path';
 
 import React from 'react';
+import ReactDOMServer from 'react-dom/server';
 import {RoutingContext, match} from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
@@ -141,12 +142,10 @@ function handleRender(req, res) {
               }
             });
             store.dispatch(initVotes(votesFromCookies));
-            const html = React.renderToString(
+            const html = ReactDOMServer.renderToString(
               <div>
                 <Provider store={store}>
-                  {() =>
-                    <RoutingContext {...renderProps}/>
-                  }
+                  <RoutingContext {...renderProps}/>
                 </Provider>
               </div>
             );

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router';
 // import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
@@ -30,13 +31,11 @@ class App extends React.Component {
     return (
       <div>
         <Provider store={store}>
-          {() =>
-            <Router history={history} routes={routes} />
-          }
+          <Router history={history} routes={routes} />
         </Provider>
       </div>
     );
   }
 }
 
-React.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
