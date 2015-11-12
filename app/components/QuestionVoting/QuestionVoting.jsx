@@ -94,7 +94,7 @@ export default class QuestionVoting extends Component {
       <div>
         <div className='AnswersNav'>{allLiked ? votingHead : likingHead}</div>
         <div className='slide-wrap'>
-          <ReactCSSTransitionGroup transitionName='slide' transitionEnterTimeout={5000} transitionLeaveTimeout={5000}>
+          <ReactCSSTransitionGroup transitionName='slide' transitionEnterTimeout={500} transitionLeaveTimeout={500}>
             <div key={activeAnswerObject.get('id')} className='slide mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer' dangerouslySetInnerHTML={{__html: activeAnswerObject.get('quizText')}} />
           </ReactCSSTransitionGroup>
         </div>
