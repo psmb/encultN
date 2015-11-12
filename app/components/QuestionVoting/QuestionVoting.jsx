@@ -21,11 +21,15 @@ export default class QuestionVoting extends Component {
 
   render() {
     const __ = puttext();
+    const likedAnswers = this.props.question.get('answers').filter(item => item.get('liked') === true);
     const allLiked = this.props.question.get('answers').every(item => {return (item.get('liked') === true) || (item.get('liked') === false); });
     const noneLiked = this.props.question.get('answers').every(item => {return item.get('liked') === false; });
     const activeAnswer = this.props.question.get('activeAnswer');
     const activeAnswerObject = this.props.question.get('answers').find(item => item.get('id') === activeAnswer);
     const activeAnswerIndex = this.props.question.get('answers').findIndex(item => item.get('id') === activeAnswer);
+    const activeAnswerIndexInLiked = likedAnswers.findIndex(item => item.get('id') === activeAnswer);
+    const nextAnswer = likedAnswers.getIn([Number(activeAnswerIndexInLiked) + 1, 'id']);
+    const previousAnswer = activeAnswerIndexInLiked !== 0 ? likedAnswers.getIn([Number(activeAnswerIndexInLiked) - 1, 'id']) : null;
 
     const likingNav = (
       <p className='LikingNav mdl-typography--body-1-color-contrast'>
@@ -34,8 +38,8 @@ export default class QuestionVoting extends Component {
     );
     const votingNav = this.props.question.get('answers').map(function renderAnswer(answer, i) {
       if (answer.get('liked') === true) {
-        const currentClass = activeAnswer === answer.get('id') ? ' Button--positive' : '';
-        return <button key={answer.get('id')} className={'Button VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
+        const currentClass = activeAnswer === answer.get('id') ? ' InlineButton--positive' : '';
+        return <button key={answer.get('id')} className={'InlineButton VotingNav-button' + currentClass} onClick={() => this.props.selectAnswer(answer.get('id'))}>{i + 1}</button>;
       }
     }, this).toArray();
 
@@ -68,9 +72,9 @@ export default class QuestionVoting extends Component {
       <div>
         {votingHint}
         <div className='VotingNav'>
-          <button className={'VotingNav-button mdl-button'} ><i className='icon-left-open'></i></button>
+          <button className={'InlineButton VotingNav-button'} onClick={() => previousAnswer ? this.props.selectAnswer(previousAnswer) : false}><i className='icon-left-open'></i></button>
           {votingNav}
-          <button className={'VotingNav-button mdl-button'} ><i className='icon-right-open'></i></button>
+          <button className={'InlineButton VotingNav-button'} onClick={() => nextAnswer ? this.props.selectAnswer(nextAnswer) : false}><i className='icon-right-open'></i></button>
         </div>
       </div>
     );

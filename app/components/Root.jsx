@@ -30,7 +30,7 @@ export default class Root extends React.Component {
             </div>
           </header>
         </div>
-        <main className=''>
+        <main className='Main'>
           {this.props.children}
         </main>
         <footer className='Footer'>

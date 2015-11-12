@@ -28,3 +28,31 @@
     background-color: lighten($color-primary, 5%);
   }
 }
+
+.InlineButton {
+  text-transform: uppercase;
+  font-weight: 500;
+  background: transparent;
+  border: 0;
+  font-size: 16px;
+  padding: 0 2*$u;
+  @media #{$medium-up} {
+    font-size: 21px;
+  }
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 2;
+  vertical-align: middle;
+  border-radius: 10px;
+  transition: background-color 0.2s, color 0.2s;
+  &:hover {
+    background-color: lighten($color-primary, 5%);
+    color: white;
+  }
+}
+.InlineButton--positive {
+  color: $color-primary;
+}
