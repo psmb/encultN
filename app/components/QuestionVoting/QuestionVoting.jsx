@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from 'redux/modules/voting';
 import puttext from 'i18n/index';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 @connect(
   state => ({
@@ -89,13 +90,14 @@ export default class QuestionVoting extends Component {
         </div>
       </div>
     );
-    const answer = (
-      <div className='mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer' dangerouslySetInnerHTML={{__html: activeAnswerObject.get('quizText')}} />
-    );
     const votingScreen = (
       <div>
         <div className='AnswersNav'>{allLiked ? votingHead : likingHead}</div>
-        {answer}
+        <div className='slide-wrap'>
+          <ReactCSSTransitionGroup transitionName='slide' transitionEnterTimeout={5000} transitionLeaveTimeout={5000}>
+            <div key={activeAnswerObject.get('id')} className='slide mdl-typography--body-1-color-contrast mdl-shadow--8dp Answer' dangerouslySetInnerHTML={{__html: activeAnswerObject.get('quizText')}} />
+          </ReactCSSTransitionGroup>
+        </div>
         {allLiked ? votingControls : likingControls}
       </div>
     );

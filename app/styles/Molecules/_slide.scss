@@ -1,0 +1,33 @@
+body {
+  // Needed for slide transitions
+  overflow-x: hidden;
+}
+
+.slide {
+  transition: left 0.2s ease-in;
+  position: relative;
+  margin-top: 0;
+}
+.slide-wrap {
+  position: relative;
+}
+
+.slide-enter {
+  left: -1500px;
+  transition-delay: 0.2s;
+}
+
+.slide-enter.slide-enter-active {
+  left: 0;
+}
+
+.slide-leave {
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.slide-leave.slide-leave-active {
+  left: 1500px;
+}
