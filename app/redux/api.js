@@ -39,3 +39,6 @@ export function fetchBlogsPromise() {
 export function fetchBlogPromise(path) {
   return fetchFromApi(getLang() + '/blogs/' + path + '.json');
 }
+export function fetchAboutPromise() {
+  return fetchFromApi(getLang() + '/about.json');
+}
