@@ -51,10 +51,6 @@
   line-height: 1.1;
 }
 
-.Media-subTitle {
-  line-height: 18px;
-}
-
 .Media-lead {
   margin-top: $u;
 }
@@ -62,6 +58,7 @@
 .Media-author {
   transition: color 0.2s;
   color: $gray--light;
+  line-height: 1.3;
 }
 
 .Media-icon {

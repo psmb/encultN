@@ -28,7 +28,10 @@ export default class AnswerFull extends Component {
         {this.props.preferText ? '' : video}
         <div className='AnswerFull-header'>
           <Link to={`/worldviews/${this.props.answer.getIn(['worldview', 'id'])}`}>
-            <div className='mdl-typography--headline-color-contrast color-primary'>{this.props.answer.getIn(['worldview', 'title'])}</div>
+            <div className='mdl-typography--headline-color-contrast Help-wrap color-primary'>
+              {this.props.answer.getIn(['worldview', 'title'])}
+              <i className='icon-help-circled Help-icon'></i>
+            </div>
           </Link>
           <div className='mdl-typography--body-1-color-contrast'>{this.props.answer.get('authorName')}</div>
           <div className='mdl-typography--caption-color-contrast'>{this.props.answer.get('authorTitle')}</div>

@@ -15,11 +15,19 @@ export default class VotedAnswer extends Component {
       <div className='VotedAnswerFull'>
         <div className='mdl-typography--body-1'>{__('Ваш выбор')}</div>
         <Link to={`/worldviews/${this.props.answer.getIn(['worldview', 'id'])}`}>
-          <div className='mdl-typography--display-1'>{this.props.answer.getIn(['worldview', 'title'])}</div>
+          <div className='mdl-typography--display-1 Help-wrap'>
+            {this.props.answer.getIn(['worldview', 'title'])}
+            <i className='icon-help-circled Help-icon'></i>
+          </div>
         </Link>
-        <FacebookButton url={url}>Share</FacebookButton>
-        <VKontakteButton url={url}>Share</VKontakteButton>
-        <TwitterButton url={url}>Share</TwitterButton>
+        <div className='Social marginTop-single'>
+          <div style={{display: 'inline-block'}}>{__('Поделитесь этим с друзьями')}:</div>
+          <div className='Social-buttons'>
+            <FacebookButton className='Social-button' url={url}><i className='icon-facebook'></i></FacebookButton>
+            <TwitterButton className='Social-button' url={url}><i className='icon-twitter'></i></TwitterButton>
+            <VKontakteButton className='Social-button' url={url}><i className='icon-vkontakte'></i></VKontakteButton>
+          </div>
+        </div>
       </div>
     );
   }

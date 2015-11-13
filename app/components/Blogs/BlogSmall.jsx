@@ -20,7 +20,7 @@ export default class BlogSmall extends Component {
           </p>
           <h3 className='marginVertical-double mdl-typography--body-1-color-contrast Media-subTitle'>{this.props.blog.get('teaser')}</h3>
           <p className='mdl-typography--caption-color-contrast Media-lead'>
-            {moment(this.props.blog.get('date')).format('LL')} •
+            {moment(this.props.blog.get('date')).format('LL')}
           </p>
         </div>
         <div className='hide-for-small-only'>

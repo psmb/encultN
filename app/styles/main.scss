@@ -196,3 +196,72 @@ footer {
   @extend .mdl-typography--body-1-color-contrast;
   margin-bottom: 26px;
 }
+
+
+.Social {
+  @media #{$medium-up} {
+    height: 32px;
+    margin-left: -108px;
+  }
+  margin-top: 10px;
+}
+
+.Social-buttons {
+  @media #{$medium-up} {
+    display: inline-block;
+  }
+  position: relative;
+}
+.Social-button {
+  background-color: transparent;
+  @media #{$medium-up} {
+    position: absolute;
+  }
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: font-size 0.2s, margin 0.2s;
+  top: -19px;
+  outline: 0;
+  &:focused {
+    outline: 0;
+  }
+  &:nth-child(2) {
+    left: 40px;
+  }
+  &:nth-child(3) {
+    left: 80px;
+  }
+  &:hover {
+    margin-left: -2px;
+    margin-top: -2px;
+    font-size: 28px;
+  }
+}
+
+// Perhaps the worst piece of CSS I'd ever written
+.Help-icon {
+  display: inline-block;
+  position: absolute;
+  top: 7px;
+  font-size: 20px;
+  transition: font-size 0.2s, margin 0.2s;
+  &:before {
+    vertical-align: 26%;
+    padding-left: 7px;
+  }
+}
+.Help-wrap {
+  position: relative;
+}
+.Help-wrap:hover .Help-icon {
+  font-size: 28px;
+  margin-left: -5px;
+  margin-top: 3px;
+}
+
+.mdl-typography--headline-color-contrast.Help-wrap:hover .Help-icon {
+  margin-left: -4px;
+  margin-top: 0px;
+}
