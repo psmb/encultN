@@ -49,7 +49,7 @@ export default class QuestionVoting extends Component {
           <div className='Circle-number'>1</div>
           <div className='Circle-step'>шаг</div>
         </div>
-        <p className='mdl-typography--caption Hint color-primary'>{__('Выберите с какими ответами вы согласны')}:</p>
+        <p className='mdl-typography--caption Hint color-primary'>{__('Выберите ответы, с которыми вы согласны')}:</p>
       </div>
     );
     const votingHint = (
