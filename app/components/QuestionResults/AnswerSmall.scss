@@ -2,6 +2,7 @@
 
 .AnswerSmall {
   cursor: pointer;
+  transition: color 0.2s;
 }
 .AnswerSmall-body {
   margin-top: $u;
@@ -16,4 +17,8 @@
     float: right;
     width: 33%;
   }
+}
+
+.AnswerSmall:hover {
+  color: $color-primary;
 }
