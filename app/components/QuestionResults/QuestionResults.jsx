@@ -42,7 +42,7 @@ export default class QuestionResults extends Component {
     }).toArray();
     return (
       <div className='fixed-width'>
-        <VotedAnswer answer={votedAnswerObject} />
+        <VotedAnswer answer={votedAnswerObject} question={this.props.question} />
         <div className='row'>
           <div className='large-10 large-offset-1 columns'>
             <AnswerFull answer={activeAnswerObject} preferText={this.props.preferText} setPreferText={this.props.setPreferText} />
