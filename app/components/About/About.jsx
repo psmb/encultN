@@ -17,7 +17,7 @@ export default class About extends Component {
         <div className='row'>
           <div className='medium-8 columns'>
             <h1 className='marginVertical-double mdl-typography--display-1-color-contrast'>{this.props.about.get('title')}</h1>
-            <p className='marginBottom-triple mdl-typography--body-1-color-contrast'>{this.props.about.get('teaser')}</p>
+            <p className='marginBottom-triple mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: this.props.about.get('teaser')}} />
           </div>
         </div>
         <div className='row'>
