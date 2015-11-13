@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link as LinkR} from 'react-router';
 import Link from 'i18n/Link';
 import puttext, {getLang} from 'i18n/index';
 
