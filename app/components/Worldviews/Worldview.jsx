@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import Link from 'i18n/Link';
 import puttext from 'i18n/index';
 import * as actionCreators from 'redux/modules/voting';
 
@@ -24,18 +25,26 @@ export default class Worldview extends Component {
     const worldviewData = this.props.worldviews ? this.props.worldviews.get(this.props.params.id) : null;
     const worldview = this.props.worldviews ? (
       <div>
-        <h1 className='mdl-typography--display-1-color-contrast Worldview-title'>{worldviewData.get('title')}</h1>
-        <p className='mdl-typography--caption-color-contrast'><span className='color-primary'>{worldviewData.get('voteCount')} <i className='icon-check'></i></span></p>
-        <p className='mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: worldviewData.get('description')}} />
+        <div className='row'>
+          <div className='medium-8 columns'>
+            <h1 className='mdl-typography--display-1-color-contrast marginTop-triple Worldview-title'>{worldviewData.get('title')}</h1>
+            <div className='color-primary marginVertical-single'>
+              <span className='mdl-typography--body-1-color-contrast'>{worldviewData.get('voteCount')} <i className='icon-check'></i></span>
+              <Link className='mdl-typography--caption' to={`/stats/`}>{__('Вся статистика')} <i className='icon-right-circle'></i></Link>
+            </div>
+            <p className='marginBottom-triple mdl-typography--body-1-color-contrast Worldview-teaser'>{worldviewData.get('teaser')}</p>
+          </div>
+        </div>
+        <div className='row'>
+          <div className='Worldviews medium-10 medium-offset-1 columns'>
+            <p className='mdl-typography--body-1-color-contrast RteText' dangerouslySetInnerHTML={{__html: worldviewData.get('description')}} />
+          </div>
+        </div>
       </div>
     ) : __('Минуточку...');
     return (
-      <div>
-        <div className='row'>
-          <div className='Worldviews medium-10 medium-offset-1 large-8 large-offset-2 columns fixed-width '>
-            {worldview}
-          </div>
-        </div>
+      <div className='fixed-width'>
+          {worldview}
       </div>
     );
   }

@@ -3,13 +3,13 @@ import {fromJS} from 'immutable';
 import {getLang} from '../i18n/index';
 import {ownAddress} from '../shared-settings'; // relative path for the sake of tests
 
-function fetchFromApi(url) {
+function fetchFromApi(url, fetchOptions = null) {
   if (getLang() === undefined) {
     console.log('Language not defined while making API call');
     throw new Error('Lang not defined!');
   }
   const fullUrl = ownAddress + '/api/' + url;
-  return fetch(fullUrl, { method: 'put', credentials: 'include' })
+  return fetch(fullUrl, fetchOptions)
     .then(response => response.json())
     .then(json => fromJS(json))
     .catch(error => {
@@ -19,7 +19,7 @@ function fetchFromApi(url) {
 }
 
 export function voteForAnswerPromise(id) {
-  return fetchFromApi(`vote-for-answer?language=${getLang()}&answerIdentifier=${id}`);
+  return fetchFromApi(`vote-for-answer?language=${getLang()}&answerIdentifier=${id}`, { method: 'put', credentials: 'include' });
 }
 export function fetchQuestionsPromise() {
   return fetchFromApi(getLang() + '/questions.json');

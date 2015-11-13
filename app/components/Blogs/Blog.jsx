@@ -26,7 +26,7 @@ export default class Blog extends Component {
             <h1 className='Blog-title marginVertical-double mdl-typography--headline-color-contrast Blog-title'>{blogData.get('title')}</h1>
             <p className='Blog-date marginBottom-triple mdl-typography--caption-color-contrast'>{moment(blogData.get('date')).format('LL')}</p>
             <p className='Blog-teaser marginVertical-triple mdl-typography--body-2-color-contrast' dangerouslySetInnerHTML={{__html: blogData.get('teaser')}} />
-            <div className='Blog-bodytext mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: blogData.get('bodytext')}} />
+            <div className='Blog-bodytext RteText' dangerouslySetInnerHTML={{__html: blogData.get('bodytext')}} />
           </div>
         </div>
       </div>

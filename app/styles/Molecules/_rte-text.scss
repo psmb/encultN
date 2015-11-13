@@ -1,0 +1,32 @@
+.RteText {
+  // These are not allowed:
+  h1, h4, h5, h6, pre, blockquote {
+    color: pink;
+  }
+	h2 {
+    @extend .mdl-typography--headline-color-contrast;
+    margin-top: 3*$u;
+    margin-bottom: $u;
+  }
+  h3 {
+    @extend .mdl-typography--title-color-contrast;
+    margin-top: 2*$u;
+    margin-bottom: $u;
+  }
+  p {
+    @extend .mdl-typography--body-1-color-contrast;
+    margin-bottom: 26px;
+  }
+  ul {
+    list-style-type: disc;
+  }
+  li {
+    margin-left: 4*$u;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  a {
+    color: $color-primary;
+  }
+}

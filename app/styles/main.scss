@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6, p {
 @import "Vendor/materialDesignLite/button/button";
 @import "Vendor/materialDesignLite/shadow/shadow";
 
+@import "Molecules/rte-text";
 @import "Molecules/button";
 @import "Molecules/circle";
 @import "Molecules/hint";
@@ -191,12 +192,6 @@ footer {
   font-size: rem-calc(24);
   margin-top: $u;
 }
-
-.Blog-bodytext p {
-  @extend .mdl-typography--body-1-color-contrast;
-  margin-bottom: 26px;
-}
-
 
 .Social {
   @media #{$medium-up} {
