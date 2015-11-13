@@ -26,8 +26,8 @@ export default class Root extends React.Component {
 
   render() {
     const __ = puttext();
-    const linkEn = <LinkR className='MenuItem' to={this.props.location.pathname.replace('/ru', '/en')}>English</LinkR>;
-    const linkRu = <LinkR className='MenuItem' to={this.props.location.pathname.replace('/en', '/ru')}>Russian</LinkR>;
+    const linkEn = <a className='MenuItem' href={this.props.location.pathname.replace('/ru', '/en')}>English</a>;
+    const linkRu = <a className='MenuItem' href={this.props.location.pathname.replace('/en', '/ru')}>Russian</a>;
     const menu = (
       <div>
         <Link className='MenuItem' to={`/about`}>{__('О проекте')}</Link>
