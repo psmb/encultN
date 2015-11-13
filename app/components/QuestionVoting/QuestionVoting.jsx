@@ -16,6 +16,7 @@ export default class QuestionVoting extends Component {
     selectAnswer: PropTypes.func.isRequired,
     likeAnswer: PropTypes.func.isRequired,
     dislikeAnswer: PropTypes.func.isRequired,
+    resetAnswer: PropTypes.func.isRequired,
     voteForAnswer: PropTypes.func.isRequired,
   }
 
@@ -106,10 +107,17 @@ export default class QuestionVoting extends Component {
       </div>
     );
 
+    const noneLikedText = (
+      <div>
+        <p className='mdl-typography--caption Hint color-primary'>{__('Почему вам ничего не понравилось? =(')}</p>
+        <button style={{marginTop: '24px', padding: '8px 16px'}} className='Button Button--positive' onClick={() => this.props.resetAnswer()}>{__('Начать с начала?')}</button>
+      </div>
+    );
+
     return (
       <div className='fixed-width row'>
         <div className='medium-10 medium-offset-1 columns'>
-          {noneLiked ? __('Почему вам ничего не нравится?') : votingScreen}
+          {noneLiked ? noneLikedText : votingScreen}
         </div>
       </div>
     );
