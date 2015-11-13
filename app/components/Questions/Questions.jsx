@@ -35,6 +35,11 @@ export default class Questions extends Component {
             <QuestionsList questions={this.props.questions}/>
           </div>
         </div>
+        <div className='paddingTop-triple marginTop-triple'>
+          <p className='mdl-typography--caption color-primary Hint textAlign-center'>
+            {__('Здесь вы можете сделать пожертвование на этот и другие пообные проекты, способствующие изучению и развитию межкультурных отношений.')}
+          </p>
+        </div>
       </div>
     );
   }
