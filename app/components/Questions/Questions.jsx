@@ -39,7 +39,7 @@ export default class Questions extends Component {
           <div className='medium-8 medium-offset-2 columns'>
             <div className='paddingTop-triple marginTop-triple'>
               <p className='mdl-typography--caption color-primary Hint textAlign-center'>
-                {__('Здесь вы можете сделать пожертвование на этот и другие подобные проекты, способствующие изучению и развитию межкультурных отношений.')}
+                {__('Здесь вы можете сделать пожертвование на этот и другие подобные проекты, способствующие изучению и развитию межкультурных отношений')}
               </p>
             </div>
           </div>

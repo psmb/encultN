@@ -21,6 +21,7 @@
     list-style-type: disc;
   }
   li {
+    @extend .mdl-typography--body-1-color-contrast;
     margin-left: 4*$u;
   }
   ol {

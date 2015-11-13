@@ -73,7 +73,7 @@ function renderFullPage(html, initialState) {
         <meta name="msapplication-TileImage" content="/static/favicons/mstile-144x144.png">
         <meta name="msapplication-config" content="/static/favicons/browserconfig.xml">
         <meta name="theme-color" content="#009688">
-        ${isDev ? '' : '<link href="/static/build/styles.css?' + Date.now() + '" rel="stylesheet" />'}
+        ${isDev ? '' : '<link href="/static/build/styles.css?123" rel="stylesheet" />'}
       </head>
       <body>
         <div id="root">${html}</div>
