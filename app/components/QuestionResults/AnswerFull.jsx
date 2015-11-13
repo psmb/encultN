@@ -20,7 +20,7 @@ export default class AnswerFull extends Component {
       </div>
     );
     const videoText = (
-      <div className='mdl-typography--body-1-color-contrast AnswerFull-videoText' dangerouslySetInnerHTML={{__html: this.props.answer.get('quizText')}} />
+      <div className='mdl-typography--body-1-color-contrast AnswerFull-videoText' dangerouslySetInnerHTML={{__html: this.props.answer.get('fullText')}} />
     );
 
     return (
