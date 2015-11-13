@@ -12,7 +12,7 @@ export default class VotedAnswer extends Component {
   render() {
     const __ = puttext();
     const url = `http://izm.io/${getLang()}/q/${this.props.question.get('id')}`;
-    const message = `${this.props.question.get('title')}: в этом вопросе мой выбор ${this.props.answer.getIn(['worldview', 'title'])}`;
+    const message = `${this.props.question.get('title')}: ${__('в этом вопросе мой выбор')} ${this.props.answer.getIn(['worldview', 'title'])}`;
     return (
       <div className='VotedAnswerFull'>
         <div className='mdl-typography--body-1'>{__('Ваш выбор')}</div>
