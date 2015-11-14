@@ -78,8 +78,8 @@ export default function reducer(state = initialState, action = {}) {
     const firstAnswerId = action.payload.getIn([0, 'id']);
     const activeAnswerId = votedAnswerId ? votedAnswerId : firstAnswerId;
     return state
-      .setIn(['questions', activeQuestion, 'answers'], action.payload)
-      .setIn(['questions', activeQuestion, 'activeAnswer'], activeAnswerId);
+      .setIn(['questions', action.meta, 'answers'], action.payload)
+      .setIn(['questions', action.meta, 'activeAnswer'], activeAnswerId);
   default:
     return state;
   }
@@ -112,7 +112,7 @@ export const fetchQuestions = createAction(FETCH_QUESTIONS, async () => {
 });
 export const fetchAnswers = createAction(FETCH_ANSWERS, async path => {
   return await api.fetchAnswersPromise(path);
-});
+}, path => path);
 export const fetchWorldviews = createAction(FETCH_WORLDVIEWS, async () => {
   return await api.fetchWorldviewsPromise();
 });

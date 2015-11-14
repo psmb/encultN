@@ -33,6 +33,7 @@ h1, h2, h3, h4, h5, h6, p {
 @import "Molecules/circle";
 @import "Molecules/hint";
 @import "Molecules/slide";
+@import "Molecules/spinner";
 @import "Molecules/media";
 @import "Molecules/mobile-nav";
 
@@ -263,4 +264,10 @@ footer {
 
 .mdl-typography--body-2-color-contrast {
   font-size: rem-calc(16);
+}
+
+.Loader {
+  text-align: center;
+  font-size: rem-calc(20);
+  margin: 3*$u 0;
 }
