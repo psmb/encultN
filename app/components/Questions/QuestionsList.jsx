@@ -23,7 +23,7 @@ export default class Questions extends Component {
 
     return (
       <div className='Questions'>
-        {typeof(this.props.questions) === 'undefined' ? __('Минуточку...') : questions}
+        {typeof(this.props.questions) === 'undefined' ? (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>) : questions}
       </div>
     );
   }

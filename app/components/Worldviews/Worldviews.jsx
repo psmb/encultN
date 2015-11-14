@@ -17,7 +17,7 @@ export default class Worldviews extends Component {
       return (
         <WorldviewSmall key={worldview.get('id')} worldview={worldview} />
       );
-    }).toArray() : __('Минуточку...');
+    }).toArray() : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
 
     return (
       <div>

@@ -17,7 +17,7 @@ export default class Blogs extends Component {
       return (
         <BlogSmall key={blog.get('id')} blog={blog} />
       );
-    }).toArray() : __('Минуточку...');
+    }).toArray() : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
 
     return (
       <div className='fixed-width'>

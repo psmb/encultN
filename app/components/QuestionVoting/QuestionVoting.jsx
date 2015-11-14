@@ -20,6 +20,13 @@ export default class QuestionVoting extends Component {
     voteForAnswer: PropTypes.func.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      voteInProgress: false,
+    };
+  }
+
   render() {
     const __ = puttext();
     const likedAnswers = this.props.question.get('answers').filter(item => item.get('liked') === true);
@@ -91,7 +98,7 @@ export default class QuestionVoting extends Component {
     const votingControls = (
       <div className='row'>
         <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
-          <button style={{width: '100%', marginTop: '24px'}} className='Button Button--positive' onClick={() => this.props.voteForAnswer(activeAnswer)}>{__('Окончательный выбор!')} <i className='icon-check'></i></button>
+          <button style={{width: '100%', marginTop: '24px'}} className='Button Button--positive' onClick={() => {this.props.voteForAnswer(activeAnswer); this.setState({voteInProgress: true});}}>{__('Окончательный выбор!')} <i className={this.state.voteInProgress ? 'icon-spinner animate-spin' : 'icon-check'}></i></button>
         </div>
       </div>
     );

@@ -24,7 +24,7 @@ export default class About extends Component {
           <div className='medium-10 medium-offset-1 columns RteText' dangerouslySetInnerHTML={{__html: this.props.about.get('bodytext')}} />
         </div>
       </div>
-    ) : __('Минуточку...');
+    ) : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
 
     return (
       <div className='fixed-width'>

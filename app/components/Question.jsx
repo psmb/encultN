@@ -13,15 +13,14 @@ export default class Question extends Component {
     question: PropTypes.object.isRequired,
     selectQuestion: PropTypes.func.isRequired,
     selectAnswer: PropTypes.func.isRequired,
-    fetchAnswers: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
   }
 
   render() {
     const __ = puttext();
     const loadingScreen = (
-      <div className='fixed-width loadingScreen'>
-        {__('Минуточку...')}
+      <div className='fixed-width'>
+        {(<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>)}
       </div>
     );
 

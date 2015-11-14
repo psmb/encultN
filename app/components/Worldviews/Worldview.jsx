@@ -23,7 +23,7 @@ export default class Worldview extends Component {
   render() {
     const __ = puttext();
     const worldviewData = this.props.worldviews ? this.props.worldviews.get(this.props.params.id) : null;
-    const worldview = this.props.worldviews ? (
+    const worldview = worldviewData.get('description') ? (
       <div>
         <div className='row'>
           <div className='medium-8 columns'>
@@ -41,7 +41,7 @@ export default class Worldview extends Component {
           </div>
         </div>
       </div>
-    ) : __('Минуточку...');
+    ) : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
     return (
       <div className='fixed-width'>
           {worldview}

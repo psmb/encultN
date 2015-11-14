@@ -30,7 +30,7 @@ export default class Blog extends Component {
           </div>
         </div>
       </div>
-    ) : __('Минуточку...');
+    ) : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
 
     const blogs = this.props.blogs ? this.props.blogs.map((item) => {
       if (item.get('id') !== this.props.params.id) {
