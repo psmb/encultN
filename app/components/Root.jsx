@@ -22,6 +22,11 @@ export default class Root extends React.Component {
       mobileNavOpen: !this.state.mobileNavOpen,
     });
   }
+  closeMenu = () => {
+    this.setState({
+      mobileNavOpen: false,
+    });
+  }
 
   render() {
     const __ = puttext();
@@ -29,9 +34,9 @@ export default class Root extends React.Component {
     const linkRu = <a className='MenuItem' href={this.props.location.pathname.replace('/en', '/ru')}>Russian</a>;
     const menu = (
       <div>
-        <Link className='MenuItem' to={`/about`}>{__('О проекте')}</Link>
-        <Link className='MenuItem' to={`/stats`}>{__('Статистика')}</Link>
-        <Link className='MenuItem' to={`/analytics`}>{__('Аналитика')}</Link>
+        <Link onClick={this.closeMenu} className='MenuItem' to={`/about`}>{__('О проекте')}</Link>
+        <Link onClick={this.closeMenu} className='MenuItem' to={`/stats`}>{__('Статистика')}</Link>
+        <Link onClick={this.closeMenu} className='MenuItem' to={`/analytics`}>{__('Аналитика')}</Link>
         {getLang() === 'ru' ? linkEn : linkRu}
       </div>
     );
