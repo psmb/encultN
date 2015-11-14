@@ -89,7 +89,7 @@ export default class QuestionVoting extends Component {
 
     const likingControls = (
       <div className='row'>
-        <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
+        <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns'>
           <button style={{width: 'calc(50% - 8px)', marginTop: '24px', marginRight: '8px'}} className='Button Button--positive' onClick={() => this.props.likeAnswer()}>{__('Отобрать')} <i className='icon-thumbs-up'></i></button>
           <button style={{width: 'calc(50% - 8px)', marginTop: '24px', marginLeft: '8px'}} className='Button' onClick={() => this.props.dislikeAnswer()}>{__('Отсеять')} <i className='icon-thumbs-down'></i></button>
         </div>
@@ -97,7 +97,7 @@ export default class QuestionVoting extends Component {
     );
     const votingControls = (
       <div className='row'>
-        <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns '>
+        <div className='medium-8 medium-offset-2 large-6 large-offset-3 columns'>
           <button style={{width: '100%', marginTop: '24px'}} className='Button Button--positive' onClick={() => {this.props.voteForAnswer(activeAnswer); this.setState({voteInProgress: true});}}>{__('Окончательный выбор!')} <i className={this.state.voteInProgress ? 'icon-spinner animate-spin' : 'icon-check'}></i></button>
         </div>
       </div>
