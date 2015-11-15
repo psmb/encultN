@@ -30,7 +30,7 @@ export default class Questions extends Component {
         <div className='row'>
           <div className='medium-10 medium-offset-1 columns'>
             <div className='Hint Hint--main color-primary textAlign-center'>
-              {__('Выберите важный для вас вопрос:')}
+              {__('Выберите важный для вас вопрос')}:
             </div>
             <QuestionsList questions={this.props.questions}/>
           </div>
