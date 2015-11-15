@@ -66,7 +66,7 @@ export default class Root extends React.Component {
           <footer className='Footer'>
             <div className='Footer-inner fixed-width'>
               © {__('Мониторинг мировоззрений')}<br/>
-              {__('Дизайн и разработка:')} <a href='http://sfi.ru'>{__('веб-служба Свято-Филаретовского православного-христианского института')}</a>
+              {__('Дизайн и разработка:')} <a href='http://sfi.ru'>{__('веб-служба Свято-Филаретовского православно-христианского института')}</a>
             </div>
           </footer>
         </div>

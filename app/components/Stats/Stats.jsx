@@ -91,7 +91,7 @@ export default class Stats extends Component {
         <div className='row'>
           <div className='medium-10 medium-offset-1 columns'>
             <div className='Hint Hint--main color-primary'>
-              {__('Общие резльтаты:')}
+              {__('Общие результаты')}:
             </div>
             <table className='Table'>
               <tbody>
@@ -99,7 +99,7 @@ export default class Stats extends Component {
               </tbody>
             </table>
             <div className='Hint Hint--main color-primary'>
-              {__('Результаты по вопросам:')}
+              {__('Результаты по вопросам')}:
             </div>
             {questions}
           </div>
