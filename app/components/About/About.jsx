@@ -17,11 +17,11 @@ export default class About extends Component {
         <div className='row'>
           <div className='medium-8 columns'>
             <h1 className='marginVertical-double mdl-typography--display-1-color-contrast'>{this.props.about.get('title')}</h1>
-            <p className='marginBottom-triple mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: this.props.about.get('teaser')}} />
+            <div className='marginBottom-triple mdl-typography--body-1-color-contrast' dangerouslySetInnerHTML={{__html: this.props.about.get('teaser')}} />
           </div>
         </div>
         <div className='row'>
-          <div className='medium-10 medium-offset-1 columns typo3-neos-nodetypes-text' dangerouslySetInnerHTML={{__html: this.props.about.get('bodytext')}} />
+          <div className='medium-10 medium-offset-1 columns' dangerouslySetInnerHTML={{__html: this.props.about.get('bodytext')}} />
         </div>
       </div>
     ) : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
