@@ -64,6 +64,7 @@
     "puttext": "^1.4.0",
     "react": "^0.14.2",
     "react-addons-css-transition-group": "^0.14.2",
+    "react-chartist": "^0.10.1",
     "react-dom": "^0.14.2",
     "react-hot-loader": "^1.3.0",
     "react-redux": "^2.1.2",

@@ -1,8 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import puttext from 'i18n/index';
+import ChartistGraph from 'react-chartist';
 import * as actionCreators from 'redux/modules/voting';
-import Link from 'i18n/Link';
 if (process.env.BROWSER) {
   require('./Stats.scss');
 }
@@ -27,53 +27,64 @@ export default class Stats extends Component {
     return answers.map(answer => {
       const worldviewObj = this.props.worldviews.find(item => item.get('id') === answer.get('worldviewId'));
       return answer.set('worldview', worldviewObj);
-    }).sort((a, b) => a.get('voteCount') < b.get('voteCount'));
+    }).sort((a, b) => a.getIn(['worldview', 'title']) > b.getIn(['worldview', 'title']));
   }
 
   render() {
     const __ = puttext();
-    const worldviews = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('voteCount') < b.get('voteCount')).map(worldview => {
-      return (
-        <tr key={worldview.get('id')}>
-          <td>
-            <Link to={`/worldviews/${worldview.get('id')}`}>
-              {worldview.get('title')}
-            </Link>
-          </td>
-          <td className='color-primary'>{worldview.get('voteCount')} <i className='icon-check'></i></td>
-        </tr>
-      );
-    }).toArray() : '';
+    const options = {
+      distributeSeries: true,
+      reverseData: true,
+      horizontalBars: true,
+      height: 300,
+      axisY: {
+        offset: 70,
+        scaleMinSpace: 30,
+      },
+    };
+
+    const worldviewsPlotData = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('title') > b.get('title')).reduce(
+      (prev, current) => {
+        prev.labels.push(current.get('title'));
+        prev.series.push(current.get('voteCount'));
+        return prev;
+      },
+      {
+        labels: [],
+        series: [],
+      }
+    ) : {
+      labels: [],
+      series: [],
+    };
 
     const questions = this.props.questions ? this.props.questions.map(question => {
-      const answers = question.get('answers') ? this.answersSelector(question.get('answers')).map(answer => {
-        return (
-          <tr key={answer.get('id')}>
-            <td><Link to={`/worldviews/${answer.getIn(['worldview', 'id'])}`}>{answer.getIn(['worldview', 'title'])}</Link></td>
-            <td className='color-primary'>{answer.get('voteCount')} <i className='icon-check'></i></td>
-          </tr>
-        );
-      }).toArray() : (<tr><td><i className='icon-spinner animate-spin' /></td></tr>);
       if (question.get('id') && !question.getIn(['answers', 0])) {
         this.props.fetchAnswers(question.get('id'));
       }
+
+      const answersPlotData = question.get('answers') ? this.answersSelector(question.get('answers')).reduce(
+        (prev, current) => {
+          prev.labels.push(current.getIn(['worldview', 'title']));
+          prev.series.push(current.get('voteCount'));
+          return prev;
+        },
+        {
+          labels: [],
+          series: [],
+        }
+      ) : {
+        labels: [],
+        series: [],
+      };
+
       return (
         <div key={question.get('id')} className='StatsQuestion'>
           <div className='StatsQuestion-wrap marginBottom-double'>
             <h2 className='mdl-typography--headline-color-contrast StatsQuestion-title'>{question.get('title')}</h2>
             <h3 className='mdl-typography--body-1-color-contrast StatsQuestion-subTitle'>{question.get('subTitle')}</h3>
           </div>
-          <table className='Table'>
-            <tfoot>
-              <tr>
-                <td>{__('Всего')}</td>
-                <td className='color-primary'>{question.get('voteCount')} <i className='icon-check'></i></td>
-              </tr>
-            </tfoot>
-            <tbody>
-              {answers}
-            </tbody>
-          </table>
+          <ChartistGraph data={answersPlotData} options={options} type='Bar' />
         </div>
       );
     }).toArray() : '';
@@ -93,11 +104,8 @@ export default class Stats extends Component {
             <div className='Hint Hint--main color-primary'>
               {__('Общие результаты')}:
             </div>
-            <table className='Table'>
-              <tbody>
-                {worldviews}
-              </tbody>
-            </table>
+            <ChartistGraph data={worldviewsPlotData} options={options} type='Bar' />
+
             <div className='Hint Hint--main color-primary'>
               {__('Результаты по вопросам')}:
             </div>
