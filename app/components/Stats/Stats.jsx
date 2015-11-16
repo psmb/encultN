@@ -54,7 +54,7 @@ export default class Stats extends Component {
           </tr>
         );
       }).toArray() : (<tr><td><i className='icon-spinner animate-spin' /></td></tr>);
-      if (question.get('id')) {
+      if (question.get('id') && !question.getIn(['answers', 0])) {
         this.props.fetchAnswers(question.get('id'));
       }
       return (
