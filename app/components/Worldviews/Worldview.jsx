@@ -37,7 +37,7 @@ export default class Worldview extends Component {
         </div>
         <div className='row'>
           <div className='Worldviews medium-10 medium-offset-1 columns'>
-            <p className='mdl-typography--body-1-color-contrast RteText' dangerouslySetInnerHTML={{__html: worldviewData.get('description')}} />
+            <div className='mdl-typography--body-1-color-contrast typo3-neos-nodetypes-text' dangerouslySetInnerHTML={{__html: worldviewData.get('description')}} />
           </div>
         </div>
       </div>

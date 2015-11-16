@@ -21,7 +21,7 @@ export default class About extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='medium-10 medium-offset-1 columns RteText' dangerouslySetInnerHTML={{__html: this.props.about.get('bodytext')}} />
+          <div className='medium-10 medium-offset-1 columns typo3-neos-nodetypes-text' dangerouslySetInnerHTML={{__html: this.props.about.get('bodytext')}} />
         </div>
       </div>
     ) : (<div className='Loader'>{__('Минуточку...')} <i className='icon-spinner animate-spin' /></div>);
