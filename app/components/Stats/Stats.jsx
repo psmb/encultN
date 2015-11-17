@@ -41,6 +41,9 @@ export default class Stats extends Component {
         offset: 70,
         scaleMinSpace: 30,
       },
+      axisX: {
+        onlyInteger: true,
+      },
     };
 
     const worldviewsPlotData = this.props.worldviews ? this.props.worldviews.sort((a, b) => a.get('title') > b.get('title')).reduce(
