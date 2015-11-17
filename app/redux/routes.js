@@ -16,8 +16,10 @@ import store from 'redux/store';
 import {setLang} from 'i18n/index';
 
 const onEnterQuestionHandler = (nextState) => {
-  store.dispatch(selectQuestion(nextState.params.id));
-  store.dispatch(fetchAnswers(nextState.params.id));
+  return Promise.all([
+    store.dispatch(selectQuestion(nextState.params.id)),
+    store.dispatch(fetchAnswers(nextState.params.id)),
+  ]);
 };
 
 const routes = (

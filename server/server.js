@@ -1,3 +1,4 @@
+// This file is a mumbo-jumbo, that should be refactored
 import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
@@ -137,10 +138,15 @@ function handleRender(req, res) {
         res.status(404).send('Not found');
       } else {
         initStore();
-        Promise.all([
-          store.dispatch(fetchWorldviews()),
-          store.dispatch(fetchQuestions()),
-        ]).then(
+        const promises = [];
+        promises.push(store.dispatch(fetchWorldviews()));
+        promises.push(store.dispatch(fetchQuestions()));
+        renderProps.routes.map(route => {
+          if (route.onEnter) {
+            promises.push(route.onEnter(renderProps));
+          }
+        });
+        Promise.all(promises).then(
           () => {
             const votesFromCookies = {};
             Object.keys(req.cookies).map(key => {
