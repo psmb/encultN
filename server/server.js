@@ -15,7 +15,10 @@ import createLocation from 'history/lib/createLocation';
 import store from 'redux/store';
 import routes from 'redux/routes';
 
-import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
+import {reset as resetVoting, fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
+import {reset as resetAbout} from 'redux/modules/about';
+import {reset as resetBlogs} from 'redux/modules/blogs';
+import {reset as resetPreferences} from 'redux/modules/preferences';
 
 delete process.env.BROWSER;
 const app = express();
@@ -136,6 +139,10 @@ function handleRender(req, res) {
       } else if (renderProps === null) {
         res.status(404).send('Not found');
       } else {
+        store.dispatch(resetVoting());
+        store.dispatch(resetAbout());
+        store.dispatch(resetBlogs());
+        store.dispatch(resetPreferences());
         Promise.all([
           store.dispatch(fetchWorldviews()),
           store.dispatch(fetchQuestions()),

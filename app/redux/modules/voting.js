@@ -2,6 +2,7 @@ import {Map, fromJS} from 'immutable';
 import {createAction} from 'redux-actions';
 import * as api from '../api';
 
+const RESET = 'voting/RESET';
 const SELECT_QUESTION = 'voting/SELECT_QUESTION';
 const SELECT_ANSWER = 'voting/SELECT_ANSWER';
 const LIKE_ANSWER = 'voting/LIKE_ANSWER';
@@ -37,6 +38,8 @@ export default function reducer(state = initialState, action = {}) {
   }
 
   switch (action.type) {
+  case RESET:
+    return initialState;
   case SELECT_QUESTION:
     return state.set('activeQuestion', action.payload);
   case SELECT_ANSWER:
@@ -56,7 +59,6 @@ export default function reducer(state = initialState, action = {}) {
       .setIn(['questions', activeQuestion, 'answers', lastAnswerIndex, 'liked'], null)
       .setIn(['questions', activeQuestion, 'activeAnswer'], firstAnswer);
   case INIT_VOTES:
-    console.log('votes from reducer', action.payload);
     return state.mergeDeepIn(['questions'], action.payload);
   case VOTE_FOR_ANSWER:
     const currentWorldviewId = state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'worldviewId']);
@@ -87,6 +89,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 
+export const reset = createAction(RESET);
 export const selectQuestion = createAction(SELECT_QUESTION, id => id, id => {
   return {analytics: {type: 'reachGoal', payload: {target: 'SELECT_QUESTION', params: id} }};
 });
