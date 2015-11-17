@@ -11,6 +11,8 @@ let persistStateUrl = '';
 if (typeof(window) !== 'undefined') {
   const fromServer = window.__INITIAL_STATE__;
   initialState.voting = fromJS(fromServer.voting);
+  initialState.about = fromJS(fromServer.about);
+  initialState.blogs = fromJS(fromServer.blogs);
   initialState.preferences = fromJS(fromServer.preferences);
   persistStateUrl = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
 }
@@ -24,10 +26,15 @@ function metrika(type, target, params) {
 }
 
 const analyticsMiddleware = analytics(({ type, payload }) => metrika(type, payload.target, payload.params));
-const store = compose(
-  applyMiddleware(promiseMiddleware, cookie(), analyticsMiddleware),
-  devTools(),
-  persistState(persistStateUrl),
-)(createStore)(appReducer, initialState);
+let store = null;
+
+export function initStore() {
+  store = compose(
+    applyMiddleware(promiseMiddleware, cookie(), analyticsMiddleware),
+    devTools(),
+    persistState(persistStateUrl),
+  )(createStore)(appReducer, initialState);
+}
+initStore();
 
 export default store;

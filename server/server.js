@@ -12,7 +12,7 @@ import {RoutingContext, match} from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 
-import store from 'redux/store';
+import store, {initStore} from 'redux/store';
 import routes from 'redux/routes';
 
 import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
@@ -136,6 +136,7 @@ function handleRender(req, res) {
       } else if (renderProps === null) {
         res.status(404).send('Not found');
       } else {
+        initStore();
         Promise.all([
           store.dispatch(fetchWorldviews()),
           store.dispatch(fetchQuestions()),
@@ -149,7 +150,6 @@ function handleRender(req, res) {
               }
             });
             store.dispatch(initVotes(votesFromCookies));
-            console.log('votes from cookies:', votesFromCookies);
             const html = ReactDOMServer.renderToString(
               <div>
                 <Provider store={store}>
