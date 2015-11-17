@@ -149,6 +149,7 @@ function handleRender(req, res) {
               }
             });
             store.dispatch(initVotes(votesFromCookies));
+            console.log('votes from cookies:', votesFromCookies);
             const html = ReactDOMServer.renderToString(
               <div>
                 <Provider store={store}>

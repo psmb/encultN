@@ -56,6 +56,7 @@ export default function reducer(state = initialState, action = {}) {
       .setIn(['questions', activeQuestion, 'answers', lastAnswerIndex, 'liked'], null)
       .setIn(['questions', activeQuestion, 'activeAnswer'], firstAnswer);
   case INIT_VOTES:
+    console.log('votes from reducer', action.payload);
     return state.mergeDeepIn(['questions'], action.payload);
   case VOTE_FOR_ANSWER:
     const currentWorldviewId = state.getIn(['questions', activeQuestion, 'answers', activeAnswerIndex, 'worldviewId']);
