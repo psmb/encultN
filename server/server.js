@@ -12,13 +12,10 @@ import {RoutingContext, match} from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 
-import store from 'redux/store';
+import store, {initStore} from 'redux/store';
 import routes from 'redux/routes';
 
-import {reset as resetVoting, fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
-import {reset as resetAbout} from 'redux/modules/about';
-import {reset as resetBlogs} from 'redux/modules/blogs';
-import {reset as resetPreferences} from 'redux/modules/preferences';
+import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
 
 delete process.env.BROWSER;
 const app = express();
@@ -139,10 +136,7 @@ function handleRender(req, res) {
       } else if (renderProps === null) {
         res.status(404).send('Not found');
       } else {
-        store.dispatch(resetVoting());
-        store.dispatch(resetAbout());
-        store.dispatch(resetBlogs());
-        store.dispatch(resetPreferences());
+        initStore();
         Promise.all([
           store.dispatch(fetchWorldviews()),
           store.dispatch(fetchQuestions()),
@@ -156,7 +150,6 @@ function handleRender(req, res) {
               }
             });
             store.dispatch(initVotes(votesFromCookies));
-            console.log('votes from cookies:', votesFromCookies);
             const html = ReactDOMServer.renderToString(
               <div>
                 <Provider store={store}>
