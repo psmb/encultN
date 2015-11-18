@@ -47,7 +47,7 @@ if (isDev) {
 
   app.use(require('webpack-hot-middleware')(compiler));
 }
-app.use('/static', express.static(path.join(__dirname, '../static')));
+app.use('/static', express.static(path.join(__dirname, '../static'), { maxAge: 2678400000 }));
 app.use(favicon(__dirname + '/../static/favicons/favicon.ico'));
 
 function renderFullPage(html, initialState) {
