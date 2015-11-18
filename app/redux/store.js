@@ -28,13 +28,13 @@ function metrika(type, target, params) {
 const analyticsMiddleware = analytics(({ type, payload }) => metrika(type, payload.target, payload.params));
 let store = null;
 
-export function initStore() {
-  store = compose(
-    applyMiddleware(promiseMiddleware, cookie(), analyticsMiddleware),
-    devTools(),
-    persistState(persistStateUrl),
-  )(createStore)(appReducer, initialState);
+export default function getStore(reset) {
+  if (!store || reset) {
+    store = compose(
+      applyMiddleware(promiseMiddleware, cookie(), analyticsMiddleware),
+      devTools(),
+      persistState(persistStateUrl),
+    )(createStore)(appReducer, initialState);
+  }
+  return store;
 }
-initStore();
-
-export default store;

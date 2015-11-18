@@ -13,12 +13,13 @@ import {RoutingContext, match} from 'react-router';
 import {Provider} from 'react-redux';
 import createLocation from 'history/lib/createLocation';
 
-import store, {initStore} from 'redux/store';
-import routes from 'redux/routes';
+import getStore from 'redux/store';
+import getRoutes from 'redux/routes';
 
 import {fetchQuestions, initVotes, fetchWorldviews} from 'redux/modules/voting';
 
 delete process.env.BROWSER;
+
 const app = express();
 const port = process.env.PORT || 3000;
 const apiEndpoint = process.env.API_ENDPOINT || 'http://izm.io:8888';
@@ -129,6 +130,8 @@ function handleRender(req, res) {
     res.redirect(`/${preferedLocale}`);
   } else if (req.url.substring(0, 3) === '/en' || req.url.substring(0, 3) === '/ru') {
     const location = createLocation(req.url);
+    const store = getStore(true);
+    const routes = getRoutes(store);
     match({ routes, location }, (error, redirectLocation, renderProps) => {
       if (redirectLocation) {
         res.redirect(301, redirectLocation.pathname + redirectLocation.search);
@@ -137,10 +140,10 @@ function handleRender(req, res) {
       } else if (renderProps === null) {
         res.status(404).send('Not found');
       } else {
-        initStore();
-        const promises = [];
-        promises.push(store.dispatch(fetchWorldviews()));
-        promises.push(store.dispatch(fetchQuestions()));
+        const promises = [
+          store.dispatch(fetchWorldviews()),
+          store.dispatch(fetchQuestions()),
+        ];
         renderProps.routes.map(route => {
           if (route.onEnter) {
             promises.push(route.onEnter(renderProps));

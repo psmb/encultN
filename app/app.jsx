@@ -2,32 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router';
-// import {DevTools, DebugPanel, LogMonitor} from 'redux-devtools/lib/react';
 import 'babel/polyfill';
-import store from 'redux/store';
-import routes from 'redux/routes';
+import getStore from 'redux/store';
+import getRoutes from 'redux/routes';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 if (process.env.BROWSER) {
   require('styles/main.scss');
 }
 
+const store = getStore();
+const routes = getRoutes(store);
 const history = createBrowserHistory();
 
 class App extends React.Component {
-
   render() {
-    // const devTools = (() => {
-    //   return (
-    //     <DebugPanel top right bottom>
-    //       <DevTools
-    //         store={store}
-    //         monitor={LogMonitor}
-    //         visibleOnLoad={document.cookie.indexOf('enableDevTools=true') !== -1}
-    //       />
-    //     </DebugPanel>
-    //   );
-    // }());
-
     return (
       <div>
         <Provider store={store}>

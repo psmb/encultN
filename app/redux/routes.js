@@ -12,26 +12,24 @@ import Blog from 'components/Blogs/Blog';
 import Worldviews from 'components/Worldviews/Worldviews';
 import Worldview from 'components/Worldviews/Worldview';
 import Root from 'components/Root';
-import store from 'redux/store';
 import {setLang} from 'i18n/index';
 
-const onEnterQuestionHandler = (nextState) => {
-  return Promise.all([
-    store.dispatch(selectQuestion(nextState.params.id)),
-    store.dispatch(fetchAnswers(nextState.params.id)),
-  ]);
-};
+export default function getRoutes(store) {
+  const onEnterQuestionHandler = (nextState) => {
+    store.dispatch(selectQuestion(nextState.params.id));
+    return store.dispatch(fetchAnswers(nextState.params.id));
+  };
 
-const routes = (
-  <Route path='/:lang' component={Root} onEnter={(nextState) => setLang(nextState.params.lang)}>
-    <IndexRoute component={Questions} />
-    <Route path='q/:id' component={Question} onEnter={onEnterQuestionHandler} />
-    <Route path='about' component={About} onEnter={() => store.dispatch(fetchAbout())} />
-    <Route path='stats' component={Stats} />
-    <Route path='analytics' component={Blogs} onEnter={() => store.dispatch(fetchBlogs())} />
-    <Route path='analytics/:id' component={Blog} onEnter={(nextState) => store.dispatch(fetchBlog(nextState.params.id))}/>
-    <Route path='worldviews' component={Worldviews} />
-    <Route path='worldviews/:id' component={Worldview} />
-  </Route>
-);
-export default routes;
+  return (
+    <Route path='/:lang' component={Root} onEnter={(nextState) => {setLang(nextState.params.lang);}}>
+      <IndexRoute component={Questions} />
+      <Route path='q/:id' component={Question} onEnter={onEnterQuestionHandler} />
+      <Route path='about' component={About} onEnter={() => store.dispatch(fetchAbout())} />
+      <Route path='stats' component={Stats} />
+      <Route path='analytics' component={Blogs} onEnter={() => store.dispatch(fetchBlogs())} />
+      <Route path='analytics/:id' component={Blog} onEnter={(nextState) => store.dispatch(fetchBlog(nextState.params.id))}/>
+      <Route path='worldviews' component={Worldviews} />
+      <Route path='worldviews/:id' component={Worldview} />
+    </Route>
+  );
+}
