@@ -177,7 +177,11 @@ function handleRender(req, res) {
   }
 }
 
-
+// Set original ip-address before proxing API call
+app.use('/api', function(req, res, next) {
+  req.headers['Client-Ip'] = req.connection.remoteAddress;
+  next();
+});
 app.use('/api', proxy(apiEndpoint, {
   forwardPath: (req) => req.url,
 }));
