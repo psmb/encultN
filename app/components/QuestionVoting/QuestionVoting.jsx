@@ -7,9 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 @connect(
   state => ({
     question: state.voting.get('questions').find(item => item.get('id') === state.voting.get('activeQuestion')),
-  }),
-  actionCreators,
-)
+  }), actionCreators)
 export default class QuestionVoting extends Component {
   static propTypes = {
     question: PropTypes.object.isRequired,
