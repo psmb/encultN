@@ -87,7 +87,7 @@ function renderFullPage(html, initialState) {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
         </script>
-        <script defer src="/static/build/bundle.js"></script>
+        <script defer src="/static/build/bundle.js?1"></script>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
         <script defer src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
         <!-- Yandex.Metrika counter -->
