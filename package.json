@@ -27,6 +27,7 @@
     "eslint-config-airbnb": "0.0.8",
     "eslint-plugin-react": "^3.3.2",
     "import-glob-loader": "^1.1.0",
+    "jsdom": "^7.0.2",
     "mocha": "^2.3.2",
     "nodemon": "^1.5.1",
     "pre-commit": "^1.1.1",
