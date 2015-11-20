@@ -98,7 +98,7 @@ export default class Stats extends Component {
           <div className='medium-8 columns'>
             <h1 className='marginVertical-double mdl-typography--display-1-color-contrast'>{__('Статистика')}</h1>
             <p className='mdl-typography--body-1-color-contrast'>
-              {__('Мне кажется тут должен быть абзац с текстом, кратко объясняющим метод голосвания. Мне кажется тут должен быть абзац с текстом, кратко объясняющим метод голосвания.')}
+              {__('Здесь вы можете ознакомиться с суммарными данными по мировоззренческому выбору посетителей нашего сайта, а также с данными по выбору в каждом отдельном вопросе.')}
             </p>
           </div>
         </div>
