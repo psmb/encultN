@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Link from 'i18n/Link';
-import {FacebookButton, VKontakteButton, TwitterButton} from 'react-social';
+import SocialButtons from 'components/Social/SocialButtons';
 import puttext, {getLang} from 'i18n/index';
 
 export default class VotedAnswer extends Component {
@@ -24,11 +24,7 @@ export default class VotedAnswer extends Component {
         </Link>
         <div className='Social marginTop-single'>
           <div style={{display: 'inline-block'}}>{__('Поделитесь этим с друзьями')}:</div>
-          <div className='Social-buttons'>
-            <FacebookButton className='Social-button' message={message} url={url}><i className='icon-facebook'></i></FacebookButton>
-            <TwitterButton className='Social-button' message={message} url={url}><i className='icon-twitter'></i></TwitterButton>
-            <VKontakteButton className='Social-button' message={message} url={url}><i className='icon-vkontakte'></i></VKontakteButton>
-          </div>
+          <SocialButtons message={message} url={url} />
         </div>
       </div>
     );
