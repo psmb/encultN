@@ -7,6 +7,7 @@ import Questions from 'components/Questions/Questions';
 import Question from 'components/Question';
 import About from 'components/About/About';
 import Stats from 'components/Stats/Stats';
+import Donate from 'components/Donate/Donate';
 import Blogs from 'components/Blogs/Blogs';
 import Blog from 'components/Blogs/Blog';
 import Worldviews from 'components/Worldviews/Worldviews';
@@ -26,6 +27,7 @@ export default function getRoutes(store) {
       <Route path='q/:id' component={Question} onEnter={onEnterQuestionHandler} />
       <Route path='about' component={About} onEnter={() => store.dispatch(fetchAbout())} />
       <Route path='stats' component={Stats} />
+      <Route path='donate' component={Donate} />
       <Route path='analytics' component={Blogs} onEnter={() => store.dispatch(fetchBlogs())} />
       <Route path='analytics/:id' component={Blog} onEnter={(nextState) => store.dispatch(fetchBlog(nextState.params.id))}/>
       <Route path='worldviews' component={Worldviews} />

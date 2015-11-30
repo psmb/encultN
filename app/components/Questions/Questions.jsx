@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Intro from './Intro';
 import QuestionsList from './QuestionsList';
 import Stats from './Stats';
+import Link from 'i18n/Link';
 import puttext from 'i18n/index';
 if (process.env.BROWSER) {
   require('./Questions.scss');
@@ -39,7 +40,7 @@ export default class Questions extends Component {
           <div className='medium-8 medium-offset-2 columns'>
             <div className='paddingTop-triple marginTop-triple'>
               <p className='mdl-typography--caption color-primary Hint textAlign-center'>
-                {__('Здесь вы можете сделать пожертвование на этот и другие подобные проекты, способствующие изучению и развитию межкультурных отношений')}
+                <Link to={`/donate/`}>{__('Здесь вы можете сделать пожертвование на этот и другие подобные проекты, способствующие изучению и развитию межкультурных отношений')}</Link>
               </p>
             </div>
           </div>
